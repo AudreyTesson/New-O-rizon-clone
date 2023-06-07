@@ -89,8 +89,20 @@ class City
      */
     private $environment;
 
+
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="cities")
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="cities")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $country;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="city")
      */
     private $users;
 
@@ -268,6 +280,31 @@ class City
     public function setEnvironment(?string $environment): self
     {
         $this->environment = $environment;
+
+        return $this;
+    }
+
+ 
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }
