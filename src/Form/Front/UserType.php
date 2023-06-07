@@ -25,12 +25,12 @@ class UserType extends AbstractType
                 "attr" => ["placeholder" => "user@newOrizon.com"]
             ])
             ->add('password', RepeatedType::class,[
-            'type' => PasswordType::class, 
-            'options' => ['attr' => ['class' => 'password-field']],
-            'first_options' => [ 
+                'type' => PasswordType::class, 
+                'options' => ['attr' => ['class' => 'password-field']],
+                'first_options' => [ 
                     "label" => "Mot de passe",
                     'constraints' => [
-                        new NotBlank(),
+                        new NotBlank(['message' => 'Ce champ est obligatoire']),
                         new Regex(
                             "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/",
                             "Le mot de passe doit contenir au minimum 8 caractères, une majuscule, un chiffre et un caractère spécial"
