@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 body {
-    background-color: lightgray;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
 }
+

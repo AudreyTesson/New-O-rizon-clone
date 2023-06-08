@@ -5,6 +5,7 @@
         "@hotwired/stimulus": "^3.0.0",
         "@symfony/stimulus-bridge": "^3.2.0",
         "@symfony/webpack-encore": "^4.0.0",
+        "@tailwindcss/forms": "^0.5.3",
         "autoprefixer": "^10.4.14",
         "core-js": "^3.23.0",
         "postcss": "^8.4.24",
@@ -20,7 +21,8 @@
     "scripts": {
         "dev-server": "encore dev-server",
         "dev": "encore dev",
-        "watch": "encore dev --watch",
+        "watch": "webpack --config webpack.config.js --watch --progress",
+        "start": "webpack-dev-server --config webpack.config.js",
         "build": "encore production --progress"
     }
 }
