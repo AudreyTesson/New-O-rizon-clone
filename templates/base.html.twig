@@ -16,6 +16,12 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            <script
+                type="text/javascript"
+                src="../node_modules/tw-elements/dist/js/tw-elements.umd.min.js">
+            </script>
+            <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+        {% endblock %}
     </body>
 </html>
