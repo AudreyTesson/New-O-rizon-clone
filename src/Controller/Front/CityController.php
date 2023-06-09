@@ -22,9 +22,14 @@ class CityController extends AbstractController
             throw new Exception("Cette ville n'existe pas", 404);
         }
 
+
+        $cities = $cityRepository->findAll();
+
+
         return $this->render('front/cities/show.html.twig', [
             'cityId' => $id,
             'city' => $city,
+            'cities' => $cities,
         ]);
     }
 }
