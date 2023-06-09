@@ -50,14 +50,15 @@ class Country
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
-    /**
      * @ORM\OneToMany(targetEntity=City::class, mappedBy="country")
      */
     private $cities;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class, inversedBy="country", cascade={"persist", "remove"})
+     */
+    private $image;
+
 
     public function __construct()
     {
@@ -141,18 +142,6 @@ class Country
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, City>
      */
@@ -182,4 +171,17 @@ class Country
 
         return $this;
     }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
 }

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230606143604 extends AbstractMigration
+final class Version20230609094457 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,16 @@ final class Version20230606143604 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, username VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE country ADD image_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE country ADD CONSTRAINT FK_5373C9663DA5256D FOREIGN KEY (image_id) REFERENCES image (id)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_5373C9663DA5256D ON country (image_id)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE user');
+        $this->addSql('ALTER TABLE country DROP FOREIGN KEY FK_5373C9663DA5256D');
+        $this->addSql('DROP INDEX UNIQ_5373C9663DA5256D ON country');
+        $this->addSql('ALTER TABLE country DROP image_id');
     }
 }
