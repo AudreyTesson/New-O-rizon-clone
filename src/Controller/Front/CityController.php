@@ -12,6 +12,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class CityController extends AbstractController
 {
     /**
+     * Cities List
+     *
+     * @Route("/cities", name="cities_list")
+     */
+    public function list(CityRepository $cityRepository, ImageRepository $imageRepository)
+    {
+        $cities = $cityRepository->findAll();
+
+        $images = $imageRepository->findBy([
+            "city" => $cities
+        ]);
+
+        return $this->render('front/cities/list.html.twig', [
+            'cities' => $cities,
+            "images" => $images,
+        ]);
+    }
+
+    /**
      * City Page
      * 
      * @Route("/cities/{id}", name="cities_detail", requirements={"id":"\d+"})
