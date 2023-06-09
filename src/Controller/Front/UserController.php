@@ -31,6 +31,8 @@ class UserController extends AbstractController
             $plaintextPassword = $user->getPassword();
             $passwordHashed = $passwordHasher->hashPassword($user,  $plaintextPassword);
             $user->setPassword($passwordHashed);
+
+            $user->setRoles(['ROLE_USER']);
             $userRepository->add($user, true);
 
             $this->addFlash(
