@@ -91,11 +91,6 @@ class City
 
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="cities")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -106,9 +101,15 @@ class City
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="city")
+     */
+    private $images;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -284,19 +285,6 @@ class City
         return $this;
     }
 
- 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
     public function getCountry(): ?Country
     {
         return $this->country;
@@ -335,4 +323,35 @@ class City
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setCity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getCity() === $this) {
+                $image->setCity(null);
+            }
+        }
+
+        return $this;
+    }
+ 
 }
