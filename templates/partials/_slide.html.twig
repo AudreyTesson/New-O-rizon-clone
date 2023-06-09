@@ -4,8 +4,6 @@
 {% set isCities = (app.request.attributes.get("_route") ends with "default")%}
 {% set isCity = (app.request.attributes.get("_route") ends with "cities_detail")%}
 
-
-
 {% if isCities %}
 
 {# Mobile version with carousel#}
@@ -31,28 +29,27 @@
 
     {# Desktop version with carousel#}
 
-    {# data-carousel="slide" for slider #}
-    {# class="relative w-1/2" for 50% #}
-    <div id="default-carousel" class="relative w-full" data-carousel="slide">
+    {# data-carousel="slide" for slider / "static" #}
+    <div id="default-carousel" class="relative w-1/2 mx-auto" data-carousel="slide">
         <!-- Carousel wrapper -->
         <div class="relative h-full overflow-hidden rounded-lg md:h-96">
 
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <img
                 src="{{city.image}}"
-                class="absolute block w-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                 alt="Photo d'une ville au hasard">
         </div>
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <img
                 src="{{city.image}}"
-                class="absolute block w-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                 alt="Photo d'une ville au hasard">
         </div>
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <img
                 src="{{city.image}}"
-                class="absolute block w-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                 alt="Photo d'une ville au hasard">
         </div>
     </div>
