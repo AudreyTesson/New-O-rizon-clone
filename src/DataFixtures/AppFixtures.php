@@ -41,12 +41,12 @@ class AppFixtures extends Fixture
 
         // Create 200 cities
 
-            // Random selection of one country
-        $randomCountry = $countries[mt_rand(0, count($countries)-1)];
+            
         for ($i=1; $i<201; $i++)
         {
             $city = new City();
-
+            // Random selection of one country
+            $randomCountry = $countries[mt_rand(0, count($countries)-1)];
             // Random selection of one level
             $randomLevel = $levels[mt_rand(0, count($levels)-1)];
 
