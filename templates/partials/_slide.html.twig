@@ -13,12 +13,14 @@
     <div class="relative h-56 overflow-hidden rounded-lg sm:h-48 md:h-96">
 
         {% for city in cities %}
-        <div class="duration-700 ease-in-out" data-carousel-item>
-            <img
-                src="{{city.image}}"
-                class="block w-full -translate-x -translate-y"
-                alt="Photo d'une ville au hasard" />
-                </div>
+
+            <div class="duration-700 ease-in-out" data-carousel-item>
+                <img
+                    src="{{city.image}}"
+                    class="block w-full -translate-x -translate-y"
+                    alt="Photo d'une ville au hasard" />
+            </div>
+
         {% endfor %} 
 
     </div>
@@ -34,24 +36,16 @@
         <!-- Carousel wrapper -->
         <div class="relative h-full overflow-hidden rounded-lg md:h-96">
 
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img
-                src="{{city.image}}"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                alt="Photo d'une ville au hasard">
+            {% for image in images %}
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img
+                        src="{{ image.url }}"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                        alt="Photo d'une ville au hasard">
+                </div>
+
+            {% endfor %}
+
         </div>
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img
-                src="{{city.image}}"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                alt="Photo d'une ville au hasard">
-        </div>
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img
-                src="{{city.image}}"
-                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                alt="Photo d'une ville au hasard">
-        </div>
-    </div>
 
 {% endif %}
