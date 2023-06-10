@@ -40,7 +40,8 @@ class UserController extends AbstractController
                 'Félicitations ! ' . $user->getFirstname() . ' vous êtes un membre O\'rizon'
             );
 
-            // redirection expected to login form route
+            return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
+
         }
 
         return $this->renderForm('front/user/sign_in.html.twig', [
