@@ -40,7 +40,6 @@ class ImageRepository extends ServiceEntityRepository
         }
     }
 
-<<<<<<< HEAD
     /*
      *Display 1 image per city for 30 cities, in the carousel for mobile version
      */
@@ -62,8 +61,6 @@ class ImageRepository extends ServiceEntityRepository
 
             return $result;
         }
-=======
->>>>>>> dev
 
 //    /**
 //     * @return Image[] Returns an array of Image objects
