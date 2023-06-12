@@ -29,7 +29,7 @@ class UserType extends AbstractType
                 'options' => ['attr' => ['class' => 'password-field']],
                 'first_options' => [ 
                     "label" => "Mot de passe",
-                    'attr' => ['class' => 'mt-0 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'],
+                    'attr' => ['class' => 'mt-0 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-50'],
                     'constraints' => [
                         new NotBlank(['message' => 'Ce champ est obligatoire']),
                         new Regex(
@@ -40,7 +40,7 @@ class UserType extends AbstractType
                 ],
             'second_options' => [
                 'label' => 'Répétez le mot de passe',
-                'attr' => ['class' => 'mt-0 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'],
+                'attr' => ['class' => 'mt-0 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-50'],
                 ],
             'invalid_message' => 'Les 2 mots de passe doivent être identiques'
             ])
