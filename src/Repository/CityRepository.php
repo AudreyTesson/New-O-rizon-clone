@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\City;
+use App\Entity\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,6 +40,35 @@ class CityRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Select 40 cities
+     *
+     */
+    // public function findByCityLimit40()
+    // {
+    //     $entityManager = $this->getEntityManager();
+
+    //     $query = $entityManager->createQuery("
+    //         SELECT city
+    //         FROM App\Entity\city city
+    //         MAX RESULTS 40
+    //     ");
+
+    //     $result = $query->getResult();
+
+    //     return $result;
+    // }
+
+    public function findByCityLimit50()
+    {
+        return $this->createQueryBuilder('city')
+                    ->select("city")
+                    ->setMaxResults(50)
+                    ->getQuery()
+                    ->getResult();
+    }
+
+    
 //    /**
 //     * @return City[] Returns an array of City objects
 //     */
