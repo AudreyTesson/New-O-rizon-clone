@@ -8,7 +8,7 @@
     
 
     {# Text of presentation #}
-    <div class="bg-cyan-50 flex justify-center mx-12 my-8 p-8 w-4/5 md:hidden ">
+    <div class="bg-gray-100 flex justify-center mx-12 my-8 p-8 w-4/5 lg:hidden ">
         <span class="italic font-bold ">
             <p class="text-xl">Bienvenue sur New O'rizon</p>
             <p class="text-base">Cliquez sur votre destination</p>
@@ -16,12 +16,12 @@
         </span>
     </div>
 
-    {# Search bar #}
-    <div class="mb-3 flex justify-center md:hidden ">
+    {# Search bar mobile version#}
+    <div class="mb-3 flex justify-center lg:hidden ">
        
-        <div class="mb-4 flex sm:w-1/2 md:w-1/4 lg:w-1/5 flex-wrap ">
-            <div class="flex bg-blue-500 p-4 w-72 space-x-4 rounded-lg ">
-                <div class="flex space-x-4">
+        <div class="mb-4 flex w-1/2 flex-wrap ">
+            <div class="flex bg-cyan-900 p-2 w-72 space-x-4 rounded-lg ">
+                <div class="flex space-x-4 items-center p-1">
                     {# Filter button #}
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m-6 8a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4"/></svg>
                     <input class="bg-gray-100 outline-none rounded border border-solid" type="text" placeholder="Recherche" />
@@ -30,57 +30,39 @@
         </div>
     </div>
 
-    {# Search bar #}
-    {# <div class="mb-3 flex justify-center md:justify-start ">
-       
-        <div class="mb-4 flex sm:w-1/2 md:w-1/4 lg:w-1/5 flex-wrap ">
-            <div class="flex bg-blue-500 p-4 w-72 space-x-4 rounded-lg ">
-                <div class="flex space-x-4"> #}
-                    {# Filter button #}
-                    {# <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m-6 8a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4"/></svg>
-                    <input class="bg-gray-100 outline-none rounded border border-solid" type="text" placeholder="Recherche" />
-                </div>
-            </div>
-        </div>
-    </div> #}
-
-    {# Desktop and tablet version with world map #}
+    {# Desktop version with world map #}
     
-    <div class="hidden md:block p-10">
-        <div class="flex w-screen h-screen justify-center items-center flex-col">
-            <div class=" relative w-screen h-screen bg-contain bg-no-repeat bg-center " style="background-image:url('{{ asset('images/9267.jpg')}}')" alt="mappemonde">
+    <div class="hidden lg:block p-10"> 
+        <div class=" relative w-screen h-screen bg-contain bg-no-repeat bg-center " style="background-image:url('{{ asset('images/mappemonde.jpg')}}')" alt="mappemonde">
 
-                {# Search bar #}
-                <div class="absolute mb-3 left-10 lg:inset-y-1/2 flex justify-center md:justify-start ">
-                
-                    <div class="mb-4 flex sm:w-1/2 md:w-1/4 lg:w-1/5 flex-wrap ">
-                        <div class="flex bg-blue-500 p-4 w-72 space-x-4 rounded-lg ">
-                            <div class="flex space-x-4">
-                                {# Filter button #}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m-6 8a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4"/></svg>
-                                <input class="bg-gray-100 outline-none rounded border border-solid" type="text" placeholder="Recherche" />
-                            </div>
+            {# Search bar #}
+
+                <div class="absolute mb-3 lg:top-4 flex w-1/4 lg:w-1/5 flex-wrap ">
+                    <div class="flex bg-cyan-900 p-2 w-72 space-x-4 rounded-lg ">
+                        <div class="flex space-x-4 items-center p-1">
+                            {# Filter button #}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m-6 8a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4"/></svg>
+                            <input class="bg-gray-100 outline-none rounded border border-solid" type="text" placeholder="Recherche" />
                         </div>
                     </div>
                 </div>
-            
-                <div class="absolute top-72 left-10 lg:inset-y-2/3  lg:w-full lg:h-full items-center backdrop-brightness-10 ">
-                    <span class=" text-blue-950 italic font-bold  ">
-                    <p class="md:text-xl lg:text-3xl">Bienvenue sur New O'rizon</p>
-                    <p class="md:text-base lg:text-2xl">Cliquez sur votre destination</p>
-                    <p class="md:text-base lg:text-2xl">Travaillez et voyagez</p>
-                    </span>
-                </div>
+
+        
+            <div class="absolute left-4 inset-y-2/3 2xl:top-96 backdrop-brightness-10 ">
+                <span class=" text-blue-950 italic font-bold  ">
+                <p class="text-xl xl:text-2xl 2xl:text-4xl ">Bienvenue sur New O'rizon</p>
+                <p class="text-base lg:text-xl">Cliquez sur votre destination</p>
+                <p class="text-base lg:text-xl">Travaillez et voyagez</p>
+                </span>
             </div>
         </div>
-        
     </div>
 
     {# Mobile version with carousel#}
     {% dump (images)%}
-    <div  id="default-carousel" class="relative w-full block md:hidden" data-carousel="slide" >
+    <div  id="default-carousel" class="relative w-full block lg:hidden" data-carousel="slide" >
         <!-- Carousel wrapper -->
-        <div class="relative h-56 overflow-hidden rounded-lg sm:h-48 md:h-96">
+        <div class="relative h-56 overflow-hidden rounded-lg sm:h-48 lg:h-96">
 
         {# Partial carousel #}
             <!-- Item 1 -->
