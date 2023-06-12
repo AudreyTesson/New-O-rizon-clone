@@ -19,7 +19,7 @@
 
             {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
                 {{ form_widget(form) }}
-                <button class="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600 mt-3">{{ button_label|default('Sauvegarder') }}</button>
+                <button class="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-medium leading-6 text-base text-black shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600 mt-3">{{ button_label|default('Sauvegarder') }}</button>
             {{ form_end(form) }}
             
             </div>
