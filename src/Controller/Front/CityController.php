@@ -20,9 +20,7 @@ class CityController extends AbstractController
     {
         $cities = $cityRepository->findAll();
 
-        $images = $imageRepository->findBy([
-            "city" => $cities
-        ]);
+        $images = $imageRepository->findByDistinctCityImage();
 
         return $this->render('front/cities/list.html.twig', [
             'cities' => $cities,
@@ -42,9 +40,7 @@ class CityController extends AbstractController
             throw new Exception("Cette ville n'existe pas", 404);
         }
 
-        $images = $imageRepository->findBy([
-            'city' => $city
-        ]);
+        $images = $imageRepository->findByDistinctCityImage();
 
         return $this->render('front/cities/show.html.twig', [
             'cityId' => $id,
