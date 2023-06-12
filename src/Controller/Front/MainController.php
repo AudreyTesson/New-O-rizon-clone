@@ -2,6 +2,10 @@
 
 namespace App\Controller\Front;
 
+<<<<<<< HEAD
+=======
+use App\Entity\City;
+>>>>>>> dev
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,6 +23,7 @@ class MainController extends AbstractController
      */
     public function home(CityRepository $cityRepository, ImageRepository $imageRepository): Response
     {
+<<<<<<< HEAD
         $cities = $cityRepository->findAll();
 
         $images = $imageRepository->findByDistinctCityImage();
@@ -29,3 +34,11 @@ class MainController extends AbstractController
         ]);
     }
 }
+=======
+        $images = $imageRepository->findall();
+        return $this->render('front/main/index.html.twig', [
+            'images' => $images
+        ]);
+    }
+}
+>>>>>>> dev

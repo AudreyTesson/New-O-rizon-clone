@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\City;
 use App\Entity\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -39,6 +40,7 @@ class ImageRepository extends ServiceEntityRepository
         }
     }
 
+<<<<<<< HEAD
     /*
      *Display 1 image per city for 30 cities, in the carousel for mobile version
      */
@@ -60,6 +62,8 @@ class ImageRepository extends ServiceEntityRepository
 
             return $result;
         }
+=======
+>>>>>>> dev
 
 //    /**
 //     * @return Image[] Returns an array of Image objects
