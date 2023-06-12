@@ -17,6 +17,11 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            custom_authenticator: App\Security\UserAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -29,6 +34,13 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/login$, roles: PUBLIC_ACCESS }
+
+    role_hierarchy: 
+        # ROLE_ADMIN included ROLE_MANAGER
+        ROLE_ADMIN: ROLE MANAGER
+        # ROLE_MANAGER included ROLE_USER
+        ROLE_MANAGER: [ROLE_USER, ROLE_CLIENT]
 
 when@test:
     security:

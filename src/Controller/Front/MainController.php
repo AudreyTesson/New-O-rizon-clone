@@ -2,6 +2,7 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\City;
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
