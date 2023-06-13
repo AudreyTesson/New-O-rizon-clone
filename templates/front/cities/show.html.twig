@@ -13,10 +13,12 @@
         </span>
     </div>
 
-    <div class = "container w-full md:flex md:flex-row">
+    <div class = "w-full grid md:grid-cols-5 md:justify-center md:items-center md:px-6 md:py-12 gap-4">
+    
+        {# <div class=""> #}
+
         {# Card Criteria #}
-        <div class="flex flex-col md:flex-row md:justify-center md:items-center md:px-6 md:py-12">
-            <div class="w-full my-8 mx-8 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div class="w-full md:col-span-2 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex justify-center mb-4">
                     <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Critères</h5>
 
@@ -195,20 +197,33 @@
                 </div>
             </div>
 
+        {# container #}
+        <div class="md:col-span-3 w-full h-full mx-2 flex flex-row py-2">
+
             {# google maps integration #}
-            <div class="w-full my-8 h-auto">
-                <img src="{{ city.images.first().url }}" class="w-full max-w-md">
+            <div id="my-map" class="h-full w-5/6">
+                <iframe
+                class="w-full h-full"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=7.1625709533691415%2C43.645019610189216%2C7.3891639709472665%2C43.74741309973937&amp;layer=mapnik"
+                style="border: 1px solid black"
+                allowfullscreen>
+                </iframe>
+                {# <br/> #}
+                <span class="small relative left-0">
+                    <a href="https://www.openstreetmap.org/#map=13/43.6962/7.2759">Afficher une carte plus grande</a>
+                </span>
             </div>
 
             {# api weather integration #}
-            <div class = "w-1/2 my-8 mx-4">
-                <h2 class="p-2 text-2xl font-bold w-fit">Météo actuelle</h2>
+            <div class = "w-1/6 ml-2">
+                <h2 class="p-2 text-md font-bold w-fit">Météo actuelle</h2>
                 <ion-icon name="rainy-outline" size="large"></ion-icon>
-                <h2 class="p-2 text-2xl font-bold w-fit">Température</h2>
-                <h2 class="p-2 text-2xl font-bold w-fit">
+                <h2 class="p-2 text-md font-bold w-fit">Température</h2>
+                <h2 class="p-2 text-md font-bold w-fit">
                     {{ city.temperatureAverage }} °C
                 </h2>
             </div>
+
         </div>
 
     </div>
