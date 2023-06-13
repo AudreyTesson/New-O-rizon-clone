@@ -4,7 +4,10 @@ module.exports = {
     'templates/**/*.html.twig',
     'templates/**/**/*.html.twig',
     'assets/js/**/*.js',
-    "./node_modules/tw-elements/dist/js/**/*.js"
+    "./src/**/*.{html,js}",
+    "./node_modules/tw-elements/dist/js/**/*.js",
+    "./node_modules/flowbite/**/*.js",
+    "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   theme: {
     extend: {},
@@ -12,6 +15,8 @@ module.exports = {
   plugins: [
     require('@tailwindcss/forms'),
     require("tw-elements/dist/plugin.cjs"),
+    require('flowbite/plugin'),
   ],
+  darkMode: "class"
 }
 
