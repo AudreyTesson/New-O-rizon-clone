@@ -29,11 +29,15 @@
 
         {% include "partials/_flash.html.twig" %}
 
-        {# Back to top button #}
-        <button id="to-top-button" onclick="goToTop()" title="Go To Top" class="hidden fixed z-90 bottom-8 right-8 border-0 w-10 h-10 drop-shadow-md bg-cyan-900 text-white text-4xl font-bold">&uarr;</button>
 
         {% block body %}{% endblock %}
 
+         {# Back to top button #}
+        {% set route = app.request.get('_route') %}
+        {% if route == 'cities_list' or route == 'cities_detail' %}
+        <button id="to-top-button" onclick="goToTop()" title="Go To Top" class="hidden fixed z-90 bottom-8 right-8 border-0 w-10 h-10 drop-shadow-md bg-cyan-900 text-white text-4xl font-bold">&uarr;</button>
+        {% endif %}
+        
         {# hidden for small devices #}
         <footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800 hidden md:block">
             <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
