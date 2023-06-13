@@ -19,14 +19,6 @@ class MainController extends AbstractController
      */
     public function home(CityRepository $cityRepository, ImageRepository $imageRepository): Response
     {
-<<<<<<< HEAD
-        $images = $imageRepository->findByDistinctCityImage();
-        $cities = $cityRepository->findByCityLimit50();
-
-        return $this->render('front/main/index.html.twig', [
-            'cities' => $cities,
-            "images" => $images,
-=======
         $cities = $cityRepository->findAll();
 
         $images = $imageRepository->findByDistinctCityImage();
@@ -34,7 +26,6 @@ class MainController extends AbstractController
         return $this->render('front/main/index.html.twig', [
             'cities' => $cities,
             'images' => $images
->>>>>>> dev
         ]);
     }
 }
