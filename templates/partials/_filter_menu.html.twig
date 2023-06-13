@@ -1,7 +1,7 @@
 
-        <div class="w-full md:w-1/2 relative">  
-            <div class="sticky">
-            <div id="filterSection" class="block relative md:py-10 lg:px-20 md:px-6 py-9 px-4 bg-gray-50 dark:bg-gray-800 w-full">
+        <div class="relative">
+            <div class="fixed top-0 left-0 right-0 w-full md:w-1/2">
+                <div id="filterSection" class="block relative md:py-10 lg:px-20 md:px-6 py-9 px-4 bg-gray-50 dark:bg-gray-800 w-full">
                 {# Cross button Code #}
                 <div onclick="closeFilterSection()" class="sticky cursor-pointer right-0 top-0 md:py-10 lg:px-20 md:px-6 py-9 px-4">
                     <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 384 512" fill="gray">
@@ -19,7 +19,8 @@
                         <p class="lg:text-2xl text-xl lg:leading-6 leading-5 font-medium">Filtres</p>
                     </div>
                 </div>
-            </div>
+               
+            
                 <hr class="bg-gray-200 lg:w-6/12 w-full md:my-10 my-8" />
     
                 <!-- Material Section -->
@@ -27,14 +28,14 @@
                     <div class="flex space-x-2 text-gray-800 dark:text-white">
                         <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/filter1-svg4.svg" alt="materials"/>
                         <img class="hidden dark:block" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/filter1-svg4dark.svg" alt="materials"/>
-                        <p class="lg:text-2xl text-xl lg:leading-6 leading-5 font-medium ">Material</p>
+                        <p class="lg:text-2xl text-xl lg:leading-6 leading-5 font-medium ">Météo</p>
                     </div>
                     <div class="md:flex md:space-x-6 mt-8 grid grid-cols-3 gap-y-8 flex-wrap">
                         <div class="flex space-x-2 md:justify-center md:items-center items-center justify-start">
                             <input class="w-4 h-4 mr-2" type="checkbox" id="Leather" name="Leather" value="Leather" />
                             <div class="inline-block">
                                 <div class="flex space-x-6 justify-center items-center">
-                                    <label class="mr-2 text-sm leading-3 dark:text-gray-300 font-normal text-gray-600" for="Leather">Leather</label>
+                                    <label class="mr-2 text-sm leading-3 dark:text-gray-300 font-normal text-gray-600" for="Leather">Géographie</label>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +43,7 @@
                             <input class="w-4 h-4 mr-2" type="checkbox" id="Cotton" name="Cotton" value="Cotton" />
                             <div class="inline-block">
                                 <div class="flex space-x-6 justify-center items-center">
-                                    <label class="mr-2 text-sm leading-3 dark:text-gray-300 font-normal text-gray-600" for="Cotton">Cotton</label>
+                                    <label class="mr-2 text-sm leading-3 dark:text-gray-300 font-normal text-gray-600" for="Cotton">Climat</label>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +51,7 @@
                             <input class="w-4 h-4 mr-2" type="checkbox" id="Fabric" name="Fabric" value="Fabric" />
                             <div class="inline-block">
                                 <div class="flex space-x-6 justify-center items-center">
-                                    <label class="mr-2 text-sm leading-3 dark:text-gray-300 font-normal text-gray-600" for="Fabric">Fabric</label>
+                                    <label class="mr-2 text-sm leading-3 dark:text-gray-300 font-normal text-gray-600" for="Fabric">Visa</label>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +59,7 @@
                             <input class="w-4 h-4 mr-2" type="checkbox" id="Crocodile" name="Crocodile" value="Crocodile" />
                             <div class="inline-block">
                                 <div class="flex space-x-6 justify-center items-center">
-                                    <label class="mr-2 text-sm leading-3 dark:text-gray-300 font-normal text-gray-600" for="Crocodile">Crocodile</label>
+                                    <label class="mr-2 text-sm leading-3 dark:text-gray-300 font-normal text-gray-600" for="Crocodile">Devise</label>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +67,7 @@
                             <input class="w-4 h-4 mr-2" type="checkbox" id="Wool" name="Wool" value="Wool" />
                             <div class="inline-block">
                                 <div class="flex space-x-6 justify-center items-center">
-                                    <label class="mr-2 text-sm leading-3 dark:text-gray-300 font-normal text-gray-600" for="Wool">Wool</label>
+                                    <label class="mr-2 text-sm leading-3 dark:text-gray-300 font-normal text-gray-600" for="Wool">Fuseau horaire</label>
                                 </div>
                             </div>
                         </div>
@@ -169,6 +170,7 @@
                 display: flex;
             }
         </style>
+    
     
         
     
