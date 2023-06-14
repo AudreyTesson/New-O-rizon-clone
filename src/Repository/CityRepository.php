@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\FilterData;
 use App\Entity\City;
 use App\Entity\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -41,23 +42,16 @@ class CityRepository extends ServiceEntityRepository
     }
 
     /**
-     * Select 40 cities
+     * Retrieve data from database with criteria passed in filter form
      *
+     * @param FilterData $filerData
+     * @return array
      */
-    // public function findByCityLimit40()
-    // {
-    //     $entityManager = $this->getEntityManager();
+    public function findByFilter(FilterData $filterData)
+    {
+        // return $this->createQueryBuilder('c')
 
-    //     $query = $entityManager->createQuery("
-    //         SELECT city
-    //         FROM App\Entity\city city
-    //         MAX RESULTS 40
-    //     ");
-
-    //     $result = $query->getResult();
-
-    //     return $result;
-    // }
+    }
 
     public function findByCityLimit50()
     {

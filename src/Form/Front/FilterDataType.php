@@ -2,7 +2,7 @@
 
 namespace App\Form\Front;
 
-use App\Data\SearchData;
+use App\Data\FilterData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SearchDataType extends AbstractType
+class FilterDataType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -180,7 +180,7 @@ class SearchDataType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => SearchData::class,
+            'data_class' => FilterData::class,
             'method' => 'GET',
             'csrf_protection' => false,
         ]);

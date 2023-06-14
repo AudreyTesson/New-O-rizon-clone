@@ -2,7 +2,7 @@
 
 namespace App\Data;
 
-class SearchData 
+class FilterData 
 {
     public string $electricityLevel;
     public string $internetLevel;

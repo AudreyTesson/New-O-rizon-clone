@@ -2,8 +2,8 @@
 
 namespace App\Controller\Front;
 
-use App\Data\SearchData;
-use App\Form\Front\SearchDataType;
+use App\Data\FilterData;
+use App\Form\Front\FilterDataType;
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,9 +26,10 @@ class MainController extends AbstractController
 
         $images = $imageRepository->findByDistinctCityImage();
 
-        $data = new SearchData();
-        $form = $this->createForm(SearchDataType::class, $data);
+        $data = new FilterData();
+        $form = $this->createForm(FilterDataType::class, $data);
         $form->handleRequest($request);
+        $citiesFilter = $cityRepository->findByFilter($data);
 
         return $this->renderForm('front/main/index.html.twig', [
             'cities' => $cities,
