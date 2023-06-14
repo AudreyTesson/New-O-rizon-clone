@@ -2,12 +2,15 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\City;
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
 use Exception;
+use App\Form\CityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class CityController extends AbstractController
 {
@@ -33,7 +36,7 @@ class CityController extends AbstractController
      * 
      * @Route("/cities/{id}", name="cities_detail", requirements={"id":"\d+"})
      */
-    public function show($id, CityRepository $cityRepository, ImageRepository $imageRepository): Response
+    public function show($id, CityRepository $cityRepository, ImageRepository $imageRepository, Request $request): Response
     {
         $city = $cityRepository->find($id);
         if ($city === null) {
@@ -41,6 +44,15 @@ class CityController extends AbstractController
         }
 
         $images = $imageRepository->findByDistinctCityImage();
+
+        $form = $this->createForm(CityType::class, $city);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            dump($city);
+        }
+
 
         return $this->render('front/cities/show.html.twig', [
             'cityId' => $id,

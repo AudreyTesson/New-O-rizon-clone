@@ -40,6 +40,16 @@ class CityRepository extends ServiceEntityRepository
         }
     }
 
+    public function findBySearch($search)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.name LIKE :search')
+            ->setParameter('search', '%' . $search . '%')
+            ->orderBy('c.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 
 //    /**
 //     * @return City[] Returns an array of City objects
