@@ -17,8 +17,8 @@ class FilterData
     public int $timezone;
     public string $currencyType;
     public string $visaType;
-    public bool $visaRequired;
-    public array $language;
+    public bool $visaRequired = false;
+    public string $language;
     public array $environment;
     public int $temperature;
 

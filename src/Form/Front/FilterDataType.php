@@ -48,7 +48,7 @@ class FilterDataType extends AbstractType
                     'Moyen' => "medium",
                     'Elevé' => "high",
                 ],
-                'label' => "Qualité du réseau électrique",
+                'label' => false,
                 'required' => false,
                 'expanded' => true,
                 'multiple' => false,
@@ -59,7 +59,7 @@ class FilterDataType extends AbstractType
                     'Moyen' => "medium",
                     'Elevé' => "high",
                 ],
-                'label' => "Qualité de la connexion internet",
+                'label' => false,
                 'required' => false,
                 'expanded' => true,
                 'multiple' => false,
@@ -70,18 +70,18 @@ class FilterDataType extends AbstractType
                     'Moyen' => "medium",
                     'Elevé' => "high",
                 ],
-                'label' => "Taux d'ensoleillement",
+                'label' => false,
                 'required' => false,
                 'expanded' => true,
                 'multiple' => false,
             ])
-            ->add('sunshineLevel', ChoiceType::class, [
+            ->add('housingLevel', ChoiceType::class, [
                 'choices' => [
                     'Bas' => "low",
                     'Moyen' => "medium",
                     'Elevé' => "high",
                 ],
-                'label' => "Taux d'ensoleillement",
+                'label' => false,
                 'required' => false,
                 'expanded' => true,
                 'multiple' => false,
@@ -94,42 +94,42 @@ class FilterDataType extends AbstractType
                 ],
             ])
             ->add('temperatureMin', NumberType::class, [
-                'label' => 'Température moyenne min',
+                'label' => false,
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'température min'
                 ]
             ])
             ->add('temperatureMax', NumberType::class, [
-                'label' => 'Température moyenne max',
+                'label' => false,
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'température max'
                 ]
             ])
             ->add('demographyMin', NumberType::class, [
-                'label' => "Nombre d'habitants min",
+                'label' => false,
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Population min'
                 ]
             ])
             ->add('demographyMax', NumberType::class, [
-                'label' => "Nombre d'habitants max",
+                'label' => false,
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Population max'
                 ]
             ])
             ->add('costMin', NumberType::class, [
-                'label' => "Coût de la vie min",
+                'label' => false,
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Coût de la vie min'
                 ]
             ])
             ->add('costMax', NumberType::class, [
-                'label' => "Coût de la vie max",
+                'label' => false,
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Coût de la vie max'
@@ -139,39 +139,40 @@ class FilterDataType extends AbstractType
                 "choices" => [
                     "expanded" => true, 
                     "multiple" => false],
-                "label" => "Devise"
+                    'label' => false,
             ])
-            // ->add('timezone', TimezoneType::class, [
-            //     "choices" => [
-            //         "expanded" => true, 
-            //         "multiple" => false],
-            //     "label" => "Fuseau Horaire"
-            // ])
+            ->add('timezone', RangeType::class, [
+                'attr' => [
+                    'min' => -12,
+                    'max' => 12
+                ],
+                'label' => false,
+            ])
             ->add('visaType', ChoiceType::class, [ 
                 "choices" => [
                     $visas
                     ],
                 "expanded" => true,
                 "multiple" => false,
-                'label' => 'Visa',
+                'label' => false,
             ])
             ->add('visaRequired', CheckboxType::class, [
                 "label" => "Visa Requis",
                 "required" => false,
             ])
-            // ->add('language', LanguageType::class, [
-            //     "choices" => [
-            //         "expanded" => true, 
-            //         "multiple" => false],
-            //     "label" => "Langue"
-            // ])
+            ->add('language', LanguageType::class, [
+                "choices" => [
+                    "expanded" => false, 
+                    "multiple" => false],
+                    'label' => false,
+            ])
             ->add('environment', ChoiceType::class, [ 
                 "choices" => [
                     $environment
                     ],
                 "expanded" => true,
                 "multiple" => true,
-                'label' => 'Environnment',
+                'label' => false,
                 'help' => '(plusieurs choix possible)'
             ])
         ;          
@@ -182,7 +183,6 @@ class FilterDataType extends AbstractType
         $resolver->setDefaults([
             'data_class' => FilterData::class,
             'method' => 'GET',
-            'csrf_protection' => false,
         ]);
     }
 }

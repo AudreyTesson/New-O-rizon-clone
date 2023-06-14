@@ -67,7 +67,7 @@ class CityRepository extends ServiceEntityRepository
 
             if (!empty($filterData->temperatureMax)) {
                 $query = $query
-                    ->andWhere('city.temperatureAverage >= :temperatureMax')
+                    ->andWhere('city.temperatureAverage <= :temperatureMax')
                     ->setParameter('temperatureMax', $filterData->temperatureMax);
             }
 
@@ -80,6 +80,11 @@ class CityRepository extends ServiceEntityRepository
                 ->getResult();
     }
 
+    /**
+     * Method test to retrieve a part of city data to render in Homepage
+     *
+     * @return void
+     */
     public function findByCityLimit50()
     {
         return $this->createQueryBuilder('city')

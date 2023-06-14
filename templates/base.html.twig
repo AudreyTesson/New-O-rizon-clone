@@ -21,8 +21,7 @@
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-                
+            {{ encore_entry_script_tags('app') }}  
         {% endblock %}
     </head>
     <body>
@@ -61,6 +60,7 @@
             
             {# MAP with Leaflet #}
             <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-            <script src ="{{ asset('map.js') }}"><script>       
+            <script src ="{{ asset('map.js') }}"></script>   
+              
     </body>
 </html>
