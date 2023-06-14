@@ -26,10 +26,9 @@ class MainController extends AbstractController
 
         $images = $imageRepository->findByDistinctCityImage();
         
+        
         $form = $this->createForm(CityType::class);
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             
         }
@@ -41,5 +40,6 @@ class MainController extends AbstractController
             
          ]);
     }
+    
     
 }

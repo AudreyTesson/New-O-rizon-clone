@@ -22,8 +22,6 @@ class CityType extends AbstractType
             ])
             ->add('name')
             ->add('area')
-            ->add('createdAt')
-            ->add('updateAt')
             ->add('electricity')
             ->add('internet')
             ->add('sunshineRate')
@@ -34,17 +32,16 @@ class CityType extends AbstractType
             ->add('housing')
             ->add('timezone')
             ->add('environment')
-            ->add('country')
-            ->add('users', EntityType::class, [
-                "multiple" => true,
-                "expanded" => true,
-                "class" => User::class,
-                'choice_label' => 'name'
-            ])
             ->add('country', EntityType::class, [
                 "multiple" => false,
                 "expanded" => false,
                 "class" => Country::class, 
+                'choice_label' => 'name'
+            ])
+            ->add('users', EntityType::class, [
+                "multiple" => true,
+                "expanded" => true,
+                "class" => User::class,
                 'choice_label' => 'name'
             ]);
         

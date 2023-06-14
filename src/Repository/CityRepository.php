@@ -40,17 +40,35 @@ class CityRepository extends ServiceEntityRepository
         }
     }
 
-    public function findBySearch($search)
+    /**
+     * Select 40 cities
+     *
+     */
+    // public function findByCityLimit40()
+    // {
+    //     $entityManager = $this->getEntityManager();
+
+    //     $query = $entityManager->createQuery("
+    //         SELECT city
+    //         FROM App\Entity\city city
+    //         MAX RESULTS 40
+    //     ");
+
+    //     $result = $query->getResult();
+
+    //     return $result;
+    // }
+
+    public function findByCityLimit50()
     {
-        return $this->createQueryBuilder('c')
-            ->where('c.name LIKE :search')
-            ->setParameter('search', '%' . $search . '%')
-            ->orderBy('c.name', 'ASC')
-            ->getQuery()
-            ->getResult();
+        return $this->createQueryBuilder('city')
+                    ->select("city")
+                    ->setMaxResults(50)
+                    ->getQuery()
+                    ->getResult();
     }
 
-
+    
 //    /**
 //     * @return City[] Returns an array of City objects
 //     */
