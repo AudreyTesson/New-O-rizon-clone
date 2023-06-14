@@ -4,6 +4,7 @@ namespace App\Controller\Front;
 
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
+use App\Service\SortService;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,15 +17,33 @@ class CityController extends AbstractController
      *
      * @Route("/cities", name="cities_list")
      */
-    public function list(CityRepository $cityRepository, ImageRepository $imageRepository)
+    public function list(
+        CityRepository $cityRepository, 
+        ImageRepository $imageRepository,
+        SortService $sortService)
     {
-        $cities = $cityRepository->findAll();
+        // $cities = $cityRepository->findAll();
 
         $images = $imageRepository->findByDistinctCityImage();
 
+        // $isSorted = false;
+        $sortedCitiesAsc = [];
+        $sortedCitiesDesc = [];
+        
+        // if (isset($_GET['sort']) && $_GET['sort'] === 'asc') {
+        //     $isSorted = true;
+        //     $sortedCitiesAsc = $sortService->sortCitiesByName('asc');
+        // } elseif (isset($_GET['sort']) && $_GET['sort'] === 'desc') {
+        //     $isSorted = true;
+        //     $sortedCitiesDesc = $sortService->sortCitiesByName('desc');
+        // }
+
         return $this->render('front/cities/list.html.twig', [
-            'cities' => $cities,
+            // 'isSorted' => $isSorted,
+            // 'cities' => $cities,
             "images" => $images,
+            'sortedCitiesAsc' => $sortedCitiesAsc,
+            'sortedCitiesDesc' => $sortedCitiesDesc,
         ]);
     }
 
