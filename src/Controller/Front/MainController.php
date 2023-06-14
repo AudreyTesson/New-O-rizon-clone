@@ -2,7 +2,7 @@
 
 namespace App\Controller\Front;
 
-use App\Form\CityType;
+use App\Form\Front\SearchCityType;
 use App\Entity\City;
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
@@ -20,26 +20,30 @@ class MainController extends AbstractController
      * 
      * @return Response
      */
-    public function home(CityRepository $cityRepository, ImageRepository $imageRepository, Request $request): Response
+    public function home(CityRepository $cityRepository,ImageRepository $imageRepository, Request $request): Response
     {
-        $cities = $cityRepository->findAll();
 
-        $images = $imageRepository->findByDistinctCityImage();
-        
-        
-        $form = $this->createForm(CityType::class);
-        $form->handleRequest($request);
+    $images = $imageRepository->findByDistinctCityImage();
+
+    // $dataCity = $request->query->get('city', '');
+    // dd($dataCity);
+
+    $city = $cityRepository->findByCityLimit50();
+
+    $form = $this->createForm(SearchCityType::class, $city);
+
+    $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            
+            $city = $form->getData();
+
+            dump($city);
         }
 
-    
-        return $this->render('front/main/index.html.twig', [
-            'cities' => $cities,
+        return $this->renderForm('front/main/index.html.twig', [
             'images' => $images,
-            
+            'form' => $form
          ]);
     }
-    
-    
-}
+
+}  

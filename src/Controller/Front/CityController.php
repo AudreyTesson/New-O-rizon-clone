@@ -7,7 +7,9 @@ use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
 use Exception;
 use App\Form\CityType;
+use App\Form\Front\SearchCityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,27 +42,17 @@ class CityController extends AbstractController
     {
         $city = $cityRepository->find($id);
         if ($city === null) {
-            throw new Exception("Cette ville n'existe pas", 404);
+            throw new Exception("Nous n'avons pas encore de données sur cette ville", 404);
         }
 
         $images = $imageRepository->findByDistinctCityImage();
 
-        $form = $this->createForm(CityType::class, $city);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            dump($city);
-        }
-
-
         return $this->render('front/cities/show.html.twig', [
             'cityId' => $id,
             'city' => $city,
-            'images' => $images
+            'images' => $images,
         ]);
     }
-
     
 }
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +9,9 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=atkinson-hyperlegible:400,400i,700,700i" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+        {# Map leaflet style #}
+        <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
 
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 
@@ -55,7 +59,8 @@
                     </li>
                 </ul>
             </div>
-
+        </footer>
+            
             <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
             <script src="{{ asset('scroll.js') }}"></script>
             <script src="{{ asset('modal.js') }}"></script>
@@ -70,6 +75,11 @@
             <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
             <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-        </footer>
+            <script src="https://kit.fontawesome.com/de8da1408a.js" crossorigin="anonymous"></script>
+            
+            {# MAP with Leaflet #}
+            <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+            <script src ="{{ asset('map.js') }}"></script>
+        
     </body>
 </html>
