@@ -6,11 +6,20 @@
 
     <div class="w-full h-96" style="background-image:url('{{ asset('images/city2.jpg') }}')">
         <span class="text-xl text-white font-bold w-auto flex flex-col justify-center items-center backdrop-brightness-40">
+        {# <ion-icon name="heart-outline" size="large" class="flex justify-items-end"></ion-icon> #}
+            <i class="fa-regular fa-heart fa-lg absolute right-4 top-24"></i>
             <h2 class="text-2xl mt-4 font-bold w-fit">
                 {{ city.name }}</h2>
             <h2 class="text-2xl mb-2 font-bold w-fit">
                 {{ city.country.name}}</h2>
         </span>
+        <div class="absolute inset-x-0 flex justify-center items-end">
+            <i class="fa-solid fa-star fa-lg" style="color: #164e63;"></i>
+            <i class="fa-solid fa-star fa-lg" style="color: #164e63;"></i>
+            <i class="fa-solid fa-star fa-lg" style="color: #164e63;"></i>
+            <i class="fa-regular fa-star fa-lg-half-stroke fa-lg" style="color: #164e63;"></i>
+            <i class="fa-regular fa-star fa-lg" style="color: #164e63;"></i>
+        </div>
     </div>
 
     <div class = "w-full grid md:grid-cols-5 md:justify-center md:items-center md:px-6 md:py-12 md:mx-12 gap-4">
@@ -206,7 +215,6 @@
                 style="border: 1px solid black"
                 allowfullscreen>
                 </iframe>
-                {# <br/> #}
                 <span class="small relative left-0">
                     <a href="https://www.openstreetmap.org/#map=13/43.6962/7.2759">Afficher une carte plus grande</a>
                 </span>
