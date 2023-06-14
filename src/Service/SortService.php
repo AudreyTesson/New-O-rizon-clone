@@ -15,11 +15,21 @@ class SortService
     
     public function sortCitiesByName(string $order = 'asc'): array
     {
-        $dqlQuery = 'SELECT c FROM App\Entity\City c ORDER BY c.name ' . $order;
-        
-        $query = $this->entityManager->createQuery($dqlQuery);
+        $query = $this->entityManager->createQuery("
+        SELECT image, city
+        FROM App\Entity\Image image
+        JOIN image.city city
+        WHERE image.id IN (
+            SELECT MIN(cityImage.id)
+            FROM App\Entity\Image cityImage
+            WHERE cityImage.city = city
+            GROUP BY cityImage.city
+        )
+        ORDER BY city.name " . strtoupper($order)
+    );
+
         $sortedCities = $query->getResult();
-        
+    
         return $sortedCities;
     }
 }

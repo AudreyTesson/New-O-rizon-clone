@@ -6,7 +6,9 @@ use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
 use App\Service\SortService;
 use Exception;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,29 +20,18 @@ class CityController extends AbstractController
      * @Route("/cities", name="cities_list")
      */
     public function list(
-        CityRepository $cityRepository, 
         ImageRepository $imageRepository,
+        PaginatorInterface $paginatorInterface, Request $request,
         SortService $sortService)
     {
-        // $cities = $cityRepository->findAll();
-
         $images = $imageRepository->findByDistinctCityImage();
 
-        // $isSorted = false;
+        $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
+
         $sortedCitiesAsc = [];
         $sortedCitiesDesc = [];
-        
-        // if (isset($_GET['sort']) && $_GET['sort'] === 'asc') {
-        //     $isSorted = true;
-        //     $sortedCitiesAsc = $sortService->sortCitiesByName('asc');
-        // } elseif (isset($_GET['sort']) && $_GET['sort'] === 'desc') {
-        //     $isSorted = true;
-        //     $sortedCitiesDesc = $sortService->sortCitiesByName('desc');
-        // }
 
         return $this->render('front/cities/list.html.twig', [
-            // 'isSorted' => $isSorted,
-            // 'cities' => $cities,
             "images" => $images,
             'sortedCitiesAsc' => $sortedCitiesAsc,
             'sortedCitiesDesc' => $sortedCitiesDesc,
