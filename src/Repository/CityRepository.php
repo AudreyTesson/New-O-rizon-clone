@@ -40,25 +40,12 @@ class CityRepository extends ServiceEntityRepository
         }
     }
 
+
+    //! Method for testing homepage 
     /**
-     * Select 40 cities
+     * Select 50 cities
      *
      */
-    // public function findByCityLimit40()
-    // {
-    //     $entityManager = $this->getEntityManager();
-
-    //     $query = $entityManager->createQuery("
-    //         SELECT city
-    //         FROM App\Entity\city city
-    //         MAX RESULTS 40
-    //     ");
-
-    //     $result = $query->getResult();
-
-    //     return $result;
-    // }
-
     public function findByCityLimit50()
     {
         return $this->createQueryBuilder('city')
