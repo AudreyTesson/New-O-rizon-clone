@@ -55,28 +55,29 @@ class CityRepository extends ServiceEntityRepository
 
             if (!empty($filterData->electricityLevel)) {
                 $query = $query
-                    ->andWhere('c.electricity LIKE :filterData')
-                    ->setParameters("filterData", "%$filterData->electricityLevel%");
+                    ->andWhere('city.electricity LIKE :filterData')
+                    ->setParameter("filterData", "%$filterData->electricityLevel%");
             }
 
             if (!empty($filterData->temperatureMin)) {
                 $query = $query
-                    ->andWhere('c.temperatureAverage >= :min')
+                    ->andWhere('city.temperatureAverage >= :temperatureMin')
                     ->setParameter('temperatureMin', $filterData->temperatureMin);
             }
 
             if (!empty($filterData->temperatureMax)) {
                 $query = $query
-                    ->andWhere('c.temperatureAverage >= :max')
+                    ->andWhere('city.temperatureAverage >= :temperatureMax')
                     ->setParameter('temperatureMax', $filterData->temperatureMax);
             }
 
             if (!empty($filterData->visaRequired)) {
                 $query = $query
-                    ->andWhere('c.visaRequired = 1');
+                    ->andWhere('city.visaRequired = 1');
             }
 
-            return $query->getQuery()->getResult();
+          return $query->getQuery()
+                ->getResult();
     }
 
     public function findByCityLimit50()

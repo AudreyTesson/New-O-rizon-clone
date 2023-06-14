@@ -30,11 +30,13 @@ class MainController extends AbstractController
         $form = $this->createForm(FilterDataType::class, $data);
         $form->handleRequest($request);
         $citiesFilter = $cityRepository->findByFilter($data);
+        // dd($citiesFilter);
 
         return $this->renderForm('front/main/index.html.twig', [
             'cities' => $cities,
             'images' => $images,
-            'form' => $form
+            'form' => $form,
+            'citiesFilter' => $citiesFilter
         ]);
     }
 }

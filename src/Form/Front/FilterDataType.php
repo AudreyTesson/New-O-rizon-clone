@@ -46,7 +46,7 @@ class FilterDataType extends AbstractType
                 'choices' => [
                     'Bas' => "low",
                     'Moyen' => "medium",
-                    'Elevé' => "hight",
+                    'Elevé' => "high",
                 ],
                 'label' => "Qualité du réseau électrique",
                 'required' => false,
@@ -57,7 +57,7 @@ class FilterDataType extends AbstractType
                 'choices' => [
                     'Bas' => "low",
                     'Moyen' => "medium",
-                    'Elevé' => "hight",
+                    'Elevé' => "high",
                 ],
                 'label' => "Qualité de la connexion internet",
                 'required' => false,
@@ -68,7 +68,7 @@ class FilterDataType extends AbstractType
                 'choices' => [
                     'Bas' => "low",
                     'Moyen' => "medium",
-                    'Elevé' => "hight",
+                    'Elevé' => "high",
                 ],
                 'label' => "Taux d'ensoleillement",
                 'required' => false,
@@ -79,7 +79,7 @@ class FilterDataType extends AbstractType
                 'choices' => [
                     'Bas' => "low",
                     'Moyen' => "medium",
-                    'Elevé' => "hight",
+                    'Elevé' => "high",
                 ],
                 'label' => "Taux d'ensoleillement",
                 'required' => false,
@@ -141,12 +141,12 @@ class FilterDataType extends AbstractType
                     "multiple" => false],
                 "label" => "Devise"
             ])
-            ->add('timezone', TimezoneType::class, [
-                "choices" => [
-                    "expanded" => true, 
-                    "multiple" => false],
-                "label" => "Fuseau Horaire"
-            ])
+            // ->add('timezone', TimezoneType::class, [
+            //     "choices" => [
+            //         "expanded" => true, 
+            //         "multiple" => false],
+            //     "label" => "Fuseau Horaire"
+            // ])
             ->add('visaType', ChoiceType::class, [ 
                 "choices" => [
                     $visas
@@ -159,12 +159,12 @@ class FilterDataType extends AbstractType
                 "label" => "Visa Requis",
                 "required" => false,
             ])
-            ->add('language', LanguageType::class, [
-                "choices" => [
-                    "expanded" => true, 
-                    "multiple" => false],
-                "label" => "Langue"
-            ])
+            // ->add('language', LanguageType::class, [
+            //     "choices" => [
+            //         "expanded" => true, 
+            //         "multiple" => false],
+            //     "label" => "Langue"
+            // ])
             ->add('environment', ChoiceType::class, [ 
                 "choices" => [
                     $environment
