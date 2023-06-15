@@ -53,31 +53,112 @@ class CityRepository extends ServiceEntityRepository
             ->select('city', 'c')
             ->join('city.country', 'c');
 
+            // electricity
             if (!empty($filterData->electricityLevel)) {
                 $query = $query
                     ->andWhere('city.electricity LIKE :filterData')
                     ->setParameter("filterData", "%$filterData->electricityLevel%");
             }
-
+            // internet
+            if (!empty($filterData->internetLevel)) {
+                $query = $query
+                    ->andWhere('city.internet LIKE :filterData')
+                    ->setParameter("filterData", "%$filterData->internetLevel%");
+            }
+            // sunshine
+            if (!empty($filterData->sunshineLevel)) {
+                $query = $query
+                    ->andWhere('city.sunshineRate LIKE :filterData')
+                    ->setParameter("filterData", "%$filterData->sunshineLevel%");
+            }
+            // housing
+            if (!empty($filterData->housingLevel)) {
+                $query = $query
+                    ->andWhere('city.housing LIKE :filterData')
+                    ->setParameter("filterData", "%$filterData->housingLevel%");
+            }
+            // temperature
             if (!empty($filterData->temperatureMin)) {
                 $query = $query
                     ->andWhere('city.temperatureAverage >= :temperatureMin')
                     ->setParameter('temperatureMin', $filterData->temperatureMin);
             }
-
             if (!empty($filterData->temperatureMax)) {
                 $query = $query
                     ->andWhere('city.temperatureAverage <= :temperatureMax')
                     ->setParameter('temperatureMax', $filterData->temperatureMax);
             }
-
+            // demography
+            if (!empty($filterData->demographyMin)) {
+                $query = $query
+                    ->andWhere('city.demography >= :demographyMin')
+                    ->setParameter('demographyMin', $filterData->demographyMin);
+            }
+            if (!empty($filterData->demographyMax)) {
+                $query = $query
+                    ->andWhere('city.demography <= :demographyMax')
+                    ->setParameter('demographyMax', $filterData->demographyMax);
+            }
+            // cost
+            if (!empty($filterData->costMin)) {
+                $query = $query
+                    ->andWhere('city.cost >= :costMin')
+                    ->setParameter('costMin', $filterData->costMin);
+            }
+            if (!empty($filterData->costMax)) {
+                $query = $query
+                    ->andWhere('city.cost <= :costMax')
+                    ->setParameter('costMax', $filterData->costMax);
+            }
+            // area
+            if (!empty($filterData->areaMin)) {
+                $query = $query
+                    ->andWhere('city.area >= :areaMin')
+                    ->setParameter('areaMin', $filterData->areaMin);
+            }
+            if (!empty($filterData->areaMax)) {
+                $query = $query
+                    ->andWhere('city.area >= :areaMax')
+                    ->setParameter('areaMax', $filterData->areaMax);
+            }
+            // timezone
+            if (!empty($filterData->timezone)) {
+                $query = $query
+                    ->andWhere('city.timezone = :timezone')
+                    ->setParameter('timezone', $filterData->timezone);
+            }
+            // currency
+            if (!empty($filterData->currencyType)) {
+                $query = $query
+                    ->andWhere('c.currency = :currencyType')
+                    ->setParameter('currencyType', $filterData->currencyType);
+            }
+            // visa
             if (!empty($filterData->visaRequired)) {
                 $query = $query
-                    ->andWhere('city.visaRequired = 1');
+                    ->andWhere('c.visaIsRequired = 1');
+            }
+            if (!empty($filterData->visaType)) {
+                $query = $query
+                    ->andWhere('c.visa = :visaType')
+                    ->setParameter('visaType', $filterData->visaType);
+            }
+            // language
+            // TODO : expected various option in v2 = ->where('city.language IN (:language)')
+            if (!empty($filterData->language)) {
+                $query = $query
+                    ->andWhere('city.language = :language')
+                    ->setParameter('language', $filterData->language);  
+            }
+            // environment
+            // TODO : expected various option in v2 = ->where('city.environment IN (:environment)')
+            if (!empty($filterData->environment)) {
+                $query = $query
+                    ->andWhere('city.environment = :environment')
+                    ->setParameter('environment', $filterData->environment);  
             }
 
-          return $query->getQuery()
-                ->getResult();
+        return $query->getQuery()->getResult();  
     }
 
     /**
@@ -94,29 +175,4 @@ class CityRepository extends ServiceEntityRepository
                     ->getResult();
     }
 
-    
-//    /**
-//     * @return City[] Returns an array of City objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?City
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

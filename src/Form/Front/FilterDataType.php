@@ -20,25 +20,25 @@ class FilterDataType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $visas = [
-            'Visa touriste' => 'illum',
-            'Visa nomade' => 'molestiae',
-            'Virtual Working Program'=> 'eum',
-            'Spécial Tourist Visa' => 'pariatur',
-            'Welcome Stamp' => 'temporibus',
-            'Residencia Temporal Empleados Especializados por cuenta propia' => 'rerum',
-            'Work From Bermuda' => 'suscipit',
-            'Long-term visa for remote workers and family' => 'assumenda',
-            'e-Visa' => 'eaque',
-            'Antigua Nomad Digital Residence' => 'atque',
-            'Global Citizen Concierge' => 'est',
-            'visa Premium' => 'hic',
+            'Visa touriste' => 'excepturi',
+            'Visa nomade' => 'maxime',
+            'Virtual Working Program'=> 'fuga',
+            'Spécial Tourist Visa' => 'qui',
+            'Welcome Stamp' => 'repellendus',
+            'Residencia Temporal Empleados Especializados por cuenta propia' => 'repudiandae',
+            'Work From Bermuda' => 'veniam',
+            'Long-term visa for remote workers and family' => 'voluptatum',
+            'e-Visa' => 'sint',
+            'Antigua Nomad Digital Residence' => 'quas',
+            'Global Citizen Concierge' => 'quos',
+            'visa Premium' => 'maxime',
         ];
 
         $environment = [
-            'mer' => 'aspernatur',
+            'mer' => 'dolorem',
             'montagne' => 'consequuntur',
-            'ville' => 'architecto',
-            'campagne' => 'aliquid',
+            'ville' => 'deserunt',
+            'campagne' => 'atque',
         ];
 
         $builder
@@ -86,25 +86,18 @@ class FilterDataType extends AbstractType
                 'expanded' => true,
                 'multiple' => false,
             ])
-            //  TODO : try setting a slider range option to replace temperature field
-            ->add('temperature', RangeType::class, [
-                'attr' => [
-                    'min' => -50,
-                    'max' => 50
-                ],
-            ])
             ->add('temperatureMin', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'température min'
+                    'placeholder' => 'température min en °C'
                 ]
             ])
             ->add('temperatureMax', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'température max'
+                    'placeholder' => 'température max en °C'
                 ]
             ])
             ->add('demographyMin', NumberType::class, [
@@ -133,6 +126,20 @@ class FilterDataType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Coût de la vie max'
+                ]
+            ])
+            ->add('areaMin', NumberType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Superficie min en km²'
+                ]
+            ])
+            ->add('areaMax', NumberType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Superficie max en km²'
                 ]
             ])
             ->add('currencyType', CurrencyType::class, [
@@ -165,13 +172,14 @@ class FilterDataType extends AbstractType
                     "expanded" => false, 
                     "multiple" => false],
                     'label' => false,
+                    'placeholder' => 'placeholder_message', 'required' => true,
             ])
             ->add('environment', ChoiceType::class, [ 
                 "choices" => [
                     $environment
                     ],
                 "expanded" => true,
-                "multiple" => true,
+                "multiple" => false,
                 'label' => false,
                 'help' => '(plusieurs choix possible)'
             ])

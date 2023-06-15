@@ -16,7 +16,7 @@ class FilterController extends AbstractController
     /**
      * 
      * 
-     * @Route("/cities/filter", name="cities_filter", methods={"GET", "POST"})
+     * @Route("/", name="cities_filter", methods={"GET", "POST"})
      * 
      * @return Response
      */
@@ -33,7 +33,11 @@ class FilterController extends AbstractController
         // }
         // dd($citiesFilter);
 
-        return $this->renderForm('front/filter_menu.html.twig', [
+        if ($form->isSubmitted() && $form->isValid()) {
+            return $this->redirectToRoute('cities_list', ["cities" => $citiesFilter, "images" => $images], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('front/main/index.html.twig', [
             'form' => $form,
             'citiesFilter' => $citiesFilter,
             'images' => $images

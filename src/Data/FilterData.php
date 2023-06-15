@@ -2,6 +2,9 @@
 
 namespace App\Data;
 
+/**
+ * class using to display form and retrieve data from the form filter menu (cf. FilterDataType)
+ */
 class FilterData 
 {
     public string $electricityLevel;
@@ -14,12 +17,12 @@ class FilterData
     public int $demographyMax;
     public int $costMax;
     public int $costMin;
+    public int $areaMin;
+    public int $areaMax;
     public int $timezone;
     public string $currencyType;
     public string $visaType;
     public bool $visaRequired = false;
     public string $language;
-    public array $environment;
-    public int $temperature;
-
+    public string $environment;
 }
