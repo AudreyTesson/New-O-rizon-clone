@@ -245,9 +245,6 @@
             "templates/base.html.twig"
         ]
     },
-    "symfony/ux-lazy-image": {
-        "version": "v2.9.1"
-    },
     "symfony/validator": {
         "version": "5.4",
         "recipe": {
