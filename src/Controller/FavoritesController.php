@@ -31,13 +31,15 @@ class FavoritesController extends AbstractController
 
         $favoritesList = $user->getCity();
 
+        // dd($favoritesList);
+
         // $images = $imageRepository->findByDistinctCityImage();
 
         // $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
 
         return $this->render('front/favorites/index.html.twig', [
             // "images" => $images,
-            "favoritesList" => $favoritesList
+            "images" => $favoritesList
         ]);
     }
 

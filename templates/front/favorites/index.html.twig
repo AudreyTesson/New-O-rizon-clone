@@ -4,11 +4,11 @@
 
 {% block body %}
 
-    {% for favoriteList in favoritesList %}
+    {# {% for city in cities %} #}
 
         {% include 'partials/_cities_list.html.twig' %}
 
-    {% endfor %}
+    {# {% endfor %} #}
 
     {% include "/partials/_favorites.html.twig" %}
 
@@ -21,7 +21,6 @@
         <div class="col">
             <a href="{{ path('favorites_clear')}}" class="btn btn-danger btn-sm" onclick="return confirm('Vider votre liste de favoris ?');">Vider la liste</a>
         </div>
-
 
 {# 
     <div class="pagination flex justify-center">
