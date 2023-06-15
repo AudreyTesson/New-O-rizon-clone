@@ -1,11 +1,15 @@
 const sidebar_filter = {
 
-    sidebarOpenBtn: null,
+    sidebarOpenBtnMobile: null,
+    sidebarOpenBtnDesktop: null,
     sidebarCloseBtn: null,
+    sidebarMenu: null,
 
     init: function() {
         sidebar_filter.sidebarCloseBtn = document.querySelector(".close_filter");
-        sidebar_filter.sidebarOpenBtn = document.getElementById("filter_menu");
+        sidebar_filter.sidebarOpenBtnDesktop = document.getElementById("filter_btn_desktop");
+        sidebar_filter.sidebarOpenBtnMobile = document.getElementById("filter_btn_mobile");
+        sidebar_filter.sidebarMenu = document.getElementById("filter_sidebar");
         sidebar_filter.addEvents();
     },
 
@@ -14,24 +18,26 @@ const sidebar_filter = {
      */
     addEvents: function() {
         sidebar_filter.sidebarCloseBtn.addEventListener('click', sidebar_filter.handleSidebarClose);
-        sidebar_filter.sidebarOpenBtn.addEventListener('click', sidebar_filter.handleSidebarOpen);
+        sidebar_filter.sidebarOpenBtnMobile.addEventListener('click', sidebar_filter.handleSidebarOpen);
+        sidebar_filter.sidebarOpenBtnDesktop.addEventListener('click', sidebar_filter.handleSidebarOpen);
     }, 
 
    /**
     * Handler to manage sidebar opening
     */
     handleSidebarOpen: function() {
-        
-        sidebar_filter.sidebarOpenBtn.classList.remove('hidden');
         // animated class with tailwind
-        sidebar_filter.sidebarOpenBtn.classList.add('animate-jump-in animate-once animate-duration-[2500ms] animate-ease-in');
+        // sidebar_filter.sidebarMenu.classList.add('animate-jump-in animate-once animate-duration animate-ease-in');
+        sidebar_filter.sidebarMenu.classList.remove('hidden');
+        
     },
 
     /**
      * Handler to manager sidebar closing
      */
     handleSidebarClose: function() {
-        sidebar_filter.sidebarCloseBtn.classList.add('animate-jump-out animate-once animate-duration-[2500ms] animate-ease-in');
+        sidebar_filter.sidebarMenu.classList.add('hidden');
+        // sidebar_filter.sidebarMenu.classList.add('animate-jump-out animate-once animate-duration animate-ease-in');
     }
 
 }

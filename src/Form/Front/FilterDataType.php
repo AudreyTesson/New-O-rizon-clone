@@ -90,56 +90,64 @@ class FilterDataType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'température min en °C'
+                    'placeholder' => 'min °C',
+                    'class' => 'text-sm w-20',
                 ]
             ])
             ->add('temperatureMax', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'température max en °C'
+                    'placeholder' => 'max °C',
+                    'class' => 'text-sm w-20',
                 ]
             ])
             ->add('demographyMin', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Population min'
+                    'placeholder' => 'min',
+                    'class' => 'text-sm w-20',
                 ]
             ])
             ->add('demographyMax', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Population max'
+                    'placeholder' => 'max',
+                    'class' => 'text-sm w-20',
                 ]
             ])
             ->add('costMin', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Coût de la vie min'
+                    'placeholder' => 'min',
+                    'class' => 'text-sm w-20',
                 ]
             ])
             ->add('costMax', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Coût de la vie max'
+                    'placeholder' => 'max',
+                    'class' => 'text-sm w-20',
                 ]
             ])
             ->add('areaMin', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Superficie min en km²'
+                    'placeholder' => 'min km²',
+                    'class' => 'text-sm w-20',
                 ]
             ])
             ->add('areaMax', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Superficie max en km²'
+                    'placeholder' => 'max km²',
+                    'class' => 'text-sm w-20',
                 ]
             ])
             ->add('currencyType', CurrencyType::class, [
@@ -147,13 +155,15 @@ class FilterDataType extends AbstractType
                     "expanded" => true, 
                     "multiple" => false],
                     'label' => false,
+                    'placeholder' => 'Sélectionner', 'required' => true,
             ])
-            ->add('timezone', RangeType::class, [
-                'attr' => [
-                    'min' => -12,
-                    'max' => 12
-                ],
+            ->add('timezone', NumberType::class, [
+                'required' => false,
                 'label' => false,
+                'attr' => [
+                    'placeholder' => 'N° GMT',
+                    'class' => 'text-sm w-20',
+                ],
             ])
             ->add('visaType', ChoiceType::class, [ 
                 "choices" => [
@@ -172,7 +182,7 @@ class FilterDataType extends AbstractType
                     "expanded" => false, 
                     "multiple" => false],
                     'label' => false,
-                    'placeholder' => 'placeholder_message', 'required' => true,
+                    'placeholder' => 'Sélectionner', 'required' => true,
             ])
             ->add('environment', ChoiceType::class, [ 
                 "choices" => [
@@ -181,7 +191,7 @@ class FilterDataType extends AbstractType
                 "expanded" => true,
                 "multiple" => false,
                 'label' => false,
-                'help' => '(plusieurs choix possible)'
+                'help' => '(plusieurs choix possibles)'
             ])
         ;          
     }

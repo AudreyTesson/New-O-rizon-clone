@@ -28,10 +28,9 @@ class FilterController extends AbstractController
         // dd($form);
         $form->handleRequest($request);
         $citiesFilter = $cityRepository->findByFilter($data);
-        // if ($data === null) {
-        //     throw $this->createNotFoundException("Nous n'avons pas trouvé de ville correspondant à votre recherche");
-        // }
-        // dd($citiesFilter);
+        if ($data === null) {
+            throw $this->createNotFoundException("Nous n'avons pas trouvé de ville correspondant à votre recherche");
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             return $this->redirectToRoute('cities_list', ["cities" => $citiesFilter, "images" => $images], Response::HTTP_SEE_OTHER);

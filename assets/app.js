@@ -30,6 +30,10 @@ if (sliderTemperature) {
     const temperatureMax = document.getElementById('filter_data_temperatureMax')
     const range = noUiSlider.create(sliderTemperature, {
         start: [temperatureMin.value || -10, temperatureMax.value || 30],
+        handleAttributes: [
+            { 'aria-label': 'lower' },
+            { 'aria-label': 'upper' },
+        ],
         connect: true,
         range: {
             'min': -50,
@@ -55,6 +59,10 @@ if (sliderDemography) {
     const demographyMax = document.getElementById('filter_data_demographyMax')
     const range = noUiSlider.create(sliderDemography, {
         start: [demographyMin.value || 1000000, demographyMax.value || 10000000],
+        handleAttributes: [
+            { 'aria-label': 'lower' },
+            { 'aria-label': 'upper' },
+        ],
         connect: true,
         step: 1000,
         range: {
@@ -82,6 +90,10 @@ if (sliderDemography) {
     const costMax = document.getElementById('filter_data_costMax')
     const range = noUiSlider.create(sliderCost, {
         start: [costMin.value || 10000, costMax.value || 500000],
+        handleAttributes: [
+            { 'aria-label': 'lower' },
+            { 'aria-label': 'upper' },
+        ],
         step: 50,
         connect: true,
         range: {
@@ -109,6 +121,10 @@ if (sliderArea) {
     const areaMax = document.getElementById('filter_data_areaMax')
     const range = noUiSlider.create(sliderArea, {
         start: [areaMin.value || 10000, areaMax.value || 100000],
+        handleAttributes: [
+            { 'aria-label': 'lower' },
+            { 'aria-label': 'upper' },
+        ],
         connect: true,
         step: 1000,
         range: {
@@ -121,6 +137,32 @@ if (sliderArea) {
     range.on('slide', function (values, handle) {
         if (handle === 0) {
             areaMin.value = Math.round(values[0])
+        }
+        if (handle === 1) {
+            areaMax.value = Math.round(values[1])
+        }
+    })
+}
+
+// Timezone slider
+const sliderTimezone = document.getElementById('timezone-slider');
+
+if (sliderTimezone) {
+    const timezone = document.getElementById('filter_data_timezone')
+    const range = noUiSlider.create(sliderTimezone, {
+        start: [0],
+        connect: true,
+        step: 1,
+        range: {
+            'min': -12,
+            'max': 12
+        }
+    })
+
+    // display number rounded in the field 
+    range.on('slide', function (values, handle) {
+        if (handle === 0) {
+            timezone.value = Math.round(values[0])
         }
         if (handle === 1) {
             areaMax.value = Math.round(values[1])
