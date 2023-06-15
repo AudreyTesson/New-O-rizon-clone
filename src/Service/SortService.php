@@ -7,12 +7,12 @@ use Doctrine\ORM\EntityManagerInterface;
 class SortService
 {
     private $entityManager;
-    
+
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
-    
+
     public function sortCitiesByName(string $order = 'asc'): array
     {
         $query = $this->entityManager->createQuery("
@@ -29,7 +29,7 @@ class SortService
     );
 
         $sortedCities = $query->getResult();
-    
+
         return $sortedCities;
     }
 }

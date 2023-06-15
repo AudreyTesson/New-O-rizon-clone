@@ -11,9 +11,9 @@
 {% if isSorted %}
 
     {% if sortOption == 'asc' %}
-        <h2>Villes triées par ordre ascendant :</h2>
+        <h2 class="flex justify-center text-xl">Villes triées par ordre ascendant :</h2>
     {% else %}
-        <h2>Villes triées par ordre descendant :</h2>
+        <h2 class="flex justify-center text-xl">Villes triées par ordre descendant :</h2>
     {% endif %}
 
     {% for image in images %}
@@ -32,55 +32,54 @@
 
 {% endif %}
 
-
 {# ! add redirect to cities page when on cities/asc or /desc #}
 
-<nav aria-label="Page navigation example">
-  <ul class="list-style-none flex">
-    <li>
-      <a
-        class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-        href="#"
-        >Previous</a
-      >
-    </li>
-    <li>
-      <a
-        class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-        href="#"
-        >1</a
-      >
-    </li>
-    <li aria-current="page">
-      <a
-        class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-        href="#"
-        >2</a
-      >
-    </li>
-    <li>
-      <a
-        class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-        href="#"
-        >3</a
-      >
-    </li>
-    <li>
-      <a
-        class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-        href="#"
-        >Next</a
-      >
-    </li>
-  </ul>
-</nav>
+            <nav aria-label="Page navigation example">
+            <ul class="list-style-none flex">
+                <li>
+                <a
+                    class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                    href="#"
+                    >Previous</a
+                >
+                </li>
+                <li>
+                <a
+                    class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                    href="#"
+                    >1</a
+                >
+                </li>
+                <li aria-current="page">
+                <a
+                    class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                    href="#"
+                    >2</a
+                >
+                </li>
+                <li>
+                <a
+                    class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                    href="#"
+                    >3</a
+                >
+                </li>
+                <li>
+                <a
+                    class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                    href="#"
+                    >Next</a
+                >
+                </li>
+            </ul>
+            </nav>
 
             <div class="navigation d-flex justify-content-center">
-{{ knp_pagination_render(images) }}
-</div>
+            {{ knp_pagination_render(images) }}
+            </div>
 
         </div>
-        
+
     </div>
 
 
