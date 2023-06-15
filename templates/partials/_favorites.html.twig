@@ -1,0 +1,33 @@
+{% if app.session.get('favorites') is not empty %}
+    {% set favoritesList = app.session.get('favorites', []) %}
+    {% set favoritesListIds = favoritesList|map(item => item.id) %}
+
+    {% if cityIDForPartial in favoritesListIds  %}
+        <a href="{{ path('favorites_remove', {'id': cityIDForPartial }) }}" class="city__favorite fs-1 my-2 mx-3 link-danger">
+            <i class="bi bi-bookmark-x-fill"></i>
+        </a>
+    {% else %}
+        <a href="{{ path('favorites_add', {"id": cityIDForPartial }) }}" class="city__favorite fs-1 my-2 mx-3 link-danger">
+            <i class="bi bi-bookmark-plus"></i>
+        </a>
+    {% endif %}
+{% else %}
+    <a href="{{ path('favorites_add', {"id": cityIDForPartial }) }}" class="city__favorite fs-1 my-2 mx-3 link-danger">
+        <i class="bi bi-bookmark-plus"></i>
+    </a>
+{% endif %}
+
+
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    {% set cityFav = app.user.getFavorite %}
+    {% set cityFavId = cityFav|map(item => item.id) %}
+    {% set pathAddFav = path('favorites_add', {'id': city.id})  %}
+    {% set pathDeleteFav = path('favorites_remove', {'id': city.id}) %}
+<a href="{{ cityIDForPartial in cityFavId ? pathDeleteFav : pathAddFav }}" class="city__favorite fs-1 my-2 mx-3">
+    <i class="bi bi-bookmark-{{ cityIDForPartial in cityFavId ? 'dash-fill' : 'plus' }}"></i>
+</a>
+{% else %}
+<a href="{{ path('favorites_add', {'id': cityIDForPartial}) }}" class="city__favorite fs-1 my-2 mx-3">
+    <i class="bi bi-bookmark-plus"></i>
+</a>	
+{% endif %}
