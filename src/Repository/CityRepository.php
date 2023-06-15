@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\City;
+use App\Entity\Country;
 use App\Entity\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -41,24 +42,41 @@ class CityRepository extends ServiceEntityRepository
     }
 
     /**
-     * Select 40 cities
+     * Display cities of the country searched
+     */
+    public function FindCitiesByCountry($searchCountry)
+    {
+
+        return $this->createQueryBuilder('c')                  //c = city
+                    ->join('c.country', 'co')           // co= country
+                    ->andWhere("co.name LIKE :countryName")
+                    ->setParameter("countryName", '%'.$searchCountry.'%')
+                    ->getQuery()
+                    ->getResult();
+
+        // $entityManager = $this->getEntityManager();
+
+        // $countryId = $country->getId();
+
+        // $query = $entityManager->createQuery("
+        //     SELECT city, country
+        //     FROM app\Entity\City city
+        //     JOIN city.country country
+        //     WHERE city.country = $countryId
+        //     GROUP BY country.id
+        //     ORDER BY country.name ASC
+        // ");
+
+        // $result = $query->getResult();
+
+        // return $result;
+    }
+    
+    //! Method for testing homepage 
+    /**
+     * Select 50 cities
      *
      */
-    // public function findByCityLimit40()
-    // {
-    //     $entityManager = $this->getEntityManager();
-
-    //     $query = $entityManager->createQuery("
-    //         SELECT city
-    //         FROM App\Entity\city city
-    //         MAX RESULTS 40
-    //     ");
-
-    //     $result = $query->getResult();
-
-    //     return $result;
-    // }
-
     public function findByCityLimit50()
     {
         return $this->createQueryBuilder('city')
@@ -67,6 +85,9 @@ class CityRepository extends ServiceEntityRepository
                     ->getQuery()
                     ->getResult();
     }
+
+
+
 
     
 //    /**

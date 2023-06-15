@@ -50,7 +50,7 @@ class ImageRepository extends ServiceEntityRepository
 
             $query = $entityManager->createQuery("
                 SELECT image, city
-                FROM App\Entity\image image
+                FROM App\Entity\Image image
                 JOIN image.city city
                 GROUP BY city.id
                 ");
