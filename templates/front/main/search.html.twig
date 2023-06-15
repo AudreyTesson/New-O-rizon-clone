@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- main -->
+    <div class="container-xl bg-light p-5 border-top">
+
+        <div class="row mb-2">
+
+            <div class="col-12 col-lg-3">
+                <h2 class="text-center text-muted fw-bold mb-4">Les genres</h2>
+                <ul class="d-flex flex-column flex-wrap list-unstyled justify-content-center">
+
+					
+
+                </ul>
+            </div>
+
+            <div class="col-12 col-lg-9">
+
+                <h2 class="text-muted fw-bold mb-4">Les films et séries/Résultats de recherche</h2>
+
+               
+
+                        
+
+                        <strong class="d-inline-block mb-2 text-primary"></strong>
+                        <h3 class="mb-1"></h3>
+                        <div class="mb-1 text-muted"></div>
+                        <p><small></small>
+                        </p>
+
+                        
+                        <a href="#" class="fs-1 mt-3 text-danger align-self-start">
+                            <i class="bi bi-arrow-right-square"></i>
+                        </a>
+                    </div>
+                </div>
+               
+
+            </div>
+
+            <div class="navigation d-flex justify-content-center">
+            	{{ knp_pagination_render(citySearch) }}
+        	</div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

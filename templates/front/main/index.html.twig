@@ -4,7 +4,7 @@
 
 {% block body %}
 
-{% dump(form) %}
+{#{% dump(form) %}
 
 {# mobile version #}
 <div class="w-full grid lg:hidden">
@@ -30,7 +30,7 @@
                 <div class="flex mx-auto space-x-4 items-center">
                     {# Filter button #}
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m-6 8a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4"/></svg>
-                    <input class="bg-gray-100 outline-none rounded-xl border border-solid" type="text" placeholder="Recherche" />
+                    <input class="bg-gray-100 outline-none rounded-xl border border-solid" type="text" placeholder="Recherche" class="search" />
                 </div>
             </div>
     </div>
@@ -57,9 +57,11 @@
                         {# Filter button #}
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m-6 8a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4"/></svg>
                     </div>
-                    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-                    {{ form_end(form) }}
-                        {# <input class="bg-gray-100 outline-none rounded-xl border border-solid" type="text" placeholder="Recherche" /> #}
+                    <form action="{{ path('app_front_city_search')}}">
+                         <input class="bg-gray-100 outline-none rounded-xl border border-solid" type="text" name="search" placeholder="Recherche" /> 
+                        <button class="" type="submit">Valider</button>
+                    </form>
+                         
                 </div>
             </div>
         

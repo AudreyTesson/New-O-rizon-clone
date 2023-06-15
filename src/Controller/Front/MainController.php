@@ -2,10 +2,10 @@
 
 namespace App\Controller\Front;
 
-use App\Form\Front\SearchCityType;
-use App\Entity\City;
+
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,34 +16,48 @@ class MainController extends AbstractController
     /**
      * Homepage
      * 
-     * @Route("/", name="default", methods={"GET"})
+     * @Route("/", name="default", methods={"GET", "POST"})
      * 
      * @return Response
      */
-    public function home(CityRepository $cityRepository,ImageRepository $imageRepository, Request $request): Response
+    public function home(CityRepository $cityRepository,ImageRepository $imageRepository): Response
     {
 
     $images = $imageRepository->findByDistinctCityImage();
 
-    // $dataCity = $request->query->get('city', '');
-    // dd($dataCity);
+   
 
-    $city = $cityRepository->findByCityLimit50();
-
-    $form = $this->createForm(SearchCityType::class, $city);
-
-    $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $city = $form->getData();
-
-            dump($city);
-        }
-
+    
         return $this->renderForm('front/main/index.html.twig', [
             'images' => $images,
-            'form' => $form
-         ]);
+            
+        ]);
+    }
+
+        /**
+     * page search affiche le résultat de la recherche
+     *
+     * @Route("/search", name="app_front_city_search")
+     *
+     * @return Response
+     */
+    public function search(CityRepository $cityRepository, 
+        Request $request, 
+        PaginatorInterface $paginator): Response
+    {
+        $cities = $cityRepository->findAll();
+        
+        $search = $request->query->get('search', "");
+       
+        $cities = $cityRepository->findByCityName($search);
+        
+        $cities = $paginator->paginate($cities, $request->query->getInt('page', 1),5);
+        
+        return $this->render("front/cities/list.html.twig",
+            [
+                'cities' => $cities,
+            ]
+        );
     }
 
 }  
