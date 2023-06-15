@@ -4,48 +4,40 @@
 
 {% block body %}
 
-    <div class="grid w-screen justify-center">
-        <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
+{% include 'partials/_sort.html.twig' %}
 
-            {% for city in cities %}
+{% set isSorted = (app.request.attributes.get("_route") ends with "sort_asc")%}
 
-                <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+{% if isSorted %}
 
-                    {% for image in images %}
-                    {# requête custom #}
-                        {% if loop.index == 1 %}
+    {% if sortOption == 'asc' %}
+        <h2 class="flex justify-center text-xl">Villes triées par ordre ascendant :</h2>
+    {% else %}
+        <h2 class="flex justify-center text-xl">Villes triées par ordre descendant :</h2>
+    {% endif %}
 
-                                <a href="{{ path('cities_detail', {'id': city.id}) }}">
-                                    <div class="w-full h-96 relative overflow-hidden">
-                                        <div class="w-full h-full absolute transition-transform duration-300 hover:scale-105" style="background-image:url('{{ image.url }}')"></div>
-                                        <span class="text-xl text-white font-bold w-auto flex flex-col justify-center items-center backdrop-brightness-90">
-                                            <i class="fa-regular fa-heart fa-lg absolute right-4 top-6"></i>
-                                            {# on clic : #}
-                                            {# <i class="fa-solid fa-heart" style="color: #164e63;"></i> #}
-                                            <h2 class="p-2 text-2xl font-bold w-fit">
-                                                {{ city.name }}</h2>
-                                            <h2 class="p-2 text-2xl font-bold w-fit">
-                                                {{ city.country.name}}</h2>
-                                        </span>
-                                        <div class="absolute inset-x-0 bottom-4 flex justify-center">
-                                            <i class="fa-solid fa-star" style="color: #164e63;"></i>
-                                            <i class="fa-solid fa-star" style="color: #164e63;"></i>
-                                            <i class="fa-solid fa-star" style="color: #164e63;"></i>
-                                            <i class="fa-regular fa-star-half-stroke" style="color: #164e63;"></i>
-                                            <i class="fa-regular fa-star" style="color: #164e63;"></i>
-                                        </div>
-                                    </div>
-                                </a>
+    {% for image in images %}
 
-                        {% endif %}
+        {% include 'partials/_cities_list.html.twig' %}
 
-                    {% endfor %}   
+    {% endfor %}
 
-                </div>
+{% else %}
 
-            {% endfor %}
+    {% for image in images %}
+
+        {% include 'partials/_cities_list.html.twig' %}
+
+    {% endfor %}
+
+{% endif %}
 
         </div>
+
+    </div>
+
+    <div class="pagination flex justify-center">
+    {{ knp_pagination_render(images) }}
     </div>
 
 {% endblock %}
