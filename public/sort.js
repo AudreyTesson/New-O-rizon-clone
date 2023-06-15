@@ -15,19 +15,6 @@ document.addEventListener('click', (event) => {
     }
 });
 
-// document.addEventListener('click', (event) => {
-//     const targetElement = event.target;
-//     if (!targetElement.closest('.relative')) {
-//       dropdownMenu.classList.add('hidden');
-//     }
-  
-//     if (targetElement.matches('[data-sort]')) {
-//       event.preventDefault();
-//       const sortOption = targetElement.getAttribute('data-sort');
-//       performSort(sortOption);
-//     }
-//   });
-
 closeIcon.addEventListener('click', (event) => {
     event.stopPropagation();
     dropdownMenu.classList.add('hidden');
