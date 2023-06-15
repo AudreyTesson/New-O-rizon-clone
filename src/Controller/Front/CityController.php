@@ -5,14 +5,13 @@ namespace App\Controller\Front;
 use App\Entity\City;
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
+use App\Service\SortService;
 use Exception;
-use App\Form\CityType;
-use App\Form\Front\SearchCityType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 
 class CityController extends AbstractController
 {
@@ -21,15 +20,22 @@ class CityController extends AbstractController
      *
      * @Route("/cities", name="cities_list")
      */
-    public function list(CityRepository $cityRepository, ImageRepository $imageRepository)
+    public function list(
+        ImageRepository $imageRepository,
+        PaginatorInterface $paginatorInterface, Request $request,
+        SortService $sortService)
     {
-        $cities = $cityRepository->findAll();
-
         $images = $imageRepository->findByDistinctCityImage();
 
+        $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
+
+        // $sortedCitiesAsc = [];
+        // $sortedCitiesDesc = [];
+
         return $this->render('front/cities/list.html.twig', [
-            'cities' => $cities,
             "images" => $images,
+            // 'sortedCitiesAsc' => $sortedCitiesAsc,
+            // 'sortedCitiesDesc' => $sortedCitiesDesc,
         ]);
     }
 

@@ -12,7 +12,6 @@
         {# Map leaflet style #}
         <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 
-
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 
         <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
@@ -33,10 +32,9 @@
 
         {% include "partials/_flash.html.twig" %}
 
-
         {% block body %}{% endblock %}
 
-         {# Back to top button #}
+        {# Back to top button #}
         {% set route = app.request.get('_route') %}
         {% if route == 'cities_list' or route == 'cities_detail' %}
         <button id="to-top-button" onclick="goToTop()" title="Go To Top" class="hidden fixed z-90 bottom-8 right-8 border-0 w-10 h-10 drop-shadow-md bg-cyan-900 text-white text-4xl font-bold">&uarr;</button>
@@ -60,26 +58,26 @@
                 </ul>
             </div>
         </footer>
-            
-            <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
-            <script src="{{ asset('scroll.js') }}"></script>
-            <script src="{{ asset('modal.js') }}"></script>
-            <script
-                type="text/javascript"
-                src="../node_modules/tw-elements/dist/js/tw-elements.umd.min.js">
-            </script>
-            <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
-            {#! icons scripts #}
-            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
+        <script src="{{ asset('scroll.js') }}"></script>
+        <script src="{{ asset('modal.js') }}"></script>
+        <script src="{{ asset('sort.js') }}"></script>
+        <script
+            type="text/javascript"
+            src="../node_modules/tw-elements/dist/js/tw-elements.umd.min.js">
+        </script>
 
-            <script src="https://kit.fontawesome.com/de8da1408a.js" crossorigin="anonymous"></script>
-            
-            {# MAP with Leaflet #}
-            <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-            <script src ="{{ asset('map.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+        {#! icons scripts #}
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+        <script src="https://kit.fontawesome.com/de8da1408a.js" crossorigin="anonymous"></script>
         
+        {# MAP with Leaflet #}
+        <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <script src ="{{ asset('map.js') }}"></script>
+
     </body>
 </html>
