@@ -28,13 +28,8 @@ class CityController extends AbstractController
 
         $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
 
-        // $sortedCitiesAsc = [];
-        // $sortedCitiesDesc = [];
-
         return $this->render('front/cities/list.html.twig', [
             "images" => $images,
-            // 'sortedCitiesAsc' => $sortedCitiesAsc,
-            // 'sortedCitiesDesc' => $sortedCitiesDesc,
         ]);
     }
 

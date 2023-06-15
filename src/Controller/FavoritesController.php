@@ -24,7 +24,7 @@ class FavoritesController extends AbstractController
     /**
      * @Route("/favorites", name="favorites")
      */
-    public function favorites(PaginatorInterface $paginatorInterface): Response
+    public function favorites(PaginatorInterface $paginatorInterface, ImageRepository $imageRepository, Request $request): Response
     {
         /** @var \App\Entity\User */
         $user = $this->getUser();
@@ -33,13 +33,13 @@ class FavoritesController extends AbstractController
 
         // dd($favoritesList);
 
-        // $images = $imageRepository->findByDistinctCityImage();
+        $images = $imageRepository->findByDistinctCityImage();
 
-        // $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
+        $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
 
         return $this->render('front/favorites/index.html.twig', [
-            // "images" => $images,
-            "images" => $favoritesList
+            "images" => $images,
+            "city" => $favoritesList
         ]);
     }
 
