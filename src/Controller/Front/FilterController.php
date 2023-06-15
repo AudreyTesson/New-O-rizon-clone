@@ -5,6 +5,7 @@ namespace App\Controller\Front;
 use App\Data\FilterData;
 use App\Form\Front\FilterDataType;
 use App\Repository\CityRepository;
+use App\Repository\ImageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,8 +20,9 @@ class FilterController extends AbstractController
      * 
      * @return Response
      */
-    public function filterCities(CityRepository $cityRepository, Request $request): Response
+    public function filterCities(CityRepository $cityRepository, ImageRepository $imageRepository, Request $request): Response
     {
+        $images = $imageRepository->findByDistinctCityImage();
         $data = new FilterData();
         $form = $this->createForm(FilterDataType::class, $data);
         // dd($form);
@@ -33,7 +35,8 @@ class FilterController extends AbstractController
 
         return $this->renderForm('front/filter_menu.html.twig', [
             'form' => $form,
-            'citiesFilter' => $citiesFilter
+            'citiesFilter' => $citiesFilter,
+            'images' => $images
         ]);
     }
 }
