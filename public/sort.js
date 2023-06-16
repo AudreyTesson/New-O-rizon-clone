@@ -1,7 +1,5 @@
-// Code JavaScript
-
 const menuButton = document.getElementById('menu-button');
-const dropdownMenu = document.querySelector('.absolute');
+const dropdownMenu = document.getElementById('dropdownMenu');
 const closeIcon = document.getElementById('close-button');
 
 menuButton.addEventListener('click', () => {

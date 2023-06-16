@@ -1,0 +1,40 @@
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}
+
+    {% set cityFav = app.user.getCity %}
+    {% set cityFavIds = cityFav|map(item => item.id) %}
+
+    {% if image is defined %}
+
+        {% set pathAddFav = path('favorites_add', {'id': image.city.id}) %}
+        {% set pathDeleteFav = path('favorites_remove', {'id': image.city.id}) %}
+
+        {% if image.city.id in cityFavIds %}
+            <a href="{{ pathDeleteFav }}">
+                <i class="fa-solid fa-heart fa-xl absolute right-4 top-6 text-xl text-white font-bold" style="color: #e80225;"></i>
+            </a>
+        {% else %}
+            <a href="{{ pathAddFav }}">
+                <i class="fa-regular fa-heart fa-xl absolute right-4 top-6 text-xl text-white font-bold"></i>
+            </a>
+        {% endif %}
+    
+    {% if cityFav is defined %}
+
+        {% set pathAddFav = path('favorites_add', {'id': image.city.id}) %}
+        {% set pathDeleteFav = path('favorites_remove', {'id': image.city.id}) %}
+
+        {% if image.city.id in cityFavIds %}
+            <a href="{{ pathDeleteFav }}">
+                <i class="fa-solid fa-heart fa-xl absolute right-4 top-6 text-xl text-white font-bold" style="color: #e80225;"></i>
+            </a>
+        {% else %}
+            <a href="{{ pathAddFav }}">
+                <i class="fa-regular fa-heart fa-xl absolute right-4 top-6 text-xl text-white font-bold"></i>
+            </a>
+        {% endif %}
+
+        {% endif %}
+
+    {% endif %}
+    
+{% endif %}
