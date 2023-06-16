@@ -5,7 +5,9 @@ namespace App\Controller\Front;
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
 use Exception;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -16,14 +18,15 @@ class CityController extends AbstractController
      *
      * @Route("/cities", name="cities_list")
      */
-    public function list(CityRepository $cityRepository, ImageRepository $imageRepository)
+    public function list(
+        ImageRepository $imageRepository,
+        PaginatorInterface $paginatorInterface, Request $request)
     {
-        $cities = $cityRepository->findAll();
-
         $images = $imageRepository->findByDistinctCityImage();
 
+        $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
+
         return $this->render('front/cities/list.html.twig', [
-            'cities' => $cities,
             "images" => $images,
         ]);
     }

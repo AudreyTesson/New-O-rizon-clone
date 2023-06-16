@@ -55,7 +55,7 @@ class ImageRepository extends ServiceEntityRepository
                 GROUP BY city.id
                 ");
 
-            $query  ->setMaxResults(100);
+            // $query  ->setMaxResults(30);
 
             $result = $query->getResult();
 

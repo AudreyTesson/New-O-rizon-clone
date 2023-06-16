@@ -22,186 +22,186 @@
     </div>
 
     <div class = "w-full grid md:grid-cols-5 md:justify-center md:items-center md:px-6 md:py-12 md:mx-12 gap-4">
-    
-        {# Card Criteria #}
-            <div class="w-full md:col-span-2 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex justify-center mb-4">
-                    <h5 class="text-xl font-bold leading-none text-cyan-900 dark:text-white">Critères</h5>
-                </div>
 
-                <div class="grid">
-                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-                        <li class="py-3 sm:py-4">
+        {# Card Criteria #}
+        <div class="w-full md:col-span-2 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex justify-center mb-4">
+                <h5 class="text-xl font-bold leading-none text-cyan-900 dark:text-white">Critères</h5>
+            </div>
+
+            <div class="grid">
+                <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <ion-icon name="flash-outline" size="large"></ion-icon>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-cyan-900 truncate dark:text-white">
+                                    Electricité
+                                </p>
+                                <p class="text-cyan-900 truncate">
+                                    {{ city.electricity }}
+                                </p>
+                            </div>
                             <div class="flex items-center space-x-4">
                                 <div class="flex-shrink-0">
-                                    <ion-icon name="flash-outline" size="large"></ion-icon>
+                                    <ion-icon name="wifi-outline" size="large"></ion-icon>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <p class="text-cyan-900 truncate dark:text-white">
-                                        Electricité
+                                        Internet
                                     </p>
                                     <p class="text-cyan-900 truncate">
-                                        {{ city.electricity }}
+                                        {{ city.internet }}
                                     </p>
                                 </div>
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-shrink-0">
-                                        <ion-icon name="wifi-outline" size="large"></ion-icon>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-cyan-900 truncate dark:text-white">
-                                            Internet
-                                        </p>
-                                        <p class="text-cyan-900 truncate">
-                                            {{ city.internet }}
-                                        </p>
-                                    </div>
-                                </div>
                             </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
+                        </div>
+                    </li>
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <ion-icon name="sunny-outline" size="large"></ion-icon>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-cyan-900 truncate dark:text-white">
+                                    Taux d'ensoleillement
+                                </p>
+                                <p class="text-cyan-900 truncate">
+                                    {{ city.sunshineRate }}
+                                </p>
+                            </div>
                             <div class="flex items-center space-x-4">
                                 <div class="flex-shrink-0">
-                                    <ion-icon name="sunny-outline" size="large"></ion-icon>
+                                    <ion-icon name="thermometer-outline" size="large"></ion-icon>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <p class="text-cyan-900 truncate dark:text-white">
-                                        Taux d'ensoleillement
+                                        Température moyenne
                                     </p>
                                     <p class="text-cyan-900 truncate">
-                                        {{ city.sunshineRate }}
+                                        {{ city.temperatureAverage }} °C
                                     </p>
-                                </div>
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-shrink-0">
-                                        <ion-icon name="thermometer-outline" size="large"></ion-icon>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-cyan-900 truncate dark:text-white">
-                                            Température moyenne
-                                        </p>
-                                        <p class="text-cyan-900 truncate">
-                                            {{ city.temperatureAverage }} °C
-                                        </p>
-                                    </div>
                                 </div>
                             </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <ion-icon name="cash-outline" size="large"></ion-icon>
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-cyan-900 truncate dark:text-white">
-                                        Coût de la vie
-                                    </p>
-                                    <p class="text-cyan-900 truncate">
-                                        {{ city.cost }} Euros
-                                    </p>
-                                </div>
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-shrink-0">
-                                        <ion-icon name="people-outline" size="large"></ion-icon>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-cyan-900 truncate dark:text-white">
-                                            Démographie
-                                        </p>
-                                        <p class="text-cyan-900 truncate">
-                                            {{ city.demography }} habitants
-                                        </p>
-                                    </div>
-                                </div>
+                        </div>
+                    </li>
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <ion-icon name="cash-outline" size="large"></ion-icon>
                             </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-cyan-900 truncate dark:text-white">
+                                    Coût de la vie
+                                </p>
+                                <p class="text-cyan-900 truncate">
+                                    {{ city.cost }} Euros
+                                </p>
+                            </div>
                             <div class="flex items-center space-x-4">
                                 <div class="flex-shrink-0">
                                     <ion-icon name="people-outline" size="large"></ion-icon>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <p class="text-cyan-900 truncate dark:text-white">
-                                        Habitation
+                                        Démographie
                                     </p>
                                     <p class="text-cyan-900 truncate">
-                                        {{ city.housing }}
+                                        {{ city.demography }} habitants
                                     </p>
                                 </div>
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-shrink-0">
-                                        <ion-icon name="timer-outline" size="large"></ion-icon>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-cyan-900 truncate dark:text-white">
-                                            Timezone
-                                        </p>
-                                        <p class="text-cyan-900 truncate">
-                                            {{ city.timezone }}
-                                        </p>
-                                    </div>
-                                </div>
                             </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
+                        </div>
+                    </li>
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <ion-icon name="people-outline" size="large"></ion-icon>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-cyan-900 truncate dark:text-white">
+                                    Habitation
+                                </p>
+                                <p class="text-cyan-900 truncate">
+                                    {{ city.housing }}
+                                </p>
+                            </div>
                             <div class="flex items-center space-x-4">
                                 <div class="flex-shrink-0">
-                                    <ion-icon name="language-outline" size="large"></ion-icon>
+                                    <ion-icon name="timer-outline" size="large"></ion-icon>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <p class="text-cyan-900 truncate dark:text-white">
-                                        Langue
+                                        Timezone
                                     </p>
                                     <p class="text-cyan-900 truncate">
-                                        {{ city.language }}
+                                        {{ city.timezone }}
                                     </p>
                                 </div>
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-shrink-0">
-                                        <ion-icon name="id-card-outline" size="large"></ion-icon>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-cyan-900 truncate dark:text-white">
-                                            Visa
-                                        </p>
-                                        <p class="text-cyan-900 truncate">
-                                            {{ city.country.visa }}
-                                        </p>
-                                    </div>
-                                </div>
                             </div>
-                        </li>
-                        <li class="py-3 sm:py-4">
+                        </div>
+                    </li>
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <ion-icon name="language-outline" size="large"></ion-icon>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-cyan-900 truncate dark:text-white">
+                                    Langue
+                                </p>
+                                <p class="text-cyan-900 truncate">
+                                    {{ city.language }}
+                                </p>
+                            </div>
                             <div class="flex items-center space-x-4">
                                 <div class="flex-shrink-0">
-                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-4.jpg" alt="Lana image">
+                                    <ion-icon name="id-card-outline" size="large"></ion-icon>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <p class="text-cyan-900 truncate dark:text-white">
-                                        Visa requis
+                                        Visa
                                     </p>
                                     <p class="text-cyan-900 truncate">
-                                        {{ city.country.visaIsRequired }}
+                                        {{ city.country.visa }}
                                     </p>
                                 </div>
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-shrink-0">
-                                        <ion-icon name="logo-bitcoin" size="large"></ion-icon>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-cyan-900 truncate dark:text-white">
-                                            Monnaie
-                                        </p>
-                                        <p class="text-cyan-900 truncate">
-                                            {{ city.country.currency }}
-                                        </p>
-                                    </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-4.jpg" alt="Lana image">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-cyan-900 truncate dark:text-white">
+                                    Visa requis
+                                </p>
+                                <p class="text-cyan-900 truncate">
+                                    {{ city.country.visaIsRequired }}
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-shrink-0">
+                                    <ion-icon name="logo-bitcoin" size="large"></ion-icon>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-cyan-900 truncate dark:text-white">
+                                        Monnaie
+                                    </p>
+                                    <p class="text-cyan-900 truncate">
+                                        {{ city.country.currency }}
+                                    </p>
                                 </div>
                             </div>
-                        </li>
-                    </ul>
-                </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
+        </div>
 
         {# container #}
         <div class="md:col-span-3 w-full h-full mx-2 flex flex-row py-2">
@@ -233,7 +233,6 @@
 
     </div>
 
-    {# Slide partial with partial slide buttons #}
     {% include 'partials/_slide_buttons.html.twig' %}
 
 {% endblock %}
