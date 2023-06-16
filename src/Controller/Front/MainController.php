@@ -48,14 +48,24 @@ class MainController extends AbstractController
         $cities = $cityRepository->findAll();
         
         $search = $request->query->get('search', "");
-       
+        
         $cities = $cityRepository->findByCityName($search);
+
+        if ($cities === null) {
+            throw $this->createNotFoundException("Cette ville n'est pas répertoriée/n'existe pas");
+        } else {
+            $this->redirectToroute('cities_list');
+        }
         
         $cities = $paginator->paginate($cities, $request->query->getInt('page', 1),5);
-        
+        dump($search);
+        dump($cities);
+
+
         return $this->render("front/cities/list.html.twig",
             [
                 'cities' => $cities,
+
             ]
         );
     }
