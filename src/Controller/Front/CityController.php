@@ -4,7 +4,6 @@ namespace App\Controller\Front;
 
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
-use App\Service\SortService;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,20 +20,14 @@ class CityController extends AbstractController
      */
     public function list(
         ImageRepository $imageRepository,
-        PaginatorInterface $paginatorInterface, Request $request,
-        SortService $sortService)
+        PaginatorInterface $paginatorInterface, Request $request)
     {
         $images = $imageRepository->findByDistinctCityImage();
 
         $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
 
-        // $sortedCitiesAsc = [];
-        // $sortedCitiesDesc = [];
-
         return $this->render('front/cities/list.html.twig', [
             "images" => $images,
-            // 'sortedCitiesAsc' => $sortedCitiesAsc,
-            // 'sortedCitiesDesc' => $sortedCitiesDesc,
         ]);
     }
 
