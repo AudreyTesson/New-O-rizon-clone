@@ -4,9 +4,6 @@
 
 {% block body %}
 
-{# sidebar_filter #}
-{% include "partials/_filter_menu.html.twig" %}
-
 {# mobile version #}
 <div class="w-full grid lg:hidden">
     
@@ -82,6 +79,8 @@
     </div>
 </div>
 
+{# sidebar_filter #}
+{% include "partials/_filter_menu.html.twig" %}
 
 {% endblock %}
 

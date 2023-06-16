@@ -41,6 +41,16 @@ class CityRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByCountry($id)
+    {
+        return $this->createQueryBuilder('c')
+            ->innerJoin('c.country', 'country')
+            ->where('country.id = :country_id')
+            ->setParameter('country_id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * Retrieve data from database with criteria passed in filter form
      *
@@ -52,13 +62,6 @@ class CityRepository extends ServiceEntityRepository
          $query = $this->createQueryBuilder('city')
             ->select('city', 'c')
             ->join('city.country', 'c');
-
-            // country
-            if (!empty($filterData->country)) {
-                $query = $query
-                    ->andWhere('c.name = :country')
-                    ->setParameter("country", $filterData->country);
-            }
 
             // electricity
             if (!empty($filterData->electricityLevel)) {
@@ -167,19 +170,4 @@ class CityRepository extends ServiceEntityRepository
 
         return $query->getQuery()->getResult();  
     }
-
-    /**
-     * Method test to retrieve a part of city data to render in Homepage
-     *
-     * @return void
-     */
-    public function findByCityLimit50()
-    {
-        return $this->createQueryBuilder('city')
-                    ->select("city")
-                    ->setMaxResults(50)
-                    ->getQuery()
-                    ->getResult();
-    }
-
 }

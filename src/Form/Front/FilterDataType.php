@@ -3,18 +3,12 @@
 namespace App\Form\Front;
 
 use App\Data\FilterData;
-use App\Entity\Country;
-use Doctrine\ORM\EntityRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\Form\Extension\Core\Type\LanguageType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\RangeType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -45,19 +39,6 @@ class FilterDataType extends AbstractType
         ];
 
         $builder
-            ->add('country', EntityType::class, [
-                "multiple" => false,
-                "expanded" => false,
-                "class" => Country::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('c')
-                        ->orderBy('c.name', 'ASC');
-                },
-                'choice_label' => 'name',
-                'label' => false,
-                'placeholder' => 'Sélectionner', 'required' => true,
-            ])
-            
             ->add('electricityLevel', ChoiceType::class, [
                 'choices' => [
                     'Aucun' => "",
@@ -72,6 +53,7 @@ class FilterDataType extends AbstractType
             ])
             ->add('internetLevel', ChoiceType::class, [
                 'choices' => [
+                    'Aucun' => "",
                     'Bas' => "low",
                     'Moyen' => "medium",
                     'Elevé' => "high",
@@ -83,6 +65,7 @@ class FilterDataType extends AbstractType
             ])
             ->add('sunshineLevel', ChoiceType::class, [
                 'choices' => [
+                    'Aucun' => "",
                     'Bas' => "low",
                     'Moyen' => "medium",
                     'Elevé' => "high",
@@ -94,6 +77,7 @@ class FilterDataType extends AbstractType
             ])
             ->add('housingLevel', ChoiceType::class, [
                 'choices' => [
+                    'Aucun' => "",
                     'Bas' => "low",
                     'Moyen' => "medium",
                     'Elevé' => "high",
@@ -108,7 +92,7 @@ class FilterDataType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'min °C',
-                    'class' => 'text-sm w-20',
+                    'class' => 'text-sm w-20 rounded-lg',
                 ]
             ])
             ->add('temperatureMax', NumberType::class, [
@@ -116,7 +100,7 @@ class FilterDataType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'max °C',
-                    'class' => 'text-sm w-20',
+                    'class' => 'text-sm w-20 rounded-lg',
                 ]
             ])
             ->add('demographyMin', NumberType::class, [
@@ -124,7 +108,7 @@ class FilterDataType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'min',
-                    'class' => 'text-sm w-20',
+                    'class' => 'text-sm w-20 rounded-lg',
                 ]
             ])
             ->add('demographyMax', NumberType::class, [
@@ -132,23 +116,23 @@ class FilterDataType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'max',
-                    'class' => 'text-sm w-20',
+                    'class' => 'text-sm w-20 rounded-lg',
                 ]
             ])
             ->add('costMin', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'min',
-                    'class' => 'text-sm w-20',
+                    'placeholder' => 'min €',
+                    'class' => 'text-sm w-20 rounded-lg',
                 ]
             ])
             ->add('costMax', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'max',
-                    'class' => 'text-sm w-20',
+                    'placeholder' => 'max €',
+                    'class' => 'text-sm w-20 rounded-lg',
                 ]
             ])
             ->add('areaMin', NumberType::class, [
@@ -156,7 +140,7 @@ class FilterDataType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'min km²',
-                    'class' => 'text-sm w-20',
+                    'class' => 'text-sm w-20 rounded-lg',
                 ]
             ])
             ->add('areaMax', NumberType::class, [
@@ -164,7 +148,7 @@ class FilterDataType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'max km²',
-                    'class' => 'text-sm w-20',
+                    'class' => 'text-sm w-20 rounded-lg',
                 ]
             ])
             ->add('currencyType', CurrencyType::class, [
@@ -179,7 +163,7 @@ class FilterDataType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'N° GMT',
-                    'class' => 'text-sm w-20',
+                    'class' => 'text-sm w-20 rounded-lg',
                 ],
             ])
             ->add('visaType', ChoiceType::class, [ 

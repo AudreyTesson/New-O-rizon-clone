@@ -40,27 +40,29 @@ class ImageRepository extends ServiceEntityRepository
         }
     }
 
-    /*
-     *Display 1 image per city for 30 cities, in the carousel for mobile version
+    /**
+     * Display 1 image per city for 30 cities, in the carousel for mobile version
+     *
      */
+    public function findByDistinctCityImage()
+    {
+        $entityManager = $this->getEntityManager();
 
-        public function findByDistinctCityImage()
-        {
-            $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery("
+            SELECT image, city
+            FROM App\Entity\image image
+            JOIN image.city city
+            GROUP BY city.id
+            ");
 
-            $query = $entityManager->createQuery("
-                SELECT image, city
-                FROM App\Entity\image image
-                JOIN image.city city
-                GROUP BY city.id
-                ");
+        $query  ->setMaxResults(30);
 
-            // $query  ->setMaxResults(30);
+        $result = $query->getResult();
 
-            $result = $query->getResult();
+        return $result;
+    }
 
-            return $result;
-        }
+
 
 //    /**
 //     * @return Image[] Returns an array of Image objects

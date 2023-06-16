@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\City;
 use App\Entity\Country;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -38,6 +39,16 @@ class CountryRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function FindCitiesByCountry(City $city)
+    {
+        return $this->createQueryBuilder('C')
+            ->select('C.cities = :cities')
+            ->setParameter('cities', $city)
+            ->getQuery()
+            ->getResult();
+    }  
+    
 
 //    /**
 //     * @return Country[] Returns an array of Country objects

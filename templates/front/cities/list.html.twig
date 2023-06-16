@@ -8,36 +8,105 @@
 
 {% set isSorted = (app.request.attributes.get("_route") ends with "sort_asc")%}
 {% set isFavorites = (app.request.attributes.get("_route") ends with "favorites")%}
+{% set isCitiesCountry = (app.request.attributes.get("_route") ends with "country") %}
 
-<div class="grid w-screen justify-center">
-    <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
-        
-        {% for image in images %}
+    {% if isCitiesCountry %}
+        <div class="grid w-screen justify-center">
+            <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
+                
+                {# ! adding citiesCountry in sort method #}
+                {% for city in citiesCountry %}
 
-            {% if isSorted %}
+                    {% if isSorted %}
 
-                {% if sortOption == 'asc' %}
-                    {# <h2 class="flex justify-center text-xl">Villes triées par ordre ascendant :</h2> #}
+                        {% if sortOption == 'asc' %}
+                            {# <h2 class="flex justify-center text-xl">Villes triées par ordre ascendant :</h2> #}
+                        {% else %}
+                            {# <h2 class="flex justify-center text-xl">Villes triées par ordre descendant :</h2> #}
+                        {% endif %}
+
+                        {% include 'partials/_cities_list.html.twig' %}
+
+                    {% else %}
+
+                        {% include 'partials/_cities_list.html.twig' %}
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    <div class="pagination flex justify-center">
+        {{ knp_pagination_render(citiesCountry) }}
+    </div>
+
+    {% elseif citiesFilter %}
+        <div class="grid w-screen justify-center">
+            <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
+            
+            {% for city in citiesFilter %}
+
+                {% if isSorted %}
+
+                    {% if sortOption == 'asc' %}
+                        {# <h2 class="flex justify-center text-xl">Villes triées par ordre ascendant :</h2> #}
+                    {% else %}
+                        {# <h2 class="flex justify-center text-xl">Villes triées par ordre descendant :</h2> #}
+                    {% endif %}
+
+                    {% include 'partials/_cities_list.html.twig' %}
+
                 {% else %}
-                    {# <h2 class="flex justify-center text-xl">Villes triées par ordre descendant :</h2> #}
+
+                    {% include 'partials/_cities_list.html.twig' %}
+
                 {% endif %}
 
-                {% include 'partials/_cities_list.html.twig' %}
+            {% endfor %}
 
-            {% else %}
+            </div>
 
-                {% include 'partials/_cities_list.html.twig' %}
+        </div>
 
-            {% endif %}
+    <div class="pagination flex justify-center">
+        {{ knp_pagination_render(citiesFilter) }}
+    </div>
 
-        {% endfor %}
+    {% else %}
+
+    <div class="grid w-screen justify-center">
+        <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
+            
+            {% for image in images %}
+
+                {% if isSorted %}
+
+                    {% if sortOption == 'asc' %}
+                        {# <h2 class="flex justify-center text-xl">Villes triées par ordre ascendant :</h2> #}
+                    {% else %}
+                        {# <h2 class="flex justify-center text-xl">Villes triées par ordre descendant :</h2> #}
+                    {% endif %}
+
+                    {% include 'partials/_cities_list.html.twig' %}
+
+                {% else %}
+
+                    {% include 'partials/_cities_list.html.twig' %}
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
 
     </div>
 
-</div>
+    <div class="pagination flex justify-center">
+        {{ knp_pagination_render(images) }}
+    </div>
 
-<div class="pagination flex justify-center">
-    {{ knp_pagination_render(images) }}
-</div>
-
+    {% endif %}
 {% endblock %}

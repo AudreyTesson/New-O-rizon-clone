@@ -2,7 +2,10 @@
 
 namespace App\Controller\Front;
 
+use App\Data\FilterData;
+use App\Form\Front\FilterDataType;
 use App\Repository\CityRepository;
+use App\Repository\CountryRepository;
 use App\Repository\ImageRepository;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
@@ -20,14 +23,30 @@ class CityController extends AbstractController
      */
     public function list(
         ImageRepository $imageRepository,
+        CityRepository $cityRepository,
+        CountryRepository $countryRepository,
         PaginatorInterface $paginatorInterface, Request $request)
     {
         $images = $imageRepository->findByDistinctCityImage();
+        $countries = $countryRepository->findAll();
+
+        // sidebar filter form
+        $criteria = new FilterData();
+        $formFilter = $this->createForm(FilterDataType::class, $criteria);
+        $formFilter->handleRequest($request);
+
+        if ($formFilter->isSubmitted() && $formFilter->isValid()) {
+            $citiesFilter = $cityRepository->findByFilter($criteria);
+            $citiesFilter = $paginatorInterface->paginate($citiesFilter, $request->query->getInt('page', 1),6);
+
+            return $this->redirectToRoute('cities_list', ["citiesFilter" => $citiesFilter]);
+        }
 
         $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
 
         return $this->render('front/cities/list.html.twig', [
             "images" => $images,
+            "countries" => $countries,
         ]);
     }
 
