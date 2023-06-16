@@ -50,12 +50,16 @@ class FavoritesController extends AbstractController
      * 
      * @return Response
      */
-    public function add($id, CityRepository $cityRepository, EntityManagerInterface $em): Response
+    public function add($id, CityRepository $cityRepository, EntityManagerInterface $em, Request $request): Response
     {
         /** @var \App\Entity\User */
         $user = $this->getUser();
 
         $city = $cityRepository->find($id);
+
+        $route = $request->headers->get('referer');
+
+    return $this->redirect($route);
 
         if ($city === null) { throw new Exception("ce favori n'existe pas.", 201);
         }
@@ -73,7 +77,7 @@ class FavoritesController extends AbstractController
             );
         }
 
-        return $this->redirectToRoute('favorites');
+        return $this->redirect($route);
     }
 
     /**
@@ -83,12 +87,14 @@ class FavoritesController extends AbstractController
      *
      * @return Response
      */
-    public function remove($id, CityRepository $cityRepository, EntityManagerInterface $em):Response
+    public function remove($id, CityRepository $cityRepository, EntityManagerInterface $em, Request $request):Response
     {
         /** @var \App\Entity\User */
         $user = $this->getUser();
 
         $city = $cityRepository->find($id);
+
+        $route = $request->headers->get('referer');
 
         if ($city === null) { throw new Exception("ce favori n'existe pas.", 201);
         }
@@ -102,11 +108,11 @@ class FavoritesController extends AbstractController
 
             $this->addFlash(
                 'success',
-                "$name a été ajouté à votre liste de favoris"
+                "$name a été retiré de votre liste de favoris"
             );
         }
 
-        return $this->redirectToRoute('favorites');
+        return $this->redirect($route);
     }
 
     /**
@@ -133,7 +139,7 @@ class FavoritesController extends AbstractController
 
         $this->addFlash(
             'success',
-            "Les films ont été supprimés de votre liste de favoris"
+            "Les villes ont été supprimées de votre liste de favoris"
         );
 
         return $this->redirectToRoute("favorites");
