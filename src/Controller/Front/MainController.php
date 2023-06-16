@@ -19,11 +19,11 @@ class MainController extends AbstractController
      */
     public function home(CityRepository $cityRepository, ImageRepository $imageRepository): Response
     {
-        $cities = $cityRepository->findAll();
+        // $cities = $cityRepository->findAll();
         $images = $imageRepository->findByDistinctCityImage();
 
         return $this->render('front/main/index.html.twig', [
-            'cities' => $cities,
+            // 'cities' => $cities,
             'images' => $images,
         ]);
     }

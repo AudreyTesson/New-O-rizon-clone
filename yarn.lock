@@ -1093,9 +1093,6 @@
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
-"@symfony/ux-lazy-image@file:vendor/symfony/ux-lazy-image/assets":
-  version "1.1.0"
-
 "@symfony/webpack-encore@^4.0.0":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@symfony/webpack-encore/-/webpack-encore-4.3.0.tgz#2cf025bd9ee33b176cf6c040c5fb610415cc66f8"

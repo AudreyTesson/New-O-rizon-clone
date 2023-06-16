@@ -6,7 +6,7 @@
 {# Mobile version with carousel#}
 <div id="default-carousel" class="relative w-full block lg:hidden" data-carousel="slide" >
 
-    <div class="relative h-56 w-96 overflow-hidden rounded-lg mx-auto mt-7">
+    <div class="relative h-56 w-96 overflow-hidden rounded-lg sm:h-48 md:h-96 mx-auto mt-7">
 
         {% for image in images %}
 
@@ -22,6 +22,7 @@
         {% endfor %}
 
     </div>
+   
 
 {% endif %}
 
