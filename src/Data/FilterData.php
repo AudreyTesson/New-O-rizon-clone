@@ -2,11 +2,16 @@
 
 namespace App\Data;
 
+use App\Entity\Country;
+
 /**
  * class using to display form and retrieve data from the form filter menu (cf. FilterDataType)
  */
 class FilterData 
 {
+    /** @var Country */
+    public $country;
+
     public string $electricityLevel;
     public string $internetLevel;
     public string $sunshineLevel;

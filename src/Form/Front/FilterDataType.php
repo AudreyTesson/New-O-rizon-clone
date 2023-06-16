@@ -3,6 +3,9 @@
 namespace App\Form\Front;
 
 use App\Data\FilterData;
+use App\Entity\Country;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -42,8 +45,22 @@ class FilterDataType extends AbstractType
         ];
 
         $builder
+            ->add('country', EntityType::class, [
+                "multiple" => false,
+                "expanded" => false,
+                "class" => Country::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.name', 'ASC');
+                },
+                'choice_label' => 'name',
+                'label' => false,
+                'placeholder' => 'Sélectionner', 'required' => true,
+            ])
+            
             ->add('electricityLevel', ChoiceType::class, [
                 'choices' => [
+                    'Aucun' => "",
                     'Bas' => "low",
                     'Moyen' => "medium",
                     'Elevé' => "high",
@@ -191,7 +208,6 @@ class FilterDataType extends AbstractType
                 "expanded" => true,
                 "multiple" => false,
                 'label' => false,
-                'help' => '(plusieurs choix possibles)'
             ])
         ;          
     }

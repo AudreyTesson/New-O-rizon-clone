@@ -53,6 +53,13 @@ class CityRepository extends ServiceEntityRepository
             ->select('city', 'c')
             ->join('city.country', 'c');
 
+            // country
+            if (!empty($filterData->country)) {
+                $query = $query
+                    ->andWhere('c.name = :country')
+                    ->setParameter("country", $filterData->country);
+            }
+
             // electricity
             if (!empty($filterData->electricityLevel)) {
                 $query = $query
