@@ -77,6 +77,8 @@
         },
         "files": [
             "public/.htaccess"
+        ]
+    },
     "sensio/framework-extra-bundle": {
         "version": "6.2",
         "recipe": {
