@@ -40,44 +40,31 @@ class CityRepository extends ServiceEntityRepository
         }
     }
 
-    /**
-     * Select 40 cities
-     *
-     */
-    // public function findByCityLimit40()
-    // {
-    //     $entityManager = $this->getEntityManager();
-
-    //     $query = $entityManager->createQuery("
-    //         SELECT city
-    //         FROM App\Entity\city city
-    //         MAX RESULTS 40
-    //     ");
-
-    //     $result = $query->getResult();
-
-    //     return $result;
-    // }
-
-    public function sortCitiesByName(string $order = 'asc'): array
+    public function sortCitiesByName(string $order = null): array
     {
         $entityManager = $this->getEntityManager();
 
-        $query = $entityManager->createQuery("
-            SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, co.name AS countryName
-            FROM App\Entity\City c
-            JOIN App\Entity\Image i WITH i.city = c
-            JOIN App\Entity\Country co WITH c.country = co
-            WHERE (
-                SELECT COUNT(img.id) 
-                FROM App\Entity\Image img 
-                WHERE img.city = c.id 
-                AND img.id <= i.id) 
-                = 1
-            ");
+        $dql = "
+        SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, co.name AS countryName
+        FROM App\Entity\City c
+        JOIN App\Entity\Image i WITH i.city = c
+        JOIN App\Entity\Country co WITH c.country = co
+        WHERE (
+            SELECT COUNT(img.id) 
+            FROM App\Entity\Image img 
+            WHERE img.city = c.id 
+            AND img.id <= i.id) 
+            = 1";
+
+        if ($order !== null) {
+            $dql .= " ORDER BY c.name " . ($order === 'asc' ? 'ASC' : 'DESC');
+        }
+
+        $query = $entityManager->createQuery($dql);
+        $sortedCities = $query->getResult();
 
         $sortedCities = $query->getResult();
-    
+
         return $sortedCities;
     }
 

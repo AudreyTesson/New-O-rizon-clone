@@ -17,6 +17,8 @@ class SortController extends AbstractController
      */
     public function sortAscAction(CityRepository $cityRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
+        $order = 'asc';
+        
         $images = $cityRepository->sortCitiesByName('asc');
 
         $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),9);
@@ -24,7 +26,7 @@ class SortController extends AbstractController
         return $this->render('front/cities/list.html.twig', [
             'images' => $images,
             'isSorted' => true,
-            'sortOption' => 'asc',
+            'sortOption' => $order,
         ]);
     }
 
@@ -33,6 +35,8 @@ class SortController extends AbstractController
      */
     public function sortDescAction(CityRepository $cityRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
+        $order = 'desc';
+
         $images = $cityRepository->sortCitiesByName('desc');
 
         $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1), 9);
@@ -40,7 +44,7 @@ class SortController extends AbstractController
         return $this->render('front/cities/list.html.twig', [
             'images' => $images,
             'isSorted' => true,
-            'sortOption' => 'desc',
+            'sortOption' => $order,
         ]);
     }
 }
