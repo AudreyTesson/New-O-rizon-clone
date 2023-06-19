@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use App\Service\SortService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

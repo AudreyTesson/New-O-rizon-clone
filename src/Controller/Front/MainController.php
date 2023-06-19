@@ -22,24 +22,28 @@ class MainController extends AbstractController
      * 
      * @return Response
      */
-    public function home(CityRepository $cityRepository, ImageRepository $imageRepository, CountryRepository $countryRepository, Request $request, PaginatorInterface $paginator): Response
+    public function home(
+        CityRepository $cityRepository, 
+        ImageRepository $imageRepository,
+        CountryRepository $countryRepository, 
+        Request $request, 
+        PaginatorInterface $paginator): Response
     {
         $images = $imageRepository->findByDistinctCityImage();
-        $countries = $countryRepository->findAll();
+        $countries = $countryRepository->findByCountrySort();
 
         // sidebar filter form
         $criteria = new FilterData();
         $formFilter = $this->createForm(FilterDataType::class, $criteria);
         $formFilter->handleRequest($request);
-        if ($criteria === null) {
-            throw $this->createNotFoundException("Nous n'avons pas trouvé de ville correspondant à votre recherche");
-        }
+        
 
         if ($formFilter->isSubmitted() && $formFilter->isValid()) {
+
             $citiesFilter = $cityRepository->findByFilter($criteria);
             $citiesFilter = $paginator->paginate($citiesFilter, $request->query->getInt('page', 1),6);
 
-            return $this->render('front/cities/list.html.twig', ["citiesFilter" => $citiesFilter]);
+            return $this->render('front/cities/list.html.twig', ["citiesFilter" => $citiesFilter, "countries" => $countries, 'formFilter' => $formFilter->createView(),]);
         }
 
         return $this->render('front/main/index.html.twig', [

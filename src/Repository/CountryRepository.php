@@ -48,6 +48,15 @@ class CountryRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }  
+
+    public function findByCountrySort()
+    {
+        return $this->createQueryBuilder('C')
+            ->select('C.name', 'C.id')
+            ->orderBy("C.name", "ASC")
+            ->getQuery()
+            ->getResult();
+    }  
     
 
 //    /**

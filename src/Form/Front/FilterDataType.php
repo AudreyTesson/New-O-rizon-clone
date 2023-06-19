@@ -35,7 +35,7 @@ class FilterDataType extends AbstractType
             'mer' => 'dolorem',
             'montagne' => 'consequuntur',
             'ville' => 'deserunt',
-            'campagne' => 'atque',
+            'campagne' => 'accusantium',
         ];
 
         $builder

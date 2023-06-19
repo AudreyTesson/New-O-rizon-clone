@@ -59,10 +59,19 @@
         </footer>
 
         <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
-        <script src="{{ asset('scroll.js') }}"></script>
-        <script src="{{ asset('modal.js') }}"></script>
-        <script src="{{ asset('sort.js') }}"></script>
-        <script src="{{ asset('sidebar_filter.js')}}"></script>
+        <script src="{{ asset('js/scroll.js') }}"></script>
+        <script src="{{ asset('js/modal.js') }}"></script>
+        <script src="{{ asset('js/sort.js') }}"></script>
+
+        {% set isFilterData = app.request.requestUri starts with "/?filter_data" %}
+        {% if isFilterData %}
+            <script src="{{ asset('js/sidebar_filter_data.js')}}"></script>
+        {% elseif route == 'default' %}
+            <script src="{{ asset('js/sidebar_filter_homepage.js')}}"></script>
+        {% elseif route == 'cities_list' %}
+            <script src="{{ asset('js/sidebar_filter_cities.js')}}"></script>
+        {% endif %}
+
         <script
             type="text/javascript"
             src="../node_modules/tw-elements/dist/js/tw-elements.umd.min.js">
@@ -77,7 +86,7 @@
         
         {# MAP with Leaflet #}
         <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-        <script src ="{{ asset('map.js') }}"></script>
+        <script src ="{{ asset('js/map.js') }}"></script>
 
     </body>
 </html>

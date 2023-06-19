@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
-use App\Repository\UserRepository;
-use App\Service\FavoritesService;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
@@ -59,7 +57,7 @@ class FavoritesController extends AbstractController
 
         $route = $request->headers->get('referer');
 
-    return $this->redirect($route);
+        return $this->redirect($route);
 
         if ($city === null) { throw new Exception("ce favori n'existe pas.", 201);
         }

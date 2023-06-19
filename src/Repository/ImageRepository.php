@@ -41,7 +41,7 @@ class ImageRepository extends ServiceEntityRepository
     }
 
     /**
-     * Display 1 image per city for 30 cities, in the carousel for mobile version
+     * Display 1 image per city for 30 cities, in the carousel for mobile version => retrieve only city name
      *
      */
     public function findByDistinctCityImage()
@@ -49,7 +49,7 @@ class ImageRepository extends ServiceEntityRepository
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery("
-            SELECT image, city
+            SELECT image.url, city.name, city.id
             FROM App\Entity\image image
             JOIN image.city city
             GROUP BY city.id
@@ -62,30 +62,27 @@ class ImageRepository extends ServiceEntityRepository
         return $result;
     }
 
+    /**
+     * retrieve only country name
+     *
+     */
+    public function findByDistinctCountryName()
+    {
+        $entityManager = $this->getEntityManager();
 
+        $query = $entityManager->createQuery("
+            SELECT image.url, city.name, city.id, country.name
+            FROM App\Entity\image image
+            JOIN image.city city
+            JOIN image.country country
+            GROUP BY city.id
+            ");
 
-//    /**
-//     * @return Image[] Returns an array of Image objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('i')
-//            ->andWhere('i.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('i.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+        $query  ->setMaxResults(30);
 
-//    public function findOneBySomeField($value): ?Image
-//    {
-//        return $this->createQueryBuilder('i')
-//            ->andWhere('i.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $result = $query->getResult();
+
+        return $result;
+    }
+
 }
