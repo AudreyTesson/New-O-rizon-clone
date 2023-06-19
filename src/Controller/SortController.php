@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CityRepository;
 use App\Service\SortService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,9 +15,9 @@ class SortController extends AbstractController
     /**
      * @Route("/cities/asc", name="sort_asc")
      */
-    public function sortAscAction(SortService $sortService, PaginatorInterface $paginatorInterface, Request $request): Response
+    public function sortAscAction(CityRepository $cityRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
-        $images = $sortService->sortCitiesByName('asc');
+        $images = $cityRepository->sortCitiesByName('asc');
 
         $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),9);
 
@@ -30,9 +31,9 @@ class SortController extends AbstractController
     /**
      * @Route("/cities/desc", name="sort_desc")
      */
-    public function sortDescAction(SortService $sortService, PaginatorInterface $paginatorInterface, Request $request): Response
+    public function sortDescAction(CityRepository $cityRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
-        $images = $sortService->sortCitiesByName('desc');
+        $images = $cityRepository->sortCitiesByName('desc');
 
         $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1), 9);
     

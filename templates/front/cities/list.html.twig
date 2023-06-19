@@ -7,11 +7,12 @@
 {% include 'partials/_sort.html.twig' %}
 
 {% set isSorted = (app.request.attributes.get("_route") ends with "sort_asc")%}
+{# {% set sortOption = (app.request.attributes.get("_route") ends with "sort_desc") ? 'desc' : 'asc' %} #}
 {% set isFavorites = (app.request.attributes.get("_route") ends with "favorites")%}
 
 <div class="grid w-screen justify-center">
     <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
-        
+
         {% for image in images %}
 
             {% if isSorted %}

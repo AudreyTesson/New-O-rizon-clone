@@ -59,13 +59,26 @@ class CityRepository extends ServiceEntityRepository
     //     return $result;
     // }
 
-    public function findByCityLimit50()
+    public function sortCitiesByName(string $order = 'asc'): array
     {
-        return $this->createQueryBuilder('city')
-                    ->select("city")
-                    ->setMaxResults(50)
-                    ->getQuery()
-                    ->getResult();
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery("
+            SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, co.name AS countryName
+            FROM App\Entity\City c
+            JOIN App\Entity\Image i WITH i.city = c
+            JOIN App\Entity\Country co WITH c.country = co
+            WHERE (
+                SELECT COUNT(img.id) 
+                FROM App\Entity\Image img 
+                WHERE img.city = c.id 
+                AND img.id <= i.id) 
+                = 1
+            ");
+
+        $sortedCities = $query->getResult();
+    
+        return $sortedCities;
     }
 
     

@@ -20,9 +20,12 @@ class CityController extends AbstractController
      */
     public function list(
         ImageRepository $imageRepository,
-        PaginatorInterface $paginatorInterface, Request $request)
+        PaginatorInterface $paginatorInterface,
+        CityRepository $cityRepository, Request $request)
     {
-        $images = $imageRepository->findByDistinctCityImage();
+        // $images = $imageRepository->findByDistinctCityImage();
+        $images = $cityRepository->sortCitiesByName();
+
 
         $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
 
