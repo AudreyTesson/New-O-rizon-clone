@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FavoritesController!{% endblock %}
+{% block title %}Favoris{% endblock %}
 
 {% block body %}
 
@@ -17,7 +17,7 @@
                 {% for image in cityFav.images %}
 
                     <div class="w-full h-full absolute transition-transform duration-300 hover:scale-105"
-                    style="background-image:url('{{ image.url }}')">
+                        style="background-image:url('{{ image.url }}')">
                     </div>
 
                 {% endfor %}
@@ -28,7 +28,11 @@
                         <h2 class="p-2 text-2xl font-bold w-fit">
                             {{ cityFav.country.name}}</h2>
 
-                        {% include "/partials/_favorites.html.twig" %}
+                        {% for image in cityFav.images %}
+
+                            {% include "/partials/_favorites.html.twig" %}
+
+                        {% endfor %}
 
                     </span>
 
@@ -54,8 +58,7 @@
 </div>
 
 <div class="col">
-{# ! MODIFY !  #}
-    {# <a href="{{ path('favorites_clear')}}" class="btn btn-danger btn-sm" onclick="return confirm('Vider votre liste de favoris ?');">Vider la liste</a> #}
+
     <a href="{{ path('favorites_clear') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-sm inline-block" onclick="return confirm('Vider votre liste de favoris ?');">Vider la liste</a>
 
 </div>
