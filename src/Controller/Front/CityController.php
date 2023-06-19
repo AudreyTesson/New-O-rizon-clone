@@ -24,12 +24,11 @@ class CityController extends AbstractController
     public function list(
         ImageRepository $imageRepository,
         CityRepository $cityRepository,
-        CountryRepository $countryRepository,
         PaginatorInterface $paginatorInterface, 
         Request $request)
     {
         $images = $imageRepository->findByDistinctCityImage();
-        $countries = $countryRepository->findByCountrySort();
+        $cities = $cityRepository->findCountryAndImageByCity();
 
         // sidebar filter form
         $criteria = new FilterData();
@@ -41,14 +40,13 @@ class CityController extends AbstractController
             $citiesFilter = $cityRepository->findByFilter($criteria);
             $citiesFilter = $paginatorInterface->paginate($citiesFilter, $request->query->getInt('page', 1),6);
 
-            return $this->redirectToRoute('cities_list', ["citiesFilter" => $citiesFilter, "countries" => $countries]);
+            return $this->redirectToRoute('cities_list', ["citiesFilter" => $citiesFilter, "cities" => $cities]);
         }
 
-        $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
+        $cities = $paginatorInterface->paginate($cities, $request->query->getInt('page', 1),6);
 
         return $this->render('front/cities/list.html.twig', [
-            "images" => $images,
-            "countries" => $countries,
+            'cities' => $cities,
             'formFilter' => $formFilter->createView(),
         ]);
     }

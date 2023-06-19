@@ -28,9 +28,9 @@
                             </button>
                             <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-slate-400 shadow w-44"> 
                                 <ul class="py-2 text-base text-black" aria-labelledby="dropdownDefaultButton">
-                                {% for country in countries %}
+                                {% for city in cities|sort((a, b) => a.countryName > b.countryName) %}
                                     <li>
-                                        <a href="{{ path('cities_country', {'id': country.id})}}" class="block px-4 py-2 hover:bg-gray-100">{{ country.name }}</a>
+                                        <a href="{{ path('cities_country', {'id': city.countryId})}}" class="block px-4 py-2 hover:bg-gray-100">{{ city.countryName }}</a>
                                     </li>
                                 {% endfor %}
                                 </ul>
@@ -278,10 +278,10 @@
 
                 <div class="flex flex-wrap md:flex-nowrap gap-3 justify-center pb-2 text-gray-500 border border-b-0 border-gray-200 bg-gray-100 rounded-b-xl sticky bottom-2 pt-3">
                     <div class="w-fit ">
-                        <button class="w-full hover:bg-sky-600 hover:text-white focus:ring focus:ring-offset-2 focus:ring-gray-800 text-base leading-4 font-medium py-4 px-10 text-cyan-900 bg-white border-2">Effacer</button>
+                        <button type="reset" value="Reset" class="w-full hover:bg-sky-600 hover:text-white focus:ring focus:ring-offset-2 focus:ring-gray-800 text-base leading-4 font-medium py-4 px-10 text-cyan-900 bg-white border-2">Effacer</button>
                     </div>
                     <div class="w-fit">
-                        <button class="w-full hover:bg-sky-600 focus:ring focus:ring-offset-2 focus:ring-gray-800 text-base leading-4 font-medium py-4 px-10 text-white bg-cyan-900">Valider</button>
+                        <button type ="submit" value="Submit" class="w-full hover:bg-sky-600 focus:ring focus:ring-offset-2 focus:ring-gray-800 text-base leading-4 font-medium py-4 px-10 text-white bg-cyan-900">Valider</button>
                     </div>
                 </div>
                

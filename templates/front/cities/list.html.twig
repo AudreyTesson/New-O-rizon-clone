@@ -16,7 +16,6 @@
         <div class="grid w-screen justify-center">
             <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
                 
-                {# ! adding citiesCountry in sort method #}
                 {% for city in citiesCountry %}
 
                     {% if isSorted %}
@@ -49,7 +48,7 @@
         <div class="grid w-screen justify-center">
             <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
             
-                {% for image in images %}
+                {% for city in cities %}
 
                     {% if isSorted %}
 
@@ -74,7 +73,7 @@
         </div>
 
         <div class="pagination flex justify-center">
-            {{ knp_pagination_render(images) }}
+            {{ knp_pagination_render(cities) }}
         </div>
 
     {% else %}

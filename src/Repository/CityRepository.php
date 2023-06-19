@@ -44,11 +44,71 @@ class CityRepository extends ServiceEntityRepository
     public function findByCountry($id)
     {
         return $this->createQueryBuilder('c')
-            ->innerJoin('c.country', 'country')
-            ->where('country.id = :country_id')
+            ->innerJoin('c.country', 'co', 'WITH', 'co.id = :country_id')
+            ->innerJoin('c.images', 'i')
             ->setParameter('country_id', $id)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findByCountry1($id)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $dql = "
+        SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, co.name AS countryName, co.id AS countryId
+        FROM App\Entity\City c
+        JOIN App\Entity\Image i WITH i.city = c
+        JOIN App\Entity\Country co WITH c.country = co
+        WHERE (
+            SELECT COUNT(img.id) 
+            FROM App\Entity\Image img 
+            WHERE img.city = c.id 
+            AND img.id <= i.id)
+            = 1
+        AND 
+            SELECT co.id 
+            FROM App\Entity\Country co 
+            WHERE co.city = co.$id   
+        GROUP BY co.id
+        ";
+
+        $query = $entityManager->createQuery($dql);
+        $sortedCities = $query->getResult();
+
+        $sortedCities = $query->getResult();
+
+        return $sortedCities;
+    }
+
+    public function findCountryAndImageByCity($order = null)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $dql = "
+        SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, co.name AS countryName, co.id AS countryId
+        FROM App\Entity\City c
+        JOIN App\Entity\Image i WITH i.city = c
+        JOIN App\Entity\Country co WITH c.country = co
+        WHERE (
+            SELECT COUNT(img.id) 
+            FROM App\Entity\Image img 
+            WHERE img.city = c.id 
+            AND img.id <= i.id) 
+            = 1
+        GROUP BY co.id
+        ";
+
+        if ($order !== null) {
+            $dql .= " ORDER BY c.name " . ($order === 'asc' ? 'ASC' : 'DESC');
+        }
+
+        $query = $entityManager->createQuery($dql);
+        $sortedCities = $query->getResult();
+
+        $sortedCities = $query->getResult();
+
+        return $sortedCities;
     }
 
     /**
