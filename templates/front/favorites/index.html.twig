@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FavoritesController!{% endblock %}
+{% block title %}Favoris{% endblock %}
 
 {% block body %}
 
@@ -28,7 +28,11 @@
                         <h2 class="p-2 text-2xl font-bold w-fit">
                             {{ cityFav.country.name}}</h2>
 
+                {% for image in cityFav.images %}
+
                         {% include "/partials/_favorites.html.twig" %}
+
+                {% endfor %}
 
                     </span>
 

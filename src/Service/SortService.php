@@ -26,7 +26,7 @@ class SortService
             GROUP BY cityImage.city
         )
         ORDER BY city.name " . strtoupper($order)
-    );
+        );
 
         $sortedCities = $query->getResult();
 
