@@ -4,6 +4,7 @@ namespace App\Controller\Front;
 
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
+use App\Service\FavoritesService;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
@@ -28,8 +29,6 @@ class FavoritesController extends AbstractController
         $user = $this->getUser();
 
         $favoritesList = $user->getCity();
-
-        // dd($favoritesList);
 
         $images = $imageRepository->findByDistinctCityImage();
 
@@ -56,8 +55,6 @@ class FavoritesController extends AbstractController
         $city = $cityRepository->find($id);
 
         $route = $request->headers->get('referer');
-
-        return $this->redirect($route);
 
         if ($city === null) { throw new Exception("ce favori n'existe pas.", 201);
         }
