@@ -1,0 +1,11 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+app_sort_asc:
+    path: /sort/asc
+    controller: App\Controller\MyController::sortAscAction
+
+app_sort_desc:
+    path: /sort/desc
+    controller: App\Controller\MyController::sortDescAction

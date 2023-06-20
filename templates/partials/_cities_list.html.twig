@@ -1,0 +1,106 @@
+{% set isCitiesCountry = (app.request.attributes.get("_route") ends with "country") %}
+{% set isCitiesList = app.request.requestUri ends with "/cities" %}
+{% set isSortedASC = app.request.requestUri ends with "/cities/asc" %}
+{% set isSortedDESC = app.request.requestUri ends with "/cities/desc" %}
+
+{% if isCitiesCountry %}
+
+    <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+        <a href="{{ path('cities_detail', {'id': city.id}) }}">
+            <div class="w-full h-96 relative overflow-hidden">
+                {# ! retrieve 1 image by country by city with dql request  #}
+                <div class="w-full h-full absolute transition-transform duration-300 hover:scale-105"
+                style="background-image:url('{{ city.country.image.url }}')">
+                </div>
+                <span class="text-xl text-white font-bold w-auto flex flex-col justify-center items-center backdrop-brightness-75">
+                    <h2 class="p-2 text-2xl font-bold w-fit">
+                        {{ city.name }}</h2>
+                    <h2 class="p-2 text-2xl font-bold w-fit">
+                        {{ city.country.name}}</h2>
+                    {% include "/partials/_favorites.html.twig" %}
+                </span>
+  
+{% elseif isCitiesList %}
+
+    <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+        <a href="{{ path('cities_detail', {'id': city.cityId}) }}">
+            <div class="w-full h-96 relative overflow-hidden">
+                <div class="w-full h-full absolute transition-transform duration-300 hover:scale-105"
+                style="background-image:url('{{ city.imageUrl }}')">
+                </div>
+                <span class="text-xl text-white font-bold w-auto flex flex-col justify-center items-center backdrop-brightness-75">
+                    <h2 class="p-2 text-2xl font-bold w-fit">
+                        {{ city.cityName }}</h2>
+                    <h2 class="p-2 text-2xl font-bold w-fit">
+                        {{ city.countryName}}</h2>
+                    {% include "/partials/_favorites.html.twig" %}
+                </span>
+
+{% elseif isSortedASC %}
+
+    <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+        <a href="{{ path('cities_detail', {'id': city.cityId}) }}">
+            <div class="w-full h-96 relative overflow-hidden">
+                <div class="w-full h-full absolute transition-transform duration-300 hover:scale-105"
+                style="background-image:url('{{ city.imageUrl }}')">
+                </div>
+                <span class="text-xl text-white font-bold w-auto flex flex-col justify-center items-center backdrop-brightness-75">
+                    <h2 class="p-2 text-2xl font-bold w-fit">
+                        {{ city.cityName }}</h2>
+                    <h2 class="p-2 text-2xl font-bold w-fit">
+                        {{ city.countryName}}</h2>
+                    {% include "/partials/_favorites.html.twig" %}
+                </span>
+
+{% elseif isSortedDESC %}
+
+    <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+        <a href="{{ path('cities_detail', {'id': city.cityId}) }}">
+            <div class="w-full h-96 relative overflow-hidden">
+                <div class="w-full h-full absolute transition-transform duration-300 hover:scale-105"
+                style="background-image:url('{{ city.imageUrl }}')">
+                </div>
+                <span class="text-xl text-white font-bold w-auto flex flex-col justify-center items-center backdrop-brightness-75">
+                    <h2 class="p-2 text-2xl font-bold w-fit">
+                        {{ city.cityName }}</h2>
+                    <h2 class="p-2 text-2xl font-bold w-fit">
+                        {{ city.countryName}}</h2>
+                    {% include "/partials/_favorites.html.twig" %}
+                </span>
+
+{# citiesFilter #}
+{% else %}
+
+    <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+        <a href="{{ path('cities_detail', {'id': city.id}) }}">
+            <div class="w-full h-96 relative overflow-hidden">
+                {# ! retrieve 1 image by country by city with dql request  #}
+                <div class="w-full h-full absolute transition-transform duration-300 hover:scale-105"
+                style="background-image:url('{{ city.country.image.url }}')">
+                </div>
+                <span class="text-xl text-white font-bold w-auto flex flex-col justify-center items-center backdrop-brightness-75">
+                    <h2 class="p-2 text-2xl font-bold w-fit">
+                        {{ city.name }}</h2>
+                    <h2 class="p-2 text-2xl font-bold w-fit">
+                        {{ city.country.name}}</h2>
+                    {% include "/partials/_favorites.html.twig" %}
+                </span>
+          
+{% endif %}
+                {# stars rating #}
+                <div class="absolute inset-x-0 bottom-4 flex justify-center drop-shadow-lg">
+                    <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
+                    <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
+                    <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
+                    <i class="fa-regular fa-star-half-stroke drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
+                    <i class="fa-regular fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
+                </div>
+            </div>
+        </a>
+
+    </div>
