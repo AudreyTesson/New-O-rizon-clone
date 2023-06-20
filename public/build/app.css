@@ -1390,9 +1390,6 @@ input:checked + .toggle-bg {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.-mr-1 {
-  margin-right: -0.25rem;
-}
 .-mt-3 {
   margin-top: -0.75rem;
 }
@@ -1623,6 +1620,9 @@ input:checked + .toggle-bg {
 }
 .h-screen {
   height: 100vh;
+}
+.h-20 {
+  height: 5rem;
 }
 .max-h-\[calc\(100\%-64px\)\] {
   max-height: calc(100% - 64px);
