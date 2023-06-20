@@ -7,7 +7,6 @@
 {% include 'partials/_sort.html.twig' %}
 
 {% set isSorted = (app.request.attributes.get("_route") ends with "sort_asc")%}
-{# {% set sortOption = (app.request.attributes.get("_route") ends with "sort_desc") ? 'desc' : 'asc' %} #}
 {% set isFavorites = (app.request.attributes.get("_route") ends with "favorites")%}
 
 <div class="grid w-screen justify-center">
