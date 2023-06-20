@@ -11,7 +11,8 @@
 
 <div class="grid w-screen justify-center">
     <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
-        
+{% if images is defined %}
+
         {% for image in images %}
 
             {% if isSorted %}
@@ -31,7 +32,11 @@
             {% endif %}
 
         {% endfor %}
+{% else %}
 
+    {% include 'partials/_cities_list.html.twig' %}
+
+{% endif %}
     </div>
 
 </div>

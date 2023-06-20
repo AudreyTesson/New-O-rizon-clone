@@ -20,10 +20,10 @@ class CityController extends AbstractController
      * @Route("/cities", name="cities_list")
      */
     public function list(
-        ImageRepository $imageRepository,
+        CityRepository $cityRepository,
         PaginatorInterface $paginatorInterface, Request $request)
     {
-        $images = $imageRepository->findByDistinctCityImage();
+        $images = $cityRepository->sortCitiesByName();
 
         $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
 

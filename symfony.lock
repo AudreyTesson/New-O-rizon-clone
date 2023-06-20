@@ -67,16 +67,6 @@
             "tests/bootstrap.php"
         ]
     },
-<<<<<<< HEAD
-    "symfony/apache-pack": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "main",
-            "version": "1.0",
-            "ref": "efb318193e48384eb5c5aadff15396ed698f8ffc"
-        }
-=======
     "sensio/framework-extra-bundle": {
         "version": "6.2",
         "recipe": {
@@ -88,7 +78,18 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
->>>>>>> dev
+    },
+    "symfony/apache-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "efb318193e48384eb5c5aadff15396ed698f8ffc"
+        },
+        "files": [
+            "public/.htaccess"
+        ]
     },
     "symfony/console": {
         "version": "5.4",
