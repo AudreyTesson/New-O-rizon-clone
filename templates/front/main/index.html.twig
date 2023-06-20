@@ -42,14 +42,12 @@
 </div>
 
 {# desktop version #}
-<div>
+<div class="max-h-lg hidden lg:block"> 
+    {# world map #}
+    <div class="relative h-screen w-full grid">
+        <img src="{{ asset('images/world_map.png')}}" class="grid place-self-center opacity-75" alt="mappemonde">
 
-    <div class="max-h-lg hidden lg:block"> 
-        {# world map #}
-        <div class="relative h-screen w-full grid">
-            <img src="{{ asset('images/world_map.png')}}" class="grid place-self-center opacity-75" alt="mappemonde">
-
-        <div class="relative">
+        
 
         {# Search bar #}
         <div class="absolute my-3 top-8 left-8 w-1/5">
@@ -75,6 +73,7 @@
         </div>
     </div>
 </div>
+
 
 {# sidebar_filter #}
 {% include "partials/_filter_menu.html.twig" %}
