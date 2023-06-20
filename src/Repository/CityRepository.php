@@ -57,7 +57,7 @@ class CityRepository extends ServiceEntityRepository
             = 1";
 
         if ($order !== null) {
-            $dql .= " ORDER BY c.name " . ($order === 'asc' ? 'ASC' : 'DESC');
+            $dql .= " ORDER BY c.name " . ($order === 'ASC' ? 'ASC' : 'DESC');
         }
 
         $query = $entityManager->createQuery($dql);
@@ -68,7 +68,6 @@ class CityRepository extends ServiceEntityRepository
         return $sortedCities;
     }
 
-    
 //    /**
 //     * @return City[] Returns an array of City objects
 //     */

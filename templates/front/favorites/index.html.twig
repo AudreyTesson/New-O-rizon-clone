@@ -7,7 +7,7 @@
 <div class="grid w-screen justify-center">
     <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
 
-    {% for cityFav in city %}
+    {% for cityFav in cities %}
 
         <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
@@ -63,8 +63,8 @@
 
 </div>
 
-<div class="pagination flex justify-center">
+{# <div class="pagination flex justify-center">
     {{ knp_pagination_render(images) }}
-</div>
+</div> #}
 
 {% endblock %}
