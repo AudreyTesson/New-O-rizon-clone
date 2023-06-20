@@ -40,19 +40,23 @@ class ImageRepository extends ServiceEntityRepository
         }
     }
 
-    /*
-     *Display 1 image per city for 30 cities, in the carousel for mobile version
+    /**
+     * Display 1 image per city for 30 cities, in the carousel for mobile version => retrieve only city name
+     *
      */
     public function findByDistinctCityImage()
     {
         $entityManager = $this->getEntityManager();
 
-            $query = $entityManager->createQuery("
-                SELECT image, city
-                FROM App\Entity\Image image
-                JOIN image.city city
-                GROUP BY city.id
-                ");
+        $query = $entityManager->createQuery
+        ("
+
+            SELECT image.url, city.name, city.id, country.id
+            FROM App\Entity\image image
+            JOIN image.country country
+            JOIN image.city city
+            GROUP BY city.id
+            ");
 
         $query->setMaxResults(30);
 
@@ -61,28 +65,4 @@ class ImageRepository extends ServiceEntityRepository
         return $result;
     }
 
-//    /**
-//     * @return Image[] Returns an array of Image objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('i')
-//            ->andWhere('i.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('i.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Image
-//    {
-//        return $this->createQueryBuilder('i')
-//            ->andWhere('i.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

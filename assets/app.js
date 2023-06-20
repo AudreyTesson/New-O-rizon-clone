@@ -13,3 +13,7 @@ import './bootstrap';
 
 // tailwind elements
 import 'tw-elements';
+
+// nouislide / range slide control
+import 'nouislider/dist/nouislider.css';
+import './slider_range';

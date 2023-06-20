@@ -1,8 +1,8 @@
 const modal = {
 
     init: function(){
-        if (document.querySelector(".modal")) {
         const close = document.querySelector(".close_modal");
+        if (close) {
         // event listener on close modal button
         close.addEventListener('click', modal.closeModal);
         }
