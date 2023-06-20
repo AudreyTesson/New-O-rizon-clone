@@ -67,9 +67,7 @@ class CityRepository extends ServiceEntityRepository
             AND img.id <= i.id)
             = 1
         AND 
-            SELECT co.id 
-            FROM App\Entity\Country co 
-            WHERE co.city = co.$id   
+            WHERE countryId = $id
         GROUP BY co.id
         ";
 

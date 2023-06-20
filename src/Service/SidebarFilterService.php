@@ -3,36 +3,44 @@
 namespace App\Service;
 
 use App\Data\FilterData;
+use App\Entity\City;
 use App\Form\Front\FilterDataType;
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Exception;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
 class SidebarFilterService 
 {
+    private $formFactoryInterface;
+    private $request;
 
-    public function filterCitiesHomepage(CityRepository $cityRepository, ImageRepository $imageRepository, Request $request): Response
+    public function __construct(FormFactoryInterface $formFactoryInterface, RequestStack $request, ManagerRegistry $registry)
     {
-        $images = $imageRepository->findByDistinctCityImage();
+        // $this->parent::__construct($registry, YourEntity::class);
+        $this->formFactoryInterface = $formFactoryInterface;
+        $this->request = $request;
+    }
+
+    public function sidebarForm(City $city, Request $request)
+    {
+        $city = $
         $data = new FilterData();
-        $form = $this->createForm(FilterDataType::class, $data);
+        $form = $this->formFactoryInterface->create(FilterDataType::class, $data);
         
-        $form->handleRequest($request);
+        $form->handleRequest($this->request);
         $citiesFilter = $cityRepository->findByFilter($data);
         if ($citiesFilter === null) {
-            throw $this->createNotFoundException("Nous n'avons pas trouvé de ville correspondant à votre recherche");
+            throw new Exception("Nous n'avons pas trouvé de ville correspondant à votre recherche");
         }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            return $this->redirectToRoute('cities_list', ["cities" => $citiesFilter, "images" => $images], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('front/main/index.html.twig', [
-            'form' => $form,
-            'citiesFilter' => $citiesFilter,
-            'images' => $images
-        ]);
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     return $this->redirectToRoute('cities_list', ["cities" => $citiesFilter, "images" => $images], Response::HTTP_SEE_OTHER);
+        // }
     }
 
 }

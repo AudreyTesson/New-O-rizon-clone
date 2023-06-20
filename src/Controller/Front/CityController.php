@@ -22,12 +22,10 @@ class CityController extends AbstractController
      * @Route("/cities", name="cities_list")
      */
     public function list(
-        ImageRepository $imageRepository,
         CityRepository $cityRepository,
         PaginatorInterface $paginatorInterface, 
         Request $request)
     {
-        $images = $imageRepository->findByDistinctCityImage();
         $cities = $cityRepository->findCountryAndImageByCity();
 
         // sidebar filter form
@@ -59,6 +57,7 @@ class CityController extends AbstractController
     public function show($id, CityRepository $cityRepository, ImageRepository $imageRepository): Response
     {
         $city = $cityRepository->find($id);
+        
         if ($city === null) {
             throw new Exception("Nous n'avons pas encore de données sur cette ville", 404);
         }
