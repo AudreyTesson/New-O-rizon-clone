@@ -1,10 +1,11 @@
 
-const toTopButton = document.getElementById("to-top-button");
+        window.onscroll = function() {scrollUpTo200()};    
 
         /**
          * Method to show the toTopButton after scrolling down 200px from the top of the document
          */
-        window.onscroll = function () {
+        function scrollUpTo200 () {
+            const toTopButton = document.getElementById("to-top-button");
             if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
                 toTopButton.classList.remove("hidden");
             } else {

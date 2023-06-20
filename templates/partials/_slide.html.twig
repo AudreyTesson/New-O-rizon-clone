@@ -8,17 +8,28 @@
 
     <div class="relative h-56 w-96 overflow-hidden rounded-lg sm:h-48 md:h-96 mx-auto mt-7">
 
-        {% for image in images %}
+        {% for city in cities %}
+
+
+            <div class="duration-700 ease-in-out" data-carousel-item>
+                <a href="{{ path('cities_detail', {'id': image.cityId}) }}">
 
 <<<<<<< HEAD
             <div class="duration-700 ease-in-out" data-carousel-item>
                 <a href="{{ path('cities_detail', {'id': image.cityId}) }}">
 =======
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
+
                 <a href="{{ path('cities_detail', {'id': image.id}) }}">
->>>>>>> dev
+
                     <img
                         src="{{ image.imageUrl }}"
+
+                <a href="{{ path('cities_detail', {'id': city.cityId}) }}">
+                    <img
+                    {# ! ask Audrey for limit on image row - only 1 url per city #}
+                        src="{{ city.imageUrl }}"
+>>>>>>> dev
                         class="block w-full -translate-x -translate-y"
                         alt="Photo d'une ville au hasard"/>
                 </a>
@@ -26,7 +37,7 @@
 
         {% endfor %}
 
-    </div>
+    </div>   
 
 {% endif %}
 

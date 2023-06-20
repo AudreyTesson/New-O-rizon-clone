@@ -40,8 +40,9 @@ class ImageRepository extends ServiceEntityRepository
         }
     }
 
-    /*
-     *Display 1 image per city for 30 cities, in the carousel for mobile version
+    /**
+     * Display 1 image per city for 30 cities, in the carousel for mobile version => retrieve only city name
+     *
      */
     public function findByDistinctCityImage()
         {

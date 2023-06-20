@@ -5,35 +5,121 @@
 {% block body %}
 
 {% include 'partials/_sort.html.twig' %}
+{% include 'partials/_filter_button.html.twig'%}
 
 {% set isSorted = (app.request.attributes.get("_route") ends with "sort_asc")%}
 {% set isFavorites = (app.request.attributes.get("_route") ends with "favorites")%}
+{% set isCitiesList = (app.request.attributes.get("_route") ends with "cities_list") %}
 
+<<<<<<< HEAD
 <div class="grid w-screen justify-center">
     <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
 <<<<<<< HEAD
 {% if images is defined %}
 =======
 >>>>>>> dev
+=======
+    {% if citiesCountry is defined %}
+        <div class="grid w-screen justify-center">
+            <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
+                
+                {% for city in citiesCountry %}
+>>>>>>> dev
 
-        {% for image in images %}
+                    {% if isSorted %}
 
-            {% if isSorted %}
+                        {% if sortOption == 'ASC' %}
+                            {# <h2 class="flex justify-center text-xl">Villes triées par ordre ascendant :</h2> #}
+                        {% else %}
+                            {# <h2 class="flex justify-center text-xl">Villes triées par ordre descendant :</h2> #}
+                        {% endif %}
 
-                {% if sortOption == 'asc' %}
-                    {# <h2 class="flex justify-center text-xl">Villes triées par ordre ascendant :</h2> #}
+                        {% include 'partials/_cities_list.html.twig' %}
+
+                    {% else %}
+
+                        {% include 'partials/_cities_list.html.twig' %}
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="pagination flex justify-center">
+            {{ knp_pagination_render(citiesCountry) }}
+        </div>
+
+    {% elseif citiesFilter is defined %}
+        <div class="grid w-screen justify-center">
+            <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
+            
+                {% for city in citiesFilter %}
+
+                    {% if isSorted %}
+
+                        {% if sortOption == 'ASC' %}
+                            {# <h2 class="flex justify-center text-xl">Villes triées par ordre ascendant :</h2> #}
+                        {% else %}
+                            {# <h2 class="flex justify-center text-xl">Villes triées par ordre descendant :</h2> #}
+                        {% endif %}
+
+                        {% include 'partials/_cities_list.html.twig' %}
+
+                    {% else %}
+
+                        {% include 'partials/_cities_list.html.twig' %}
+
+                    {% endif %}
+
                 {% else %}
-                    {# <h2 class="flex justify-center text-xl">Villes triées par ordre descendant :</h2> #}
-                {% endif %}
 
-                {% include 'partials/_cities_list.html.twig' %}
+                <div>
+                    <div>
+                        <em><p><span class="ps-1">Nous n'avons pas trouvé de ville correspondant à votre recherche. Tentez à nouveau votre chance !<p></span></em>
+                    </div>
+                </div>
 
-            {% else %}
+                {% endfor %}
 
-                {% include 'partials/_cities_list.html.twig' %}
+            </div>
 
-            {% endif %}
+        </div>
 
+        <div class="pagination flex justify-center">
+            {{ knp_pagination_render(citiesFilter) }}
+        </div>
+
+    {% else %}
+            
+        <div class="grid w-screen justify-center">
+            <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
+            
+                {% for city in cities %}
+
+                    {% if isSorted %}
+
+                        {% if sortOption == 'asc' %}
+                            {# <h2 class="flex justify-center text-xl">Villes triées par ordre ascendant :</h2> #}
+                        {% else %}
+                            {# <h2 class="flex justify-center text-xl">Villes triées par ordre descendant :</h2> #}
+                        {% endif %}
+
+                        {% include 'partials/_cities_list.html.twig' %}
+
+                    {% else %}
+
+                        {% include 'partials/_cities_list.html.twig' %}
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+<<<<<<< HEAD
         {% endfor %}
 {% else %}
 
@@ -41,11 +127,16 @@
 
 {% endif %}
     </div>
+=======
+        </div>
 
-</div>
+        <div class="pagination flex justify-center">
+            {{ knp_pagination_render(cities) }}
+        </div>
+>>>>>>> dev
 
-<div class="pagination flex justify-center">
-    {{ knp_pagination_render(images) }}
-</div>
+    {% endif %}
+
+    {% include "partials/_filter_menu.html.twig" %}
 
 {% endblock %}

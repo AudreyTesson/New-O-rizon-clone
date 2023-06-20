@@ -11,7 +11,7 @@
     
     {# Logo #}
     <div class="my-2 lg:hidden">
-        <img class="w-1/3" src="{{asset('images/logo_image.png')}}" alt="Logo du site New O'rizon représentant un globe terrestre transparent aux contours bleus">
+        <img class="w-1/3 animate-rotate-y animate-infinite animate-duration-[9000ms] animate-ease-in" src="{{asset('images/logo_image.png')}}" alt="Logo du site New O'rizon représentant un globe terrestre transparent aux contours bleus">
     </div>
 
     {# Text of presentation #}
@@ -19,30 +19,38 @@
         <span class="italic font-medium text-cyan-900 text-center ">
             <p class="text-2xl font-bold">Bienvenue sur New O'rizon</p>
             <p class="text-base">Cliquez sur votre destination</p>
-            <p class="text-base">Travaillez et voyagez</p>
+            <p class="text-base">Travaillez et voyagez<
         </span>
     </div>
 
     {# Search bar #}
-    <div class="mb-3 flex justify-center lg:hidden ">
-<<<<<<< HEAD
+       
+    <div class="mb-3 flex justify-center lg:hidden "
 
             <div class="flex mx-6 bg-cyan-900 p-1 w-72 space-x-4 rounded-lg ">
                 <div class="flex mx-auto space-x-4 items-center">
-                    {# Filter button #}
+                    {# Filter button #
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m-6 8a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4"/></svg>
                     <input class="bg-gray-100 outline-none rounded-xl border border-solid" type="text" placeholder="Recherche" class="search" />
                     <button type="submit" class="icone-loupe" id="loupe">
                             <i class="fa fa-search text-white" aria-hidden="false"></i>
                     </button>
                 </div>
-=======
+
         <div class="flex mx-6 bg-cyan-900 p-1 w-72 space-x-4 rounded-lg ">
             <div class="flex mx-auto space-x-4 items-center">
                 {# Filter button #}
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m-6 8a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4"/></svg>
                 <input class="bg-gray-100 outline-none rounded-xl border border-solid" type="text" placeholder="Recherche" />
->>>>>>> dev
+
+                    <button id="filter_btn_mobile" aria-label="Ouvrir" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m-6 8a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4"/>
+                        </svg>
+                    </button>
+                    <input class="bg-gray-100 outline-none rounded-xl border border-solid" type="text" placeholder="Recherche" />
+                </div>
+
             </div>
         </div>
     </div>
@@ -123,6 +131,8 @@
     </div>
 </div>
 
+{# sidebar_filter #}
+{% include "partials/_filter_menu.html.twig" %}
 
 {% endblock %}
 
