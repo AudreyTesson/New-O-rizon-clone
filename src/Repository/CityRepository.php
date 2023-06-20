@@ -98,7 +98,7 @@ class CityRepository extends ServiceEntityRepository
         ";
 
         if ($order !== null) {
-            $dql .= " ORDER BY c.name " . ($order === 'asc' ? 'ASC' : 'DESC');
+            $dql .= " ORDER BY c.name " . ($order === 'ASC' ? 'ASC' : 'DESC');
         }
 
         $query = $entityManager->createQuery($dql);
@@ -115,7 +115,7 @@ class CityRepository extends ServiceEntityRepository
      * @param FilterData $filerData
      * @return array
      */
-    public function findByFilter(FilterData $filterData)
+    public function findByFilter(FilterData $filterData, $order = null)
     {
          $query = $this->createQueryBuilder('city')
             ->select('city', 'c')
@@ -224,6 +224,10 @@ class CityRepository extends ServiceEntityRepository
                 $query = $query
                     ->andWhere('city.environment = :environment')
                     ->setParameter('environment', $filterData->environment);  
+            }
+
+            if ($order !== null) {
+                $query = $query->orderBy("city.name", $order);
             }
 
         return $query->getQuery()->getResult();  

@@ -12,6 +12,10 @@
             <script src="{{ asset('js/sidebar_filter_cities.js')}}"></script>
         {% elseif route == 'cities_country' %}
             <script src="{{ asset('js/sidebar_filter_citiesCountry.js')}}"></script>
+        {% elseif route == "sort_asc" %}
+            <script src="{{ asset('js/sidebar_filter_asc.js')}}"></script>
+        {% elseif route == "sort_desc" %}
+            <script src="{{ asset('js/sidebar_filter_desc.js')}}"></script>  
         {% endif %}
 
         <script

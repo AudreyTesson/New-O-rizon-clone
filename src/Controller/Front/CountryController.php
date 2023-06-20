@@ -23,11 +23,15 @@ class CountryController extends AbstractController
      * 
      * @return Response
      */
-    public function countryShow($id, CountryRepository $countryRepository, CityRepository $cityRepository, ImageRepository $imageRepository, PaginatorInterface $paginator, Request $request): Response
+    public function countryShow(
+        $id, 
+        CountryRepository $countryRepository, 
+        CityRepository $cityRepository, 
+        PaginatorInterface $paginator, 
+        Request $request): Response
     {
         $countryId = $countryRepository->find($id);
         $citiesCountry = $cityRepository->findByCountry($countryId);
-        dump($citiesCountry);
         $cities = $cityRepository->findCountryAndImageByCity();
 
         if ($citiesCountry === null) {
@@ -47,7 +51,7 @@ class CountryController extends AbstractController
             $citiesFilter = $cityRepository->findByFilter($criteria);
             $citiesFilter = $paginator->paginate($citiesFilter, $request->query->getInt('page', 1),6);
 
-            return $this->redirectToRoute('cities_list', ["citiesFilter" => $citiesFilter, "cities" => $cities]);
+            return $this->render('front/cities/list.html.twig', ["citiesFilter" => $citiesFilter, "cities" => $cities, 'formFilter' => $formFilter->createView(),]);
         }
 
         $citiesCountry = $paginator->paginate($citiesCountry, $request->query->getInt('page', 1),6);

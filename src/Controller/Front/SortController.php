@@ -18,9 +18,9 @@ class SortController extends AbstractController
      */
     public function sortAscAction(CityRepository $cityRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
-        $order = 'asc';
+        $order = 'ASC';
         
-        $images = $cityRepository->sortCitiesByName('asc');
+        $cities = $cityRepository->findCountryAndImageByCity('ASC');
 
         // sidebar filter form
         $criteria = new FilterData();
@@ -29,19 +29,20 @@ class SortController extends AbstractController
 
         if ($formFilter->isSubmitted() && $formFilter->isValid()) {
             
-            $citiesFilter = $cityRepository->findByFilter($criteria);
-            $citiesFilter = $paginatorInterface->paginate($citiesFilter, $request->query->getInt('page', 1),6);
+            $order = 'ASC';
+            $citiesFilter = $cityRepository->findByFilter($criteria, 'ASC');
+            $citiesFilter = $paginatorInterface->paginate($citiesFilter, $request->query->getInt('page', 1),9);
 
-            return $this->redirectToRoute('cities_list', ["citiesFilter" => $citiesFilter]);
+            return $this->render('front/cities/list.html.twig', ["citiesFilter" => $citiesFilter, 'sortOption' => $order, "cities" => $cities, 'formFilter' => $formFilter->createView(),]);
         }
 
 
-        $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),9);
+        $cities = $paginatorInterface->paginate($cities, $request->query->getInt('page', 1),9);
 
         return $this->render('front/cities/list.html.twig', [
-            'images' => $images,
-            'isSorted' => true,
+            'cities' => $cities,
             'sortOption' => $order,
+            'formFilter' => $formFilter->createView()
         ]);
     }
 
@@ -50,16 +51,30 @@ class SortController extends AbstractController
      */
     public function sortDescAction(CityRepository $cityRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
-        $order = 'desc';
+        $order = 'DESC';
 
-        $images = $cityRepository->sortCitiesByName('desc');
+        $cities = $cityRepository->findCountryAndImageByCity('DESC');
 
-        $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1), 9);
+        // sidebar filter form
+        $criteria = new FilterData();
+        $formFilter = $this->createForm(FilterDataType::class, $criteria);
+        $formFilter->handleRequest($request);
+
+        if ($formFilter->isSubmitted() && $formFilter->isValid()) {
+            
+            $order = 'DESC';
+            $citiesFilter = $cityRepository->findByFilter($criteria, 'DESC');
+            $citiesFilter = $paginatorInterface->paginate($citiesFilter, $request->query->getInt('page', 1),9);
+
+            return $this->render('front/cities/list.html.twig', ["citiesFilter" => $citiesFilter, 'sortOption' => $order, "cities" => $cities, 'formFilter' => $formFilter->createView(),]);
+        }
+
+        $cities = $paginatorInterface->paginate($cities, $request->query->getInt('page', 1), 9);
     
         return $this->render('front/cities/list.html.twig', [
-            'images' => $images,
-            'isSorted' => true,
+            'cities' => $cities,
             'sortOption' => $order,
+            'formFilter' => $formFilter->createView()
         ]);
     }
 }

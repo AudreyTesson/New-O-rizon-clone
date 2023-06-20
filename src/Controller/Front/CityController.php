@@ -5,7 +5,6 @@ namespace App\Controller\Front;
 use App\Data\FilterData;
 use App\Form\Front\FilterDataType;
 use App\Repository\CityRepository;
-use App\Repository\CountryRepository;
 use App\Repository\ImageRepository;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
@@ -38,7 +37,7 @@ class CityController extends AbstractController
             $citiesFilter = $cityRepository->findByFilter($criteria);
             $citiesFilter = $paginatorInterface->paginate($citiesFilter, $request->query->getInt('page', 1),6);
 
-            return $this->redirectToRoute('cities_list', ["citiesFilter" => $citiesFilter, "cities" => $cities]);
+            return $this->render('front/cities/list.html.twig', ["citiesFilter" => $citiesFilter, "cities" => $cities, 'formFilter' => $formFilter->createView(),]);
         }
 
         $cities = $paginatorInterface->paginate($cities, $request->query->getInt('page', 1),6);
