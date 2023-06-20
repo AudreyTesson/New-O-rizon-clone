@@ -48,9 +48,18 @@ class ImageRepository extends ServiceEntityRepository
     {
         $entityManager = $this->getEntityManager();
 
-        $query = $entityManager->createQuery("
-            SELECT image, city
+        $query = $entityManager->createQuery
+        // ("
+            // SELECT image.url, city.name, city.id
+            // FROM App\Entity\image image
+            // JOIN image.city city
+            // GROUP BY city.id
+            // ");
+        ("
+
+            SELECT image.url, city.name, city.id, country.id
             FROM App\Entity\image image
+            JOIN image.country country
             JOIN image.city city
             GROUP BY city.id
             ");

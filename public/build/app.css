@@ -1633,6 +1633,9 @@ input:checked + .toggle-bg {
 .h-screen {
   height: 100vh;
 }
+.h-20 {
+  height: 5rem;
+}
 .max-h-\[calc\(100\%-64px\)\] {
   max-height: calc(100% - 64px);
 }

@@ -54,7 +54,11 @@ class CityController extends AbstractController
      * 
      * @Route("/cities/{id}", name="cities_detail", requirements={"id":"\d+"})
      */
-    public function show($id, CityRepository $cityRepository, ImageRepository $imageRepository): Response
+    public function show(
+        $id, 
+        CityRepository $cityRepository, 
+        ImageRepository $imageRepository
+        ): Response
     {
         $city = $cityRepository->find($id);
         
