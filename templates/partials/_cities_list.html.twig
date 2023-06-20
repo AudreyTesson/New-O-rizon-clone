@@ -1,9 +1,13 @@
 <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
+<<<<<<< HEAD
 {% for image in images %}
 
     <a href="{{ path('cities_detail', {'id': image.cityId}) }}">
 {% endfor %}
+=======
+    <a href="{{ path('cities_detail', {'id': image.cityId}) }}">
+>>>>>>> dev
         <div class="w-full h-96 relative overflow-hidden">
             <div class="w-full h-full absolute transition-transform duration-300 hover:scale-105"
             style="background-image:url('{{ image.imageUrl }}')">
@@ -14,6 +18,10 @@
                     {{ image.cityName }}</h2>
                 <h2 class="p-2 text-2xl font-bold w-fit">
                     {{ image.countryName}}</h2>
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
                 {% include "/partials/_favorites.html.twig" %}
             </span>
             

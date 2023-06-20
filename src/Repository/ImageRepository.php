@@ -43,8 +43,7 @@ class ImageRepository extends ServiceEntityRepository
     /*
      *Display 1 image per city for 30 cities, in the carousel for mobile version
      */
-
-        public function findByDistinctCityImage()
+    public function findByDistinctCityImage()
         {
               $entityManager = $this->getEntityManager();
 

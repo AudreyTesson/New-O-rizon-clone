@@ -20,12 +20,13 @@ class CityController extends AbstractController
      * @Route("/cities", name="cities_list")
      */
     public function list(
-        CityRepository $cityRepository,
-        PaginatorInterface $paginatorInterface, Request $request)
+        PaginatorInterface $paginator,
+        CityRepository $cityRepository, 
+        Request $request)
     {
         $images = $cityRepository->sortCitiesByName();
 
-        $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
+        $images = $paginator->paginate($images, $request->query->getInt('page', 1),6);
 
         return $this->render('front/cities/list.html.twig', [
             "images" => $images,
@@ -37,7 +38,11 @@ class CityController extends AbstractController
      * 
      * @Route("/cities/{id}", name="cities_detail", requirements={"id":"\d+"})
      */
-    public function show($id, CityRepository $cityRepository, ImageRepository $imageRepository, Request $request): Response
+    public function show(
+        $id, 
+        CityRepository $cityRepository, 
+        ImageRepository $imageRepository
+        ): Response
     {
         $city = $cityRepository->find($id);
         if ($city === null) {

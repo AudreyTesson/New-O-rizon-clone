@@ -10,12 +10,17 @@
 
         {% for image in images %}
 
+<<<<<<< HEAD
             <div class="duration-700 ease-in-out" data-carousel-item>
                 <a href="{{ path('cities_detail', {'id': image.cityId}) }}">
+=======
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <a href="{{ path('cities_detail', {'id': image.id}) }}">
+>>>>>>> dev
                     <img
                         src="{{ image.imageUrl }}"
                         class="block w-full -translate-x -translate-y"
-                        alt="Photo d'une ville au hasard">
+                        alt="Photo d'une ville au hasard"/>
                 </a>
             </div>
 
@@ -37,7 +42,7 @@
                     <img
                         src="{{ image.imageUrl }}"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                        alt="Photo d'une ville au hasard">
+                        alt="Photo d'une ville au hasard"/>
                 </div>
 
             {% endfor %}

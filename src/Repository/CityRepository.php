@@ -42,115 +42,12 @@ class CityRepository extends ServiceEntityRepository
         }
     }
 
-    
-    // public function sortCitiesByName($search = null, string $order = null): array
-    // {
-    //     $entityManager = $this->getEntityManager();
-
-    //     $dql = "
-    //     SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, co.name AS countryName
-    //     FROM App\Entity\City c
-    //     JOIN App\Entity\Image i WITH i.city = c
-    //     JOIN App\Entity\Country co WITH c.country = co
-    //     WHERE (
-    //         SELECT COUNT(img.id) 
-    //         FROM App\Entity\Image img 
-    //         WHERE img.city = c.id 
-    //         AND img.id <= i.id) 
-    //         = 1";
-
-    //     if ($search !== null) {
-    //         $dql .= " WHERE c.name LIKE :search";
-    //     }
-
-    //     if ($order !== null) {
-    //         $dql .= " ORDER BY c.name " . ($order === 'asc' ? 'ASC' : 'DESC');
-    //     }
-
-        
-    //     /*if ($search !== null) {
-    //         $dql .= " WHERE c.name LIKE $search% ";
-    //     }*/
-    //     $query = $entityManager->createQuery($dql);
-
-    //     if ($search !== null) {
-    //         $query->setParameter('search', '%' . $search . '%');
-    //     }
-
-    //     $query = $entityManager->createQuery($dql);
-    //     $sortedCities = $query->getResult();
-
-    //     $sortedCities = $query->getResult();
-
-    //     return $sortedCities;
-    // }
-
-   /* public function sortCitiesByName(string $order = null, string $search = null): array
-{
-    $entityManager = $this->getEntityManager();
-
-    $dql = "
-    SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, co.name AS countryName, co.id AS countryId
-    FROM App\Entity\City c
-    JOIN App\Entity\Image i WITH i.city = ci
-    JOIN App\Entity\Country co WITH c.country = co";
-
-    if ($search !== null) {
-        $dql .= " WHERE c.name LIKE $search%";
-    }
-    
-    $dql .= " AND (
-        SELECT COUNT(img.id) 
-        FROM App\Entity\Image img 
-        WHERE img.city = ci.id 
-        AND img.id <= i.id) 
-        = 1";
-
-    if ($order !== null) {
-        $dql .= " ORDER BY c.name " . ($order === 'asc' ? 'ASC' : 'DESC');
-    }
-
-    $query = $entityManager->createQuery($dql);
-    
-    // if ($search !== null) {
-    //     $query->setParameter('search', "$search%");
-    // }
-    
-    $sortedCities = $query->getResult();
-
-    return $sortedCities;
-}*/
-
-
-public function findByCityName($search)
-{
-    $entityManager = $this->getEntityManager();
-    $queryBuilder = $entityManager->createQueryBuilder();
-
-    $queryBuilder->select('c', 'co', 'i')
-        ->from(City::class, 'c')
-        ->innerJoin('c.country', 'co')
-        ->innerJoin('c.images', 'i')
-        ->andWhere($queryBuilder->expr()->eq(
-            '(SELECT COUNT(img.id) 
-                FROM App\Entity\Image img 
-                WHERE img.city = c.id 
-                AND img.id <= i.id)',
-            1
-        ))
-        ->where($queryBuilder->expr()->like('c.name', ':name'))
-        ->orderBy('c.name', 'ASC')
-        ->setParameter('name', "$search%");
-
-    return $queryBuilder->getQuery()->getResult();
-}
-
-public function findCountryAndImageByCity($order = null)
+    public function sortCitiesByName(string $order = null): array
     {
         $entityManager = $this->getEntityManager();
 
         $dql = "
-        SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, co.name AS countryName, co.id AS countryId
+        SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, co.name AS countryName
         FROM App\Entity\City c
         JOIN App\Entity\Image i WITH i.city = c
         JOIN App\Entity\Country co WITH c.country = co
@@ -159,9 +56,7 @@ public function findCountryAndImageByCity($order = null)
             FROM App\Entity\Image img 
             WHERE img.city = c.id 
             AND img.id <= i.id) 
-            = 1
-        GROUP BY co.id
-        ";
+            = 1";
 
         if ($order !== null) {
             $dql .= " ORDER BY c.name " . ($order === 'asc' ? 'ASC' : 'DESC');
@@ -175,27 +70,58 @@ public function findCountryAndImageByCity($order = null)
         return $sortedCities;
     }
 
-    /*public function findByCityName($search): array
+
+    public function findByCityName($search)
     {
-        return $this->createQueryBuilder('c')
-            ->where('c.name LIKE :name')
-            ->setParameter('name', "$search%")
+        $entityManager = $this->getEntityManager();
+        $queryBuilder = $entityManager->createQueryBuilder();
+
+        $queryBuilder->select('c', 'co', 'i')
+            ->from(City::class, 'c')
+            ->innerJoin('c.country', 'co')
+            ->innerJoin('c.images', 'i')
+            ->andWhere($queryBuilder->expr()->eq(
+                '(SELECT COUNT(img.id) 
+                FROM App\Entity\Image img 
+                WHERE img.city = c.id 
+                AND img.id <= i.id)',
+                1
+            ))
+            ->where($queryBuilder->expr()->like('c.name', ':name'))
             ->orderBy('c.name', 'ASC')
-            ->getQuery()
-            ->getResult();
+            ->setParameter('name', "$search%");
+
+        return $queryBuilder->getQuery()->getResult();
     }
 
+public function findCountryAndImageByCity($order = null)
+{
+    $entityManager = $this->getEntityManager();
 
-    public function findByCitiesWithImage($search)
-    {
-        return $this->createQueryBuilder("i")
-            ->join('i.city', 'city')
-               ->addSelect('city.id', 'city.name')
-            ->join('i.country', 'country')
-                ->addSelect('country.name')
-            ->getQuery()
-            ->getResult();
+    $dql = "
+        SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, co.name AS countryName, co.id AS countryId
+        FROM App\Entity\City c
+        JOIN App\Entity\Image i WITH i.city = c
+        JOIN App\Entity\Country co WITH c.country = co
+        WHERE (
+            SELECT COUNT(img.id) 
+            FROM App\Entity\Image img 
+            WHERE img.city = c.id 
+            AND img.id <= i.id) 
+            = 1
+        GROUP BY co.id
+        ";
 
-    } */
+    if ($order !== null) {
+        $dql .= " ORDER BY c.name " . ($order === 'asc' ? 'ASC' : 'DESC');
+    }
+
+    $query = $entityManager->createQuery($dql);
+    $sortedCities = $query->getResult();
+
+    $sortedCities = $query->getResult();
+
+    return $sortedCities;
+}
 
 }
