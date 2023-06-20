@@ -2,6 +2,8 @@
 
 namespace App\Controller\Front;
 
+use App\Data\FilterData;
+use App\Form\Front\FilterDataType;
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
 use Exception;
@@ -19,15 +21,30 @@ class CityController extends AbstractController
      * @Route("/cities", name="cities_list")
      */
     public function list(
-        ImageRepository $imageRepository,
-        PaginatorInterface $paginatorInterface, Request $request)
+        CityRepository $cityRepository,
+        PaginatorInterface $paginatorInterface, 
+        Request $request)
     {
-        $images = $imageRepository->findByDistinctCityImage();
+        $cities = $cityRepository->findCountryAndImageByCity();
 
-        $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
+        // sidebar filter form
+        $criteria = new FilterData();
+        $formFilter = $this->createForm(FilterDataType::class, $criteria);
+        $formFilter->handleRequest($request);
+
+        if ($formFilter->isSubmitted() && $formFilter->isValid()) {
+            
+            $citiesFilter = $cityRepository->findByFilter($criteria);
+            $citiesFilter = $paginatorInterface->paginate($citiesFilter, $request->query->getInt('page', 1),6);
+
+            return $this->render('front/cities/list.html.twig', ["citiesFilter" => $citiesFilter, "cities" => $cities, 'formFilter' => $formFilter->createView(),]);
+        }
+
+        $cities = $paginatorInterface->paginate($cities, $request->query->getInt('page', 1),6);
 
         return $this->render('front/cities/list.html.twig', [
-            "images" => $images,
+            'cities' => $cities,
+            'formFilter' => $formFilter->createView(),
         ]);
     }
 
@@ -38,9 +55,14 @@ class CityController extends AbstractController
      * 
      * @Route("/cities/{id}", name="cities_detail", requirements={"id":"\d+"})
      */
-    public function show($id, CityRepository $cityRepository, ImageRepository $imageRepository): Response
+    public function show(
+        $id, 
+        CityRepository $cityRepository, 
+        ImageRepository $imageRepository
+        ): Response
     {
         $city = $cityRepository->find($id);
+        
         if ($city === null) {
             throw new Exception("Nous n'avons pas encore de données sur cette ville", 404);
         }
