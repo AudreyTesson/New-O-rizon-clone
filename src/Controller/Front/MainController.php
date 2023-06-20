@@ -28,4 +28,21 @@ class MainController extends AbstractController
             'images' => $images
         ]);
     }
+
+    /**
+     * About-us page
+     * 
+     * @Route("/about-us", name="aboutUs", methods={"GET"})
+     * 
+     * @return Reponse
+     */
+
+    public function aboutUs()
+    {
+        return $this->render('front/footer/about_us.html.twig', [
+            
+        ]);
+    }
+
 }
+
