@@ -4,6 +4,7 @@
 
 {% block body %}
 
+
 {# mobile version #}
 <div class="w-full grid lg:hidden">
     
@@ -24,19 +25,15 @@
     {# Search bar #}
        
     <div class="mb-3 flex justify-center lg:hidden ">
-
             <div class="flex mx-6 bg-cyan-900 p-1 w-72 space-x-4 rounded-lg ">
                 <div class="flex mx-auto space-x-4 items-center">
                     {# Filter button #}
                     <button id="filter_btn_mobile" aria-label="Ouvrir" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m-6 8a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4"/>
-                        </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m-6 8a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4"/></svg>
                     </button>
                     <input class="bg-gray-100 outline-none rounded-xl border border-solid" type="text" placeholder="Recherche" />
                 </div>
             </div>
-        </div>
     </div>
 
     {# carousel #}
@@ -45,43 +42,38 @@
 </div>
 
 {# desktop version #}
-<div>
+<div class="max-h-lg hidden lg:block"> 
+    {# world map #}
+    <div class="relative h-screen w-full grid">
+        <img src="{{ asset('images/world_map.png')}}" class="grid place-self-center opacity-75" alt="mappemonde">
 
-    <div class="max-h-lg hidden lg:block"> 
-        {# world map #}
-        <div class="relative h-screen w-full grid">
-            <img src="{{ asset('images/world_map.png')}}" class="grid place-self-center opacity-75" alt="mappemonde">
+        
 
-
-            {# Search bar #}
-            <div class="absolute my-3 top-8 left-8 w-1/5">
-                <div class="flex bg-cyan-900  w-72 space-x-4 rounded-xl ">
-                    <div class="flex mx-auto space-x-4 items-center p-1">
-                        {# Filter button #}
-                        <button id="filter_btn" aria-label="Ouvrir" type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m-6 8a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4"/></svg>
-                        </button>
-                        <input class="bg-gray-100 outline-none rounded-xl border border-solid" type="text" placeholder="Recherche" />
-                    </div>
+        {# Search bar #}
+        <div class="absolute my-3 top-8 left-8 w-1/5">
+            <div class="flex bg-cyan-900  w-72 space-x-4 rounded-xl ">
+                <div class="flex mx-auto space-x-4 items-center p-1">
+                    {# Filter button #}
+                    <button id="filter_btn" aria-label="Ouvrir" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m-6 8a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 1 0 0-4m0 4a2 2 0 1 1 0-4m0 4v2m0-6V4"/></svg>
+                    </button>
+                    <input class="bg-gray-100 outline-none rounded-xl border border-solid" type="text" placeholder="Recherche" />
                 </div>
             </div>
-        
-        
-
-            {# Text of presentation #}
-            <div class="absolute left-8 2xl:top-96 xl:top-80 bottom-72 backdrop-brightness-10 ">
-                <span class=" text-blue-950 italic font-bold  ">
-                    <p class="text-xl xl:text-2xl 2xl:text-4xl ">Bienvenue sur</p>
-                    <p class="text-xl xl:text-2xl 2xl:text-4xl ">New O'rizon</p>
-                    <p class="text-base lg:text-xl">Cliquez sur votre destination</p>
-                    <p class="text-base lg:text-xl">Travaillez et voyagez</p>
-                </span>
-            </div>
-
         </div>
 
+        {# Text of presentation #}
+        <div class="absolute left-8 2xl:top-96 xl:top-80 bottom-72 backdrop-brightness-10 ">
+            <span class=" text-blue-950 italic font-bold  ">
+                <p class="text-xl xl:text-2xl 2xl:text-4xl ">Bienvenue sur</p>
+                <p class="text-xl xl:text-2xl 2xl:text-4xl ">New O'rizon</p>
+                <p class="text-base lg:text-xl">Cliquez sur votre destination</p>
+                <p class="text-base lg:text-xl">Travaillez et voyagez</p>
+            </span>
+        </div>
     </div>
 </div>
+
 
 {# sidebar_filter #}
 {% include "partials/_filter_menu.html.twig" %}

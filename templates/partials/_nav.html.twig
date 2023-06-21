@@ -5,6 +5,9 @@
                 <img src="{{ asset('images/logo_image.png') }}" class=" flex-row md:h-16 md:mx-1 hidden md:block rounded-full" alt="Logo New O'Rizon">
                 <span class="self-center text-2xl md:text-5xl font-semibold whitespace-nowrap text-white ml-3">New O'Rizon</span>
             </a>
+
+            <a href="{{ path('cities_list') }}" class="hidden md:block flex self-center ml-auto md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-3">Liste des villes
+            </a>
             
             <button data-collapse-toggle="mobile-menu" type="button" class="md:hidden ml-3 text-gray-400 hover:text-gray-900 focus:outline-none rounded-lg inline-flex items-center justify-center" aria-controls="mobile-menu-2" aria-expanded="false">
                 <span class="sr-only">Ouverture menu principal</span>
@@ -15,6 +18,9 @@
             </button>
             <div class="hidden md:block w-full md:w-auto" id="mobile-menu">
                 <ul class="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
+                    <li>
+                        <a href="{{ path('cities_list') }}" class="text-white hover:border-4 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-white md:p-0 md:hidden">Liste des villes</a>
+                    </li>
                     <li>
                         <a href="#" class="text-white hover:border-4 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-white md:p-0 md:hidden">Qui sommes-nous ?</a>
                     </li>
