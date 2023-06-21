@@ -23,6 +23,10 @@ services:
     # service to sort cities list
     App\Service\SortService:
         autowire: true
+    
+    # service to add custom filter in Twig
+    App\Twig\CustomTwigExtension:
+        tags: ['twig.extension']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
