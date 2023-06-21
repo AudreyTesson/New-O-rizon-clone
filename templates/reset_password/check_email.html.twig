@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Email de réinitialisation du mot de passe envoyé
+{% endblock %}
+
+{% block body %}
+
+	<div class="container mx-auto">
+
+		<div class="flex flex-col justify-center items-center px-6 pb-12 lg:px-8">
+
+			<div class="w-full bg-[url('https://c.pxhere.com/photos/a3/18/airport_gate_flight_suvarnabhumi_airport_thailand_terminal-495141.jpg!d')] bg-cover bg-center">
+				<div class="w-auto h-48 flex justify-center items-center backdrop-brightness-50">
+					<span class="text-black text-center items-center bg-white shadow-md rounded ">
+						<h2 class="p-5 text-2xl font-bold w-fit">Réinitialisation du mot de passe</h2>
+					</span>
+				</div>
+			</div>
+
+
+			<div class="flex justify-center grid grid-flow-row bg-slate-100 w-screen md:w-1/2 my-12">
+				
+                    <div class="grid grid-flow-row text-center bg-white shadow-md rounded px-8 pt-6 pb-8 my-10 ">
+                        <div class"text-base font-medium text-black">
+                            <p >Si un compte existe, un lien vous a été envoyé pour réinitialiser votre mot de passe.</p>
+                            <p><strong>Ce lien expire dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</strong></p>
+                            <p>Si vous n'avez pas reçu d'email, vérifiez vos courriers indésirables ou cliquez ci-dessous</p>
+
+                            <a href="{{ path('app_forgot_password_request') }}">
+                            <button type="submit" class="w-full text-white bg-cyan-900 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Essayez à nouveau</button>
+                            </a>
+                            
+                    </div>
+
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+
+				
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+
+                    
+                    
+
+                    

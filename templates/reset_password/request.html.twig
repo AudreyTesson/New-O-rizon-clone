@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réinitialisation de votre mot de passe
+{% endblock %}
+
+{% block body %}
+	{% for flash_error in app.flashes('reset_password_error') %}
+		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+	{% endfor %}
+
+
+	<div class="container mx-auto">
+
+		<div class="flex flex-col justify-center items-center px-6 pb-12 lg:px-8">
+
+			<div class="w-full bg-[url('https://c.pxhere.com/photos/a3/18/airport_gate_flight_suvarnabhumi_airport_thailand_terminal-495141.jpg!d')] bg-cover bg-center">
+				<div class="w-auto h-48 flex justify-center items-center backdrop-brightness-50">
+					<span class="text-black text-center items-center bg-white shadow-md rounded ">
+						<h2 class="p-5 text-2xl font-bold w-fit">Réinitialisation du mot de passe</h2>
+					</span>
+				</div>
+			</div>
+
+
+			<div class="flex justify-center bg-slate-100 w-screen md:w-1/2 my-12">
+				<div class="flex justify-center bg-white shadow-md rounded px-8 pt-6 pb-8 my-10">
+
+					{{ form_start(requestForm) }}
+					{{ form_row(requestForm.email) }}
+                        <div>
+                            <small>
+                                Entrez votre email et nous vous enverrons un lien de réinitialisation pour votre mot de passe.
+                            </small>
+                        </div>
+                        
+
+                        <button type="submit" class="w-full text-white bg-cyan-900 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Envoyer</button>
+                        <div class="text-base font-medium text-gray-500 dark:text-gray-300">
+                    {{ form_end(requestForm) }}
+						
+
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
