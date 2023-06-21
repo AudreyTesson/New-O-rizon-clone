@@ -1,40 +1,28 @@
 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
 
-    {% set cityFav = app.user.getCity %}
-    {% set cityFavIds = cityFav|map(item => item.id) %}
+    {% set cityFavIds = app.user.getCity|map(item => item.id) %}
+    {% set cityId = city.cityId ?? city.id %}
+    {% set pathAddFav = path('favorites_add', {'id': cityId}) %}
+    {% set pathDeleteFav = path('favorites_remove', {'id': cityId}) %}
 
-    {% if image is defined %}
-{# {% set cityId = image.getCity().id %} #}
-        {% set pathAddFav = path('favorites_add', {'id': image.cityId}) %}
-        {% set pathDeleteFav = path('favorites_remove', {'id': image.cityId}) %}
-{# {% endwith %} #}
-        {% if image.cityId in cityFavIds %}
-            <a href="{{ pathDeleteFav }}">
-                <i class="fa-solid fa-heart fa-xl absolute right-4 top-6 text-xl text-white font-bold" style="color: #e80225;"></i>
-            </a>
-        {% else %}
-            <a href="{{ pathAddFav }}">
-                <i class="fa-regular fa-heart fa-xl absolute right-4 top-6 text-xl text-white font-bold"></i>
-            </a>
-        {% endif %}
+    <a href="{{ pathAddFav }}" 
+        {% if cityId in cityFavIds %} 
+            style="display: none;"
+        {% endif %}>
+        <i class="fa-regular fa-heart fa-xl absolute right-4 top-6 text-xl text-white font-bold"></i>
+    </a>
 
-    {# {% if cityFav is defined %}
+    <a href="{{ pathDeleteFav }}" 
+        {% if cityId not in cityFavIds %} 
+            style="display: none;"
+        {% endif %}>
+        <i class="fa-solid fa-heart fa-xl absolute right-4 top-6 text-xl text-white font-bold" style="color: #e80225;"></i>
+    </a>
 
-        {% set pathAddFav = path('favorites_add', {'id': image.cityId}) %}
-        {% set pathDeleteFav = path('favorites_remove', {'id': image.cityId}) %}
+{% else %}
 
-        {% if image.cityId in cityFavIds %}
-            <a href="{{ pathDeleteFav }}">
-                <i class="fa-solid fa-heart fa-xl absolute right-4 top-6 text-xl text-white font-bold" style="color: #e80225;"></i>
-            </a>
-        {% else %}
-            <a href="{{ pathAddFav }}">
-                <i class="fa-regular fa-heart fa-xl absolute right-4 top-6 text-xl text-white font-bold"></i>
-            </a>
-        {% endif %}
-
-        {% endif %} #}
-
-    {% endif %}
-
+    <a href="{{ path('app_login') }}">
+        <i class="fa-regular fa-heart fa-xl absolute right-4 top-6 text-xl text-white font-bold"></i>
+    </a>
+    
 {% endif %}

@@ -29,7 +29,7 @@ class FavoritesController extends AbstractController
         $user = $this->getUser();
 
         $favoritesList = $user->getCity();
-        dump($favoritesList);
+        // dump($favoritesList);
 
         // $images = $cityRepository->sortCitiesByName();
 
@@ -37,7 +37,7 @@ class FavoritesController extends AbstractController
 
         return $this->render('front/favorites/index.html.twig', [
             // "images" => $images,
-            "cities" => $favoritesList
+            "city" => $favoritesList
         ]);
     }
 
