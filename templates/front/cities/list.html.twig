@@ -12,7 +12,7 @@
 {% set isCitiesList = (app.request.attributes.get("_route") ends with "cities_list") %}
 
     {% if citiesCountry is defined %}
-        <div class="grid w-screen justify-center">
+        <div class="grid w-full justify-center">
             <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
                 
                 {% for city in citiesCountry %}
