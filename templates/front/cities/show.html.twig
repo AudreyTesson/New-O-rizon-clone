@@ -3,7 +3,7 @@
 {% block title %}New O'rizon Page de ville{% endblock %}
 
 {% block body %}
-
+<div class="w-full grid gap-5 md:gap-0">
     <div class="w-full h-96" style="background-image:url('{{ asset('images/city2.jpg') }}')">
         <span class="text-xl text-white font-bold w-auto flex flex-col justify-center items-center backdrop-brightness-40">
             <i class="fa-regular fa-heart fa-lg absolute right-4 top-24"></i>
@@ -21,10 +21,10 @@
         </div>
     </div>
 
-    <div class = "w-full grid md:grid-cols-5 md:justify-center md:items-center md:px-6 md:py-12 md:mx-12 gap-4">
+    <div class="w-full grid lg:grid-cols-5 lg:justify-center lg:items-center lg:px-6 lg:py-9 gap-4">
 
         {# Card Criteria #}
-        <div class="w-full md:col-span-2 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+        {# <div class="w-full md:col-span-2 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
             <div class="flex justify-center mb-4">
                 <h5 class="text-xl font-bold leading-none text-cyan-900 dark:text-white">Critères</h5>
             </div>
@@ -174,7 +174,7 @@
                     <li class="py-3 sm:py-4">
                         <div class="flex items-center space-x-4">
                             <div class="flex-shrink-0">
-                                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-4.jpg" alt="Lana image">
+                                <i class="fa-solid fa-person-military-pointing fa-xl" style="color: #000000;"></i>
                             </div>
                             <div class="flex-1 min-w-0">
                                 <p class="text-cyan-900 truncate dark:text-white">
@@ -201,10 +201,235 @@
                     </li>
                 </ul>
             </div>
+        </div> #}
+        <div class="w-full lg:col-span-2 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex justify-center mb-4">
+                <h5 class="text-xl font-bold leading-none text-cyan-900 dark:text-white">Critères</h5>
+            </div>
+
+            <div class="flex flex-wrap divide-y divide-gray-200 dark:divide-gray-700 text-sm md:text-lg">
+                
+                <div class="flex items-center w-1/2 py-3 space-x-4">
+                    <div>
+                        <i class="fa-solid fa-bolt fa-xl" style="color: #000000;"></i>
+                    </div>
+                    <div>
+                        <p class="text-cyan-900 dark:text-white font-bold">
+                            Electricité
+                        </p>
+                        <p class="text-cyan-900">
+                            {{ city.electricity }}
+                        </p>
+                    </div>
+                </div>    
+    
+                <div class="flex items-center w-1/2 py-3 space-x-4">        
+                    <div class="flex items-center space-x-4">
+                        <div>
+                            <i class="fa-solid fa-wifi fa-xl" style="color: #000000;"></i>
+                        </div>
+                        <div>
+                            <p class="text-cyan-900 dark:text-white font-bold">
+                                Internet
+                            </p>
+                            <p class="text-cyan-900">
+                                {{ city.internet }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="flex items-center w-1/2 py-3 space-x-4">
+                    <div class="">
+                        <i class="fa-regular fa-sun fa-xl" style="color: #000000;"></i>
+                    </div>
+                    <div>
+                        <p class="text-cyan-900 dark:text-white font-bold">
+                            Taux d'ensoleillement
+                        </p>
+                        <p class="text-cyan-900">
+                            {{ city.sunshineRate }}
+                        </p>
+                    </div>
+                </div>
+        
+                <div class="flex items-center w-1/2 py-3 space-x-4">        
+                    <div class="flex items-center space-x-4 md:space-x-4 ">
+                        <div>
+                            <i class="fa-solid fa-temperature-half fa-xl" style="color: #000000;"></i>
+                        </div>
+                        <div>
+                            <p class="text-cyan-900 dark:text-white font-bold">
+                                Température moyenne
+                            </p>
+                            <p class="text-cyan-900">
+                                {{ city.temperatureAverage }} °C
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="flex items-center w-1/2 py-3 space-x-4">
+                    <div>
+                        <i class="fa-solid fa-sack-dollar fa-xl" style="color: #000000;"></i>
+                    </div>
+                    <div>
+                        <p class="text-cyan-900 dark:text-white font-bold">
+                            Coût de la vie
+                        </p>
+                        <p class="text-cyan-900">
+                            {{ city.cost }} Euros
+                        </p>
+                    </div>
+                </div>
+        
+                <div class="flex items-center w-1/2 py-3 space-x-4">        
+                    <div class="flex items-center space-x-4">
+                        <div>
+                            <i class="fa-solid fa-people-group fa-xl" style="color: #000000;"></i>
+                        </div>
+                        <div>
+                            <p class="text-cyan-900 dark:text-white font-bold">
+                                Démographie
+                            </p>
+                            <p class="text-cyan-900">
+                                {{ city.demography }} habitants
+                            </p>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="flex items-center w-1/2 py-3 space-x-4">
+                    <div>
+                        <i class="fa-solid fa-house fa-xl" style="color: #000000;"></i>
+                    </div>
+                    <div>
+                        <p class="text-cyan-900 dark:text-white font-bold">
+                            Habitation
+                        </p>
+                        <p class="text-cyan-900">
+                            {{ city.housing }}
+                        </p>
+                    </div>
+                </div>
+    
+                <div class="flex items-center w-1/2 py-3 space-x-4">        
+                    <div class="flex items-center space-x-4">
+                        <div>
+                            <i class="fa-regular fa-clock fa-xl" style="color: #000000;"></i>
+                        </div>
+                        <div>
+                            <p class="text-cyan-900 dark:text-white font-bold">
+                                Timezone
+                            </p>
+                            <p class="text-cyan-900">
+                                {{ city.timezone }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="flex items-center w-1/2 py-3 space-x-4">
+                    <div>
+                        <i class="fa-solid fa-language fa-xl" style="color: #000000;"></i>
+                    </div>
+                    <div>
+                        <p class="text-cyan-900 dark:text-white font-bold">
+                            Langue
+                        </p>
+                        <p class="text-cyan-900">
+                            {{ city.language }}
+                        </p>
+                    </div>
+                </div>
+            
+                <div class="flex items-center w-1/2 py-3 space-x-4">        
+                    <div class="flex items-center space-x-4">
+                        <div>
+                            <i class="fa-solid fa-passport fa-xl" style="color: #000000;"></i>
+                        </div>
+                        <div>
+                            <p class="text-cyan-900 dark:text-white font-bold">
+                                Visa
+                            </p>
+                            <p class="text-cyan-900">
+                                {{ city.country.visa }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="flex items-center w-1/2 py-3 space-x-4">
+                    <div>
+                        <i class="fa-solid fa-person-military-pointing fa-xl" style="color: #000000;"></i>
+                    </div>
+                    <div>
+                        <p class="text-cyan-900 dark:text-white font-bold">
+                            Visa requis
+                        </p>
+                        <p class="text-cyan-900">
+                            {{ city.country.visaIsRequired }}
+                        </p>
+                    </div>
+                </div>
+            
+                <div class="flex items-center w-1/2 py-3 space-x-4">        
+                    <div class="flex items-center space-x-4">
+                        <div>
+                            <i class="fa-brands fa-bitcoin fa-xl" style="color: #000000;"></i>
+                        </div>
+                        <div>
+                            <p class="text-cyan-900 dark:text-white font-bold">
+                                Monnaie
+                            </p>
+                            <p class="text-cyan-900">
+                                {{ city.country.currency }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {# revealed with button criteria below #}
+                <div class="criteria-expanded hidden flex items-center w-1/2 py-3 space-x-4">        
+                    <div class="flex items-center space-x-4">
+                        <div>
+                            <i class="fa-regular fa-image fa-xl" style="color: #000000;"></i>
+                        </div>
+                        <div>
+                            <p class="text-cyan-900 dark:text-white font-bold">
+                                Environnement
+                            </p>
+                            <p class="text-cyan-900">
+                                {{ city.environment }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {# revealed with button criteria below #}
+                <div class="criteria-expanded hidden flex items-center w-1/2 py-3 space-x-4">        
+                    <div class="flex items-center space-x-4">
+                        <div>
+                            <i class="fa-solid fa-ruler fa-xl" style="color: #000000;"></i>
+                        </div>
+                        <div>
+                            <p class="text-cyan-900 dark:text-white font-bold">
+                                Superficie
+                            </p>
+                            <p class="text-cyan-900">
+                                {{ city.area }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="criteria" class="mt-5 w-fit">
+                <button id="toggle-criteria" type="button" class="w-full hover:bg-sky-600 hover:text-white text-base leading-4 font-bold py-4 px-10 text-cyan-900 bg-white border-gray-900 border-2 rounded-lg">Plus de critères</button>
+            </div>
+
         </div>
 
         {# container #}
-        <div class="md:col-span-3 w-full h-full mx-2 flex flex-row py-2">
+        <div class="md:col-span-3 lg:w-full lg:h-full mx-2 flex flex-row py-2">
 
             {# google maps integration #}
             <div id="my-map" class="h-full w-5/6">
@@ -221,9 +446,11 @@
 
             {# api weather integration #}
             <div class = "w-1/6 ml-2">
-                <h2 class="pb-1 text-md w-fit">Météo actuelle :</h2>
+                {# text hidden mobile version #}
+                <h2 class="hidden md:block pb-1 text-md w-fit">Météo actuelle :</h2>
                 <ion-icon name="rainy-outline" size="large"></ion-icon>
-                <h2 class="text-md w-fit">Température :</h2>
+                {# text hidden mobile version #}
+                <h2 class="hidden md:block text-md w-fit">Température :</h2>
                 <h2 class="p-1 text-md w-fit">
                     {{ city.temperatureAverage }} °C
                 </h2>
@@ -234,5 +461,6 @@
     </div>
 
     {% include 'partials/_slide_buttons.html.twig' %}
+</div>    
 
 {% endblock %}
