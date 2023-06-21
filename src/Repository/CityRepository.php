@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Data\FilterData;
 use App\Entity\City;
+use App\Entity\Country;
 use App\Entity\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

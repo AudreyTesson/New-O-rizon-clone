@@ -40,24 +40,7 @@
         <button id="to-top-button" onclick="goToTop()" title="Go To Top" class="hidden md:hidden fixed z-90 bottom-8 right-8 border-0 w-10 h-10 drop-shadow-md bg-cyan-900 text-white text-4xl font-bold">&uarr;</button>
         {% endif %}
         
-        {# hidden for small devices #}
-        <footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800 hidden md:block">
-            <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400 ">&copy; 2023 New O'Rizon</span>
-                <ul class="flex flex-wrap items-center mt-3 text-xl font-medium text-black dark:text-gray-400 sm:mt-0">
-                {# ! add path() #}
-                    <li>
-                        <a href="#" class="mr-12 hover:underline">Qui sommes-nous ?</a>
-                    </li>
-                    <li>
-                        <a href="#" class="mr-12 hover:underline">Contact</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:underline">Mentions Légales</a>
-                    </li>
-                </ul>
-            </div>
-        </footer>
+        {% include "partials/_footer.html.twig" %}
 
         {% include "partials/_scripts.html.twig" %}
 
