@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 class MainController extends AbstractController
@@ -24,8 +25,10 @@ class MainController extends AbstractController
     public function home(
         CityRepository $cityRepository, 
         Request $request, 
-        PaginatorInterface $paginator): Response
+        PaginatorInterface $paginator,
+        EntityManagerInterface $entityManager): Response
     {
+        $image = $cityRepository->findByCityName('cityId');
         $cities = $cityRepository->findCountryAndImageByCity('ASC');
 
         // sidebar filter form
@@ -44,7 +47,7 @@ class MainController extends AbstractController
 
         return $this->render('front/main/index.html.twig', [
             'formFilter' => $formFilter->createView(),
-
+            'image' => $image,
             'cities' => $cities,
         ]);
     }
@@ -94,7 +97,7 @@ class MainController extends AbstractController
      /**
      * page search affiche le résultat de la recherche
      *
-     * @Route("/search", name="app_front_city_search")
+     * @Route("/search", name="app_front_city_search", methods={"GET"})
      *
      * @return Response
      */
@@ -119,6 +122,7 @@ class MainController extends AbstractController
         return $this->render('front/cities/list.html.twig', [
 
             'cities' => $cities,
+        
         ]);
     }
 

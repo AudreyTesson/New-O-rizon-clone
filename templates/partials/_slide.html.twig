@@ -1,63 +1,52 @@
-{% set isCities = (app.request.attributes.get("_route") ends with "default")%}
-{% set isCity = (app.request.attributes.get("_route") ends with "cities_detail")%}
+{% set isCities = (app.request.attributes.get("_route") ends with "default") %}
+{% set isCity = (app.request.attributes.get("_route") ends with "cities_detail") %}
 
 {% if isCities %}
 
-{# Mobile version with carousel#}
-<div id="default-carousel" class="relative w-full block lg:hidden" data-carousel="slide" >
+    {# Mobile version with carousel #}
+    <div id="default-carousel" class="relative w-full block lg:hidden" data-carousel="slide">
 
-    <div class="relative h-56 w-96 overflow-hidden rounded-lg sm:h-48 md:h-96 mx-auto mt-7">
+        <div class="relative h-56 w-96 overflow-hidden rounded-lg sm:h-48 md:h-96 mx-auto mt-7">
 
-        {% for city in cities %}
+            {% for city in cities %}
+                {% if city.imageUrl is defined %}
+                    <div class="duration-700 ease-in-out" data-carousel-item>
+                        <a href="{{ path('cities_detail', {'id': city.cityId}) }}">
+                            <img
+                                src="{{ city.imageUrl }}"
+                                class="block w-full -translate-x -translate-y"
+                                alt="Photo d'une ville au hasard"/>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
 
+        </div>
 
-            <div class="duration-700 ease-in-out" data-carousel-item>
-                <a href="{{ path('cities_detail', {'id': image.cityId}) }}">
-
-<<<<<<< HEAD
-            <div class="duration-700 ease-in-out" data-carousel-item>
-                <a href="{{ path('cities_detail', {'id': image.cityId}) }}">
-=======
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-
-                <a href="{{ path('cities_detail', {'id': image.id}) }}">
-
-                    <img
-                        src="{{ image.imageUrl }}"
-
-                <a href="{{ path('cities_detail', {'id': city.cityId}) }}">
-                    <img
-                    {# ! ask Audrey for limit on image row - only 1 url per city #}
-                        src="{{ city.imageUrl }}"
->>>>>>> dev
-                        class="block w-full -translate-x -translate-y"
-                        alt="Photo d'une ville au hasard"/>
-                </a>
-            </div>
-
-        {% endfor %}
-
-    </div>   
+    </div>
 
 {% endif %}
 
 {% if isCity %}
 
-    {# Desktop version with carousel#}
+    {# Desktop version with carousel #}
     <div id="default-carousel" class="relative w-1/2 mx-auto" data-carousel="slide">
         <!-- Carousel wrapper -->
         <div class="relative h-full overflow-hidden rounded-lg sm:h-48 md:h-96">
 
-            {% for image in images %}
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img
-                        src="{{ image.imageUrl }}"
-                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                        alt="Photo d'une ville au hasard"/>
-                </div>
-
+            {% for city in cities %}
+                {% if city.imageUrl is defined %}
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img
+                            src="{{ city.imageUrl }}"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                            alt="Photo d'une ville au hasard"/>
+                    </div>
+                {% endif %}
             {% endfor %}
 
         </div>
+
+    </div>
 
 {% endif %}

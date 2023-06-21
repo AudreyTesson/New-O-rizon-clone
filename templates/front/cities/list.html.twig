@@ -16,15 +16,13 @@
     <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
 <<<<<<< HEAD
 {% if images is defined %}
-=======
->>>>>>> dev
-=======
+
     {% if citiesCountry is defined %}
         <div class="grid w-screen justify-center">
             <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
                 
                 {% for city in citiesCountry %}
->>>>>>> dev
+
 
                     {% if isSorted %}
 
@@ -119,21 +117,21 @@
 
             </div>
 
-<<<<<<< HEAD
-        {% endfor %}
-{% else %}
+
+        
+
 
     {% include 'partials/_cities_list.html.twig' %}
 
 {% endif %}
     </div>
-=======
+
         </div>
 
         <div class="pagination flex justify-center">
             {{ knp_pagination_render(cities) }}
         </div>
->>>>>>> dev
+
 
     {% endif %}
 
