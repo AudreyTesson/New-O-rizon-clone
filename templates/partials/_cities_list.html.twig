@@ -1,7 +1,9 @@
 {% set isCitiesCountry = (app.request.attributes.get("_route") ends with "country") %}
 {% set isCitiesList = app.request.requestUri ends with "/cities" %}
+{% set isCitiesListPaginate = app.request.requestUri | urlContains("/cities?page") %}
 {% set isSortedASC = app.request.requestUri ends with "/cities/asc" %}
 {% set isSortedDESC = app.request.requestUri ends with "/cities/desc" %}
+{% set isCitiesFiltered = app.request.requestUri | urlContains('filter_data') %}
 
 {% if isCitiesCountry %}
 
@@ -22,6 +24,23 @@
                 </span>
 
 {% elseif isCitiesList %}
+
+    <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+        <a href="{{ path('cities_detail', {'id': city.cityId}) }}">
+            <div class="w-full h-96 relative overflow-hidden">
+                <div class="w-full h-full absolute transition-transform duration-300 hover:scale-105"
+                style="background-image:url('{{ city.imageUrl }}')">
+                </div>
+                <span class="text-xl text-white font-bold w-auto flex flex-col justify-center items-center backdrop-brightness-75">
+                    <h2 class="p-2 text-2xl font-bold w-fit">
+                        {{ city.cityName }}</h2>
+                    <h2 class="p-2 text-2xl font-bold w-fit">
+                        {{ city.countryName}}</h2>
+                    {% include "/partials/_favorites.html.twig" %}
+                </span>
+
+{% elseif isCitiesListPaginate %}
 
     <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
@@ -73,7 +92,7 @@
                 </span>
 
 {# citiesFilter #}
-{% else %}
+{% elseif isCitiesFiltered %}
 
     <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
