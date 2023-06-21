@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Email de réinitialisation du mot de passe envoyé
+	Email de réinitialisation du mot de passe envoyé
 {% endblock %}
 
 {% block body %}
@@ -20,32 +20,29 @@
 
 
 			<div class="flex justify-center grid grid-flow-row bg-slate-100 w-screen md:w-1/2 my-12">
-				
-                    <div class="grid grid-flow-row text-center bg-white shadow-md rounded px-8 pt-6 pb-8 my-10 ">
-                        <div class"text-base font-medium text-black">
-                            <p >Si un compte existe, un lien vous a été envoyé pour réinitialiser votre mot de passe.</p>
-                            <p><strong>Ce lien expire dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</strong></p>
-                            <p>Si vous n'avez pas reçu d'email, vérifiez vos courriers indésirables ou cliquez ci-dessous</p>
 
-                            <a href="{{ path('app_forgot_password_request') }}">
-                            <button type="submit" class="w-full text-white bg-cyan-900 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Essayez à nouveau</button>
-                            </a>
-                            
-                    </div>
+				<div class="grid grid-flow-row text-center bg-white shadow-md rounded px-8 pt-6 pb-8 my-10 ">
+					<div class"text-base font-medium text-black">
+						<p>Si un compte existe, un lien vous a été envoyé pour réinitialiser votre mot de passe.</p>
+						<p>
+							<strong>Ce lien expire dans
+								{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</strong>
+						</p>
+						<p>Si vous n'avez pas reçu d'email, vérifiez vos courriers indésirables ou cliquez ci-dessous</p>
+
+						<a href="{{ path('app_forgot_password_request') }}">
+
+							<button type="submit" class="w-full text-white bg-cyan-900 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Essayez à nouveau</button>
+
+						</a>
+
+					</div>
 
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 
-				
+				</div>
 			</div>
 		</div>
-	</div>
 
-{% endblock %}
-
-
-                    
-                    
-
-                    
+	{% endblock %}
