@@ -2,9 +2,11 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\City;
 use App\Data\FilterData;
 use App\Form\Front\FilterDataType;
 use App\Repository\CityRepository;
+use App\Repository\ImageRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,26 +54,23 @@ class MainController extends AbstractController
         ]);
     }
 
-    /**
+    /** 
      * page search affiche le résultat de la recherche
      *
-     * @Route("/search", name="app_front_city_search")
+     * @Route("/search", name="app_front_city_search", methods={"GET", "POST"})
      *
      * @return Response
      */
-   /* public function search(CityRepository $cityRepository, 
+    public function search(CityRepository $cityRepository, 
         Request $request, ImageRepository $imageRepository,
-        PaginatorInterface $paginator, EntityManagerInterface $entityManager): Response
-    {
-        // $images = $imageRepository->findByDistinctCityImage();
-       
-
-        //$images = $paginator->paginate($images, $request->query->getInt('page', 1),5);
-
-        //$cities = $cityRepository->findAll();
+        PaginatorInterface $paginator): Response
+    {   
+        $images = $cityRepository->findCountryAndImageByCity();
         
-        $search = $request->query->get('search', "");
-        
+        $images = $paginator->paginate($images, $request->query->getInt('page', 1),6);
+
+        $search = $request->query->get('search', '');
+
         $cities = $cityRepository->findByCityName($search);
         dump($cities);
         if ($cities === null) {
@@ -79,29 +78,24 @@ class MainController extends AbstractController
         } else {
             $this->redirectToroute('cities_list');
         }
-         
-         dump($search);
+        $cities = $paginator->paginate($cities, $request->query->getInt('page', 1),6);
+        dump($search);
 
-         $cities = $paginator->paginate($cities, $request->query->getInt('page', 1),6);
-       
+        return $this->render('front/cities/list.html.twig', [
+            'images' => $images,
+            'cities' => $cities,
+        
+        ]);
+    }
 
-        return $this->render("front/cities/list.html.twig",
-            [
-                'images' => $cities,
-                //'images' => $images
-
-            ]
-        );
-    }*/
-
-     /**
+    /**
      * page search affiche le résultat de la recherche
      *
      * @Route("/search", name="app_front_city_search", methods={"GET"})
      *
      * @return Response
      */
-    public function search(Request $request, CityRepository $cityRepository, PaginatorInterface $paginator): Response
+   /* public function search(Request $request, CityRepository $cityRepository, PaginatorInterface $paginator): Response
     {
         //$images = $imageRepository->findByDistinctCityImage();
 
@@ -120,11 +114,11 @@ class MainController extends AbstractController
         dump($cities);
 
         return $this->render('front/cities/list.html.twig', [
-
+            'images' => $images,
             'cities' => $cities,
         
         ]);
-    }
+    }*/
 
     /**
      * About-us page

@@ -113,76 +113,55 @@ class CityRepository extends ServiceEntityRepository
     }
 
 
-    /*public function findByCityName($search)
+     public function findByCityName($search)
+     {
+         $entityManager = $this->getEntityManager();
+         $queryBuilder = $entityManager->createQueryBuilder();
+
+         $queryBuilder->select('c.id AS cityId, c.name AS cityName, co.id AS countryId, co.name AS countryName, i.id AS imageId, i.url AS imageUrl')
+             ->from(City::class, 'c')
+             ->where($queryBuilder->expr()->like('c.name', ':name'))
+             ->innerJoin('c.country', 'co')
+             ->innerJoin('c.images', 'i')
+             ->andWhere($queryBuilder->expr()->eq(
+                 '(SELECT COUNT(img.id) 
+                     FROM App\Entity\Image img 
+                     WHERE img.city = c.id 
+                     AND img.id <= i.id)',
+                 1
+             ))
+             ->orderBy('c.name', 'ASC')
+             ->setParameter('name', "$search%");
+             
+
+         return $queryBuilder->getQuery()->getResult();
+     }
+
+   /* public function findByCityName($search)
     {
         $entityManager = $this->getEntityManager();
         $queryBuilder = $entityManager->createQueryBuilder();
+
+        $subQueryBuilder = $entityManager->createQueryBuilder();
+        $subQueryBuilder->select('MIN(img.id)')
+            ->from('App\Entity\Image', 'img')
+            ->where('img.city = c.id');
 
         $queryBuilder->select('c', 'co', 'i')
             ->from(City::class, 'c')
             ->innerJoin('c.country', 'co')
             ->innerJoin('c.images', 'i')
-            ->andWhere($queryBuilder->expr()->eq(
-                '(SELECT COUNT(img.id) 
-                FROM App\Entity\Image img 
-                WHERE img.city = c.id 
-                AND img.id <= i.id)',
-                1
+            ->andWhere($queryBuilder->expr()->in(
+                'i.id',
+                $subQueryBuilder->getDQL()
             ))
-            ->where($queryBuilder->expr()->like('c.name', ':name'))
-            ->orderBy('c.name', 'ASC')
-            ->setParameter('name', "$search%");
+            ->andWhere($queryBuilder->expr()->like('c.name', ':name'))
+            ->setParameter('name', "$search%")
+            ->orderBy('c.name', 'ASC');
+            
 
-        return $queryBuilder->getQuery()->getResult();*/
-
-        /*public function findByCityName($search)
-        {
-            $entityManager = $this->getEntityManager();
-            $queryBuilder = $entityManager->createQueryBuilder();
-    
-            $subQueryBuilder = $entityManager->createQueryBuilder();
-            $subQueryBuilder->select('MIN(img.id)')
-                ->from('App\Entity\Image', 'img')
-                ->where('img.city = c.id');
-    
-            $queryBuilder->select('c', 'co', 'i')
-                ->from(City::class, 'c')
-                ->innerJoin('c.country', 'co')
-                ->innerJoin('c.images', 'i')
-                ->andWhere($queryBuilder->expr()->in(
-                    'i.id',
-                    $subQueryBuilder->getDQL()
-                ))
-                ->andWhere($queryBuilder->expr()->like('c.name', ':name'))
-                ->orderBy('c.name', 'ASC')
-                ->setParameter('name', "$search%");
-    
-            return $queryBuilder->getQuery()->getResult();
-        }*/
-
-
-        public function findByCityName($search)
-{
-    $entityManager = $this->getEntityManager();
-    $queryBuilder = $entityManager->createQueryBuilder();
-
-    $queryBuilder->select('c.id AS cityId, c.name AS cityName, co.id AS countryId, co.name AS countryName, i.id AS imageId, i.url AS imageUrl')
-        ->from(City::class, 'c')
-        ->where($queryBuilder->expr()->like('c.name', ':name'))
-        ->innerJoin('c.country', 'co')
-        ->innerJoin('c.images', 'i')
-        ->andWhere($queryBuilder->expr()->eq(
-            '(SELECT COUNT(img.id) 
-                FROM App\Entity\Image img 
-                WHERE img.city = c.id 
-                AND img.id <= i.id)',
-            1
-        ))
-        ->orderBy('c.name', 'ASC')
-        ->setParameter('name', "$search%");
-
-    return $queryBuilder->getQuery()->getResult();
-}
+        return $queryBuilder->getQuery()->getResult();
+    }*/
 
     
 

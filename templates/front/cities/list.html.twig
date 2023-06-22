@@ -11,18 +11,11 @@
 {% set isFavorites = (app.request.attributes.get("_route") ends with "favorites")%}
 {% set isCitiesList = (app.request.attributes.get("_route") ends with "cities_list") %}
 
-<<<<<<< HEAD
-<div class="grid w-screen justify-center">
-    <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
-<<<<<<< HEAD
-{% if images is defined %}
-
     {% if citiesCountry is defined %}
         <div class="grid w-screen justify-center">
             <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
                 
                 {% for city in citiesCountry %}
-
 
                     {% if isSorted %}
 
@@ -117,21 +110,11 @@
 
             </div>
 
-
-        
-
-
-    {% include 'partials/_cities_list.html.twig' %}
-
-{% endif %}
-    </div>
-
         </div>
 
         <div class="pagination flex justify-center">
             {{ knp_pagination_render(cities) }}
         </div>
-
 
     {% endif %}
 
