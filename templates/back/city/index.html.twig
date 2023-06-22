@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}City index{% endblock %}
+
+{% block body %}
+    <h1>Liste des villes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom de la ville</th>
+                <th>Pays</th>
+                <th>Superficie en m²</th>
+                <th>Date d'ajout</th>
+                <th>Date de modification/th>
+                <th>Qualité du réseau électrique</th>
+                <th>Qualité du réseau Internet</th>
+                <th>Taux d'ensoleillement</th>
+                <th>Température moyenne(°C)</th>
+                <th>Coût de la vie(€)</th>
+                <th>Langue</th>
+                <th>Nombre d'habitants</th>
+                <th>Niveau de logement</th>
+                <th>Fuseau horaire</th>
+                <th>Environment</th>
+                {# <th>Image</th> #}
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for city in cities %}
+            <tr>
+                <td>{{ city.id }}</td>
+                <td>{{ city.name }}</td>
+                <td>{{ city.country.name }}</td>
+                <td>{{ city.area }}</td>
+                <td>{{ city.createdAt ? city.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ city.updateAt ? city.updateAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ city.electricity }}</td>
+                <td>{{ city.internet }}</td>
+                <td>{{ city.sunshineRate }}</td>
+                <td>{{ city.temperatureAverage }}</td>
+                <td>{{ city.cost }}</td>
+                <td>{{ city.language }}</td>
+                <td>{{ city.demography }}</td>
+                <td>{{ city.housing }}</td>
+                <td>{{ city.timezone }}</td>
+                <td>{{ city.environment }}</td>
+                {# <td>{{ city.imageUrl}}</td> #}
+                <td>
+                    <a href="{{ path('app_back_city_show', {'id': city.id}) }}">show</a>
+                    <a href="{{ path('app_back_city_edit', {'id': city.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="16">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_city_new') }}">Create new</a>
+{% endblock %}

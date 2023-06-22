@@ -49,9 +49,11 @@
                                 <li>
                                     <a href="#" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">{{ user.firstname }} {{ user.lastname }}</a>
                                 </li>
-                            {# ! add path() user favorites list  #}
                                 <li class="hidden lg:block">
                                     <a href="{{ path('favorites') }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">Mes favoris</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('app_back_default')}}">Backoffice</a>
                                 </li>
                             </ul>
                             <div class="py-1">

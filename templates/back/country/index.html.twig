@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Country index{% endblock %}
+
+{% block body %}
+    <h1>Country index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Visa</th>
+                <th>VisaIsRequired</th>
+                <th>Currency</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for country in countries %}
+            <tr>
+                <td>{{ country.id }}</td>
+                <td>{{ country.name }}</td>
+                <td>{{ country.visa }}</td>
+                <td>{{ country.visaIsRequired ? 'Yes' : 'No' }}</td>
+                <td>{{ country.currency }}</td>
+                <td>{{ country.createdAt ? country.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ country.updatedAt ? country.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_back_country_show', {'id': country.id}) }}">show</a>
+                    <a href="{{ path('app_back_country_edit', {'id': country.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_country_new') }}">Create new</a>
+{% endblock %}

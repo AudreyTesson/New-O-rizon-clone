@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}City{% endblock %}
+
+{% block body %}
+    <h1>Ville</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ city.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom de la ville</th>
+                <td>{{ city.name }}</td>
+            </tr>
+            <tr>
+                <th>Superficie en m²</th>
+                <td>{{ city.area }}</td>
+            </tr>
+            <tr>
+                <th>Date d'ajout</th>
+                <td>{{ city.createdAt ? city.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date de modification</th>
+                <td>{{ city.updateAt ? city.updateAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Qualité du réseau électrique</th>
+                <td>{{ city.electricity }}</td>
+            </tr>
+            <tr>
+                <th>Qualité du réseau Internet</th>
+                <td>{{ city.internet }}</td>
+            </tr>
+            <tr>
+                <th>SunshineRate</th>
+                <td>{{ city.sunshineRate }}</td>
+            </tr>
+            <tr>
+                <th>TemperatureAverage</th>
+                <td>{{ city.temperatureAverage }}</td>
+            </tr>
+            <tr>
+                <th>Cost</th>
+                <td>{{ city.cost }}</td>
+            </tr>
+            <tr>
+                <th>Language</th>
+                <td>{{ city.language }}</td>
+            </tr>
+            <tr>
+                <th>Demography</th>
+                <td>{{ city.demography }}</td>
+            </tr>
+            <tr>
+                <th>Housing</th>
+                <td>{{ city.housing }}</td>
+            </tr>
+            <tr>
+                <th>Timezone</th>
+                <td>{{ city.timezone }}</td>
+            </tr>
+            <tr>
+                <th>Environment</th>
+                <td>{{ city.environment }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_city_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('app_back_city_edit', {'id': city.id}) }}">Modifier</a>
+
+    {{ include('back/city/_delete_form.html.twig') }}
+{% endblock %}

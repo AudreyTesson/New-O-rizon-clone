@@ -1,0 +1,7 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ entity|capitalize }}</h5>
+    <a href="{{ path('app_back_' ~ entity ~ '_new')}}" class="card-link btn btn-success">Créer</a>
+    <a href="{{ path('app_back_' ~ entity ~ '_index')}}" class="card-link btn btn-primary">Liste</a>
+  </div>
+</div>
