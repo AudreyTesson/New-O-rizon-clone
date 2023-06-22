@@ -27,10 +27,8 @@ class MainController extends AbstractController
     public function home(
         CityRepository $cityRepository, 
         Request $request, 
-        PaginatorInterface $paginator,
-        EntityManagerInterface $entityManager): Response
+        PaginatorInterface $paginator): Response
     {
-        $image = $cityRepository->findByCityName('cityId');
         $cities = $cityRepository->findCountryAndImageByCity('ASC');
 
         // sidebar filter form
@@ -49,7 +47,6 @@ class MainController extends AbstractController
 
         return $this->render('front/main/index.html.twig', [
             'formFilter' => $formFilter->createView(),
-            'image' => $image,
             'cities' => $cities,
         ]);
     }
@@ -65,37 +62,41 @@ class MainController extends AbstractController
         Request $request, ImageRepository $imageRepository,
         PaginatorInterface $paginator): Response
     {   
-        $images = $cityRepository->findCountryAndImageByCity();
-        
-        $images = $paginator->paginate($images, $request->query->getInt('page', 1),6);
-
         $search = $request->query->get('search', '');
 
         $cities = $cityRepository->findByCityName($search);
-        dump($cities);
         if ($cities === null) {
             throw $this->createNotFoundException("Cette ville n'est pas répertoriée/n'existe pas");
         } else {
             $this->redirectToroute('cities_list');
         }
+         dump($search);
+        dump($cities);
         $cities = $paginator->paginate($cities, $request->query->getInt('page', 1),6);
-        dump($search);
+        
+       
+
+        // sidebar filter form
+        $criteria = new FilterData();
+        $formFilter = $this->createForm(FilterDataType::class, $criteria);
+        $formFilter->handleRequest($request);
+        
+
+        if ($formFilter->isSubmitted() && $formFilter->isValid()) {
+
+            $citiesFilter = $cityRepository->findByFilter($criteria);
+            $citiesFilter = $paginator->paginate($citiesFilter, $request->query->getInt('page', 1),6);
+
+            return $this->render('front/cities/list.html.twig', ["citiesFilter" => $citiesFilter, "cities" => $cities, 'formFilter' => $formFilter->createView(),]);
+        }
 
         return $this->render('front/cities/list.html.twig', [
-            'images' => $images,
+            'formFilter' => $formFilter->createView(),
             'cities' => $cities,
-        
         ]);
     }
 
-    /**
-     * page search affiche le résultat de la recherche
-     *
-     * @Route("/search", name="app_front_city_search", methods={"GET"})
-     *
-     * @return Response
-     */
-   /* public function search(Request $request, CityRepository $cityRepository, PaginatorInterface $paginator): Response
+    /* public function search(Request $request, CityRepository $cityRepository, PaginatorInterface $paginator): Response
     {
         //$images = $imageRepository->findByDistinctCityImage();
 
