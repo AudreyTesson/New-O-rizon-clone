@@ -6,7 +6,7 @@ use App\Entity\City;
 use App\Entity\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
+use Doctrine\ORM\Query\Lexer;
 /**
  * @extends ServiceEntityRepository<Image>
  *
@@ -45,24 +45,34 @@ class ImageRepository extends ServiceEntityRepository
      *
      */
     public function findByDistinctCityImage()
-    {
-        $entityManager = $this->getEntityManager();
+        {
+              $entityManager = $this->getEntityManager();
 
-        $query = $entityManager->createQuery
-        ("
+              $query = $entityManager->createQuery("
+                    SELECT image.url AS imageUrl, image.id AS imageId city.name AS cityName, city.id AS cityId, country.name AS countryName, country.id AS countryId, 
+                    FROM App\Entity\image image
+                    JOIN image.country country
+                    JOIN image.city city
+                    GROUP BY city.id
+                  ");
 
-            SELECT image.url, city.name, city.id, country.id
-            FROM App\Entity\image image
-            JOIN image.country country
-            JOIN image.city city
-            GROUP BY city.id
-            ");
+              $query  ->setMaxResults(30);
 
-        $query->setMaxResults(30);
+              $result = $query->getResult();
 
-        $result = $query->getResult();
+              return $result;
+            /* $query = $entityManager->createQuery("
 
-        return $result;
-    }
+                  SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, co.name AS countryName
+                  FROM App\Entity\City c
+                  JOIN App\Entity\Image i WITH i.city = c
+                  JOIN App\Entity\Country co WITH c.country = co
+                  WHERE c.id = (
+                      SELECT MIN(img.city)
+                      FROMApp\Entity\Image img
+                      WHERE img.city = c.id
+
+              ");*/
+        }
 
 }
