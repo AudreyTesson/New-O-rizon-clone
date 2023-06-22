@@ -4,7 +4,6 @@
 
 {% block body %}
 
-
 {# mobile version #}
 <div class="w-full grid lg:hidden">
     
@@ -23,7 +22,6 @@
     </div>
 
     {# Search bar #}
-       
     <div class="mb-3 flex justify-center lg:hidden ">
             <div class="flex mx-6 bg-cyan-900 p-1 w-72 space-x-4 rounded-lg ">
                 <div class="flex mx-auto space-x-4 items-center">
@@ -42,12 +40,12 @@
 </div>
 
 {# desktop version #}
-<div class="max-h-lg hidden lg:block"> 
+<div class="hidden mt-4 lg:block"> 
+
     {# world map #}
     <div class="relative h-screen w-full grid">
-        <img src="{{ asset('images/world_map.png')}}" class="grid place-self-center opacity-75" alt="mappemonde">
 
-        
+        {% include "partials/_map_homepage.html.twig" %}
 
         {# Search bar #}
         <div class="absolute my-3 top-8 left-8 w-1/5">
@@ -74,10 +72,7 @@
     </div>
 </div>
 
-
 {# sidebar_filter #}
 {% include "partials/_filter_menu.html.twig" %}
 
 {% endblock %}
-
-
