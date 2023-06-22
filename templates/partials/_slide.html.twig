@@ -1,5 +1,5 @@
-{% set isCities = (app.request.attributes.get("_route") ends with "default")%}
-{% set isCity = (app.request.attributes.get("_route") ends with "cities_detail")%}
+{% set isCities = (app.request.attributes.get("_route") ends with "default") %}
+{% set isCity = (app.request.attributes.get("_route") ends with "cities_detail") %}
 
 {% if isCities %}
 
@@ -9,6 +9,7 @@
     <div class="relative h-56 w-10/12 overflow-hidden rounded-lg mx-auto mt-12">
 
         {% for city in cities %}
+
             <a href="{{ path('cities_detail', {'id': city.cityId}) }}">
                 <div class="duration-700 ease-in-out" data-carousel-item>
                     
@@ -17,8 +18,7 @@
                             class="relative block w-full mx-2 -translate-x -translate-y hover:scale-105"
                             alt="Photo d'une ville au hasard">
                         </div>
-                    
-                    
+
                     <div>
                         <span class="text-xl text-white font-bold w-auto flex flex-col justify-center items-center backdrop-brightness-75">
                             <h2 class="p-2 text-base md:text-2xl font-bold w-fit">
@@ -31,10 +31,10 @@
                     </div>
                 </div>
             </a>
-   
+
         {% endfor %}
 
-    </div>   
+    </div>
 
 {% endif %}
 
@@ -45,17 +45,20 @@
         <!-- Carousel wrapper -->
         <div class="relative overflow-hidden rounded-lg h-48 lg:h-96 ">
 
-            {% for image in images %}
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img
-                        src="{{ image.url }}"
-                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                        alt="Photo d'une ville au hasard"/>
-                </div>
-
+            {% for city in cities %}
+                {% if city.imageUrl is defined %}
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img
+                            src="{{ city.imageUrl }}"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                            alt="Photo d'une ville au hasard"/>
+                    </div>
+                {% endif %}
             {% endfor %}
 
         </div>
       
+
+    </div>
 
 {% endif %}

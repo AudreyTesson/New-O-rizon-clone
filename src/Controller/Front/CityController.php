@@ -72,7 +72,10 @@ class CityController extends AbstractController
         return $this->render('front/cities/show.html.twig', [
             'cityId' => $id,
             'city' => $city,
-            'images' => $images
+            'images' => $images,
         ]);
     }
+    
 }
+
+
