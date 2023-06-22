@@ -28,20 +28,17 @@
                         <h2 class="p-2 text-2xl font-bold w-fit">
                             {{ cityFav.country.name}}</h2>
 
-                        {% for image in cityFav.images %}
 
-                            {% include "/partials/_favorites.html.twig" %}
-
-                        {% endfor %}
+                        {% include "/partials/_favorites.html.twig" with {'city': cityFav} %}
 
                     </span>
 
                     <div class="absolute inset-x-0 bottom-4 flex justify-center drop-shadow-lg">
-                        <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                        <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                        <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                        <i class="fa-regular fa-star-half-stroke drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                        <i class="fa-regular fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
+                        <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;"></i>
+                        <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;"></i>
+                        <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;"></i>
+                        <i class="fa-regular fa-star-half-stroke drop-shadow-lg fa-lg" style="color: #e4a11b;"></i>
+                        <i class="fa-regular fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;"></i>
                     </div>
 
                 </div>
@@ -51,8 +48,6 @@
 
     {% endfor %}
 
-    {% include "/partials/_favorites.html.twig" %}
-
     </div>
 
 </div>
@@ -61,10 +56,6 @@
 
     <a href="{{ path('favorites_clear') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-sm inline-block" onclick="return confirm('Vider votre liste de favoris ?');">Vider la liste</a>
 
-</div>
-
-<div class="pagination flex justify-center">
-    {{ knp_pagination_render(images) }}
 </div>
 
 {% endblock %}
