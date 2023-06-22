@@ -29,7 +29,7 @@ class UserController extends AbstractController
 
             // get password to hash before setting property
             $plaintextPassword = $user->getPassword();
-            $passwordHashed = $passwordHasher->hashPassword($user,  $plaintextPassword);
+            $passwordHashed = $passwordHasher->hashPassword($user, $plaintextPassword);
             $user->setPassword($passwordHashed);
 
             $user->setRoles(['ROLE_USER']);
