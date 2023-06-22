@@ -1498,13 +1498,6 @@ input:checked + .toggle-bg {
 .mt-\[0\.15rem\] {
   margin-top: 0.15rem;
 }
-<<<<<<< HEAD
-.mb-10 {
-  margin-bottom: 2.5rem;
-}
-.mt-10 {
-  margin-top: 2.5rem;
-=======
 .mt-5 {
   margin-top: 1.25rem;
 }
@@ -1516,7 +1509,6 @@ input:checked + .toggle-bg {
 }
 .ml-1 {
   margin-left: 0.25rem;
->>>>>>> dev
 }
 .box-border {
   box-sizing: border-box;
@@ -1665,16 +1657,8 @@ input:checked + .toggle-bg {
 .h-screen {
   height: 100vh;
 }
-<<<<<<< HEAD
-.h-1\/2 {
-  height: 50%;
-}
-.h-4\/5 {
-  height: 80%;
-=======
 .h-32 {
   height: 8rem;
->>>>>>> dev
 }
 .h-fit {
   height: -moz-fit-content;
