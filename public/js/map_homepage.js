@@ -12,14 +12,6 @@ AmCharts.makeChart("map",{
             "getAreasFromMap": true,
             "images": [
                 {
-                    "top": 40,
-                    "left": 60,
-                    "width": 80,
-                    "height": 40,
-                    "pixelMapperLogo": true,
-                    "url": "http://www.amcharts.com"
-                },
-                {
                     "selectable": true,
                     "title": "Paris",
                     "longitude": 1.9206,
