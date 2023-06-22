@@ -5,3 +5,7 @@
 body {
     font-family: 'Atkinson Hyperlegible', sans-serif;
 }
+
+main {
+    min-height: calc(100vh - 164px);
+}

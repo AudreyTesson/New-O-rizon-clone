@@ -27,14 +27,14 @@
         {% endblock %}
     </head>
     <body>
-<div class="relative min-h-screen">
-        {% include "partials/_nav.html.twig" %}
+            {% include "partials/_nav.html.twig" %}
 
-        {% include "partials/_flash.html.twig" %}
-
-        {% block body %}{% endblock %}
-        {% include "partials/_footer.html.twig" %}
-</div>
+            {% include "partials/_flash.html.twig" %}
+    <main>
+            {% block body %}{% endblock %}
+    </main>        
+            {% include "partials/_footer.html.twig" %}
+    
         {# Back to top button #}
         {% set route = app.request.get('_route') %}
         {% if route == 'cities_list' or route == 'cities_detail' or route == 'sort_asc' or route == 'sort_desc' %}
