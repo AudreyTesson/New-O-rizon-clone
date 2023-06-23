@@ -42,7 +42,6 @@ class UserType extends AbstractType
                             "label" => "Mot de passe",
                             'attr' => ['class' => 'mt-0 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-50', "placeholder" => "••••••••"],
                             'constraints' => [
-                                new NotBlank(['message' => 'Ce champ est obligatoire']),
                                 new Regex(
                                     "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/",
                                     "Le mot de passe doit contenir au minimum 8 caractères, une majuscule, un chiffre et un caractère spécial"

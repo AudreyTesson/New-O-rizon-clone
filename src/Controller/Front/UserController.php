@@ -73,6 +73,11 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->add($user, true);
 
+            $this->addFlash(
+                'success',
+                'Merci ! ' . $user->getFirstname() . ', vos modifications ont été prises en compte.'
+            );
+
             return $this->redirectToRoute('default', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -84,7 +89,7 @@ class UserController extends AbstractController
 
     /**
      * Delete user profile connected
-     * @Route("/user/{id}", name="user_delete", methods={"DELETE"}, requirements={"id"="\d+"})
+     * @Route("/user/{id}/delete", name="user_delete", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
