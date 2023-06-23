@@ -55,11 +55,11 @@
 	{# desktop version #}
 	<div
 		class="max-h-lg hidden lg:block">
-		{# world map #}
-		<div class="relative h-screen w-full grid">
-			<img
-			src="{{ asset('images/world_map.png')}}" class="grid place-self-center opacity-75" alt="mappemonde">
 
+		{# world map #}
+    	<div class="relative h-screen w-full grid">
+
+        	{% include "partials/_map_homepage.html.twig" %}
 
 			{# Search bar #}
             <div class="absolute my-3 top-8 left-8 w-1/5">
