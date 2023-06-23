@@ -9,8 +9,9 @@
     <h1 class="form">User index</h1>
 
     <div class="overflow-x-auto">
+
         <table class="table-auto w-full border-collapse border border-gray-300">
-                <thead>
+            <thead>
                 <tr>
                     <th>Id</th>
                     <th>Email</th>
@@ -34,12 +35,11 @@
                     <td>{{ user.username }}</td>
                     <td>
                         <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">
-                            <button type="button" class="my-2 flex justify-center focus:outline-none text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-purple-900">Show</button>
+                            <button type="button" class="my-2 flex justify-center focus:outline-none text-white bg-sky-700 hover:bg-sky-600 focus:ring-4 focus:ring-sky-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-sky-400 dark:hover:bg-sky-500 dark:focus:ring-sky-700">Show</button>
                         </a>
                         <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">
-                            <button type="button" class="my-2 flex justify-center focus:outline-none text-white bg-orange-700 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-700">Edit</button>
+                            <button type="button" class="my-2 flex justify-center focus:outline-none text-white bg-rose-700 hover:bg-rose-600 focus:ring-4 focus:ring-rose-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-rose-400 dark:hover:bg-rose-500 dark:focus:ring-rose-700">Edit</button>
                         </a>
-
                     </td>
                 </tr>
             {% else %}
@@ -49,12 +49,12 @@
             {% endfor %}
             </tbody>
         </table>
+
     </div>
 </div>
 
-
-    <a href="{{ path('app_back_user_new') }}">
-        <button type="button" class="my-2 flex justify-center focus:outline-none text-white bg-green-900 hover:bg-green-800 focus:ring-4 focus:ring-green-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900">Create new</button>
-    </a>
+<a href="{{ path('app_back_user_new') }}">
+    <button type="button" class="my-2 flex justify-center focus:outline-none text-white bg-emerald-700 hover:bg-emerald-600 focus:ring-4 focus:ring-emerald-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-emerald-400 dark:hover:bg-emerald-500 dark:focus:ring-emerald-700">Create new</button>
+</a>
 
 {% endblock %}
