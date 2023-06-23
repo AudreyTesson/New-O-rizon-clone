@@ -3,7 +3,7 @@
 {% block title %}New O'rizon Page de ville{% endblock %}
 
 {% block body %}
-<div class="w-full grid gap-5 md:gap-0">
+<div class="w-full grid gap-0">
     <div class="relative w-full h-96" style="background-image:url('{{ asset('images/city2.jpg') }}')">
         <span class="text-xl text-white font-bold w-auto flex flex-col justify-center items-center backdrop-brightness-75">
             <h2 class="text-2xl mt-4 font-bold w-fit">
@@ -283,8 +283,11 @@
         </div>
 
     </div>
+    
+</div>  
 
+<div class="relative">
     {% include 'partials/_slide_buttons.html.twig' %}
-</div>    
+</div>
 
 {% endblock %}
