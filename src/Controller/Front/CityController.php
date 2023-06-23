@@ -67,15 +67,14 @@ class CityController extends AbstractController
             throw new Exception("Nous n'avons pas encore de données sur cette ville", 404);
         }
 
-        $images = $imageRepository->findByDistinctCityImage();
+        $cities = $imageRepository->findByDistinctCityImage();
 
         return $this->render('front/cities/show.html.twig', [
             'cityId' => $id,
             'city' => $city,
-            'images' => $images,
+            'cities' => $cities
         ]);
     }
-    
 }
 
 
