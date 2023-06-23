@@ -106,10 +106,16 @@ class City
      */
     private $images;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Review::class, mappedBy="city")
+     */
+    private $reviews;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -348,6 +354,36 @@ class City
             // set the owning side to null (unless already changed)
             if ($image->getCity() === $this) {
                 $image->setCity(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setCity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getCity() === $this) {
+                $review->setCity(null);
             }
         }
 
