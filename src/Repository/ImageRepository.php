@@ -49,7 +49,7 @@ class ImageRepository extends ServiceEntityRepository
               $entityManager = $this->getEntityManager();
 
               $query = $entityManager->createQuery("
-                    SELECT image.url AS imageUrl, image.id AS imageId city.name AS cityName, city.id AS cityId, country.name AS countryName, country.id AS countryId, 
+                    SELECT image.url AS imageUrl, image.id AS imageId, city.name AS cityName, city.id AS cityId, country.name AS countryName, country.id AS countryId 
                     FROM App\Entity\image image
                     JOIN image.country country
                     JOIN image.city city
@@ -61,18 +61,6 @@ class ImageRepository extends ServiceEntityRepository
               $result = $query->getResult();
 
               return $result;
-            /* $query = $entityManager->createQuery("
-
-                  SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, co.name AS countryName
-                  FROM App\Entity\City c
-                  JOIN App\Entity\Image i WITH i.city = c
-                  JOIN App\Entity\Country co WITH c.country = co
-                  WHERE c.id = (
-                      SELECT MIN(img.city)
-                      FROMApp\Entity\Image img
-                      WHERE img.city = c.id
-
-              ");*/
         }
 
 }
