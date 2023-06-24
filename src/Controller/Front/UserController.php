@@ -5,6 +5,7 @@ namespace App\Controller\Front;
 use App\Entity\User;
 use App\Form\Front\UserType;
 use App\Repository\UserRepository;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
