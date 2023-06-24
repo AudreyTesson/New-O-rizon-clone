@@ -19,6 +19,7 @@
         {% for review in reviews %}
             <tr>
                 <td>{{ review.id }}</td>
+                <td>{{ review.city.name }}</td>
                 <td>{{ review.username }}</td>
                 <td>{{ review.content }}</td>
                 <td>{{ review.rating }}</td>

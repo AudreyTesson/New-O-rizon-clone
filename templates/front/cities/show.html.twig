@@ -285,6 +285,50 @@
     </div>
 
     {% include 'partials/_slide_buttons.html.twig' %}
+
+
+
+{# ! TESTS for reviews + stars #}
+
+    {# {% include 'partials/_stars.html.twig' with {'ratingStars': city.rating} %} #}
+
+
+                            <div class="d-flex mb-4">
+                            <a href="{{ path('app_back_review_new', {'id':city.id})}}" class="btn btn-primary">Ajouter un commentaire</a>
+                        </div>
+                        
+                        <div class="col-12 p-4 d-flex flex-column position-static bg-light">
+                            <dl class="row">
+                                {# allReviewFromBDD #}
+                                {% for review in allReviewFromBDD %}
+
+                                <dt class="col-sm-12">Critiques de {{ review.username }}</dt>
+                                {% include '/partials/_stars.html.twig' with {'ratingStars': review.rating} %}
+                        
+                                        <em><p class="card-text">{{ review.content}}</p>
+                                        {# <p class="card-subtitle mb-2 text-muted">Vu le {{ review.watchedAt|date('d-m-Y') }}<p></em> #}
+
+                                    </div>
+                                    </div>
+
+
+                                <dd class="col-sm-12">
+                                
+                                        {# {{ review.username }} a regardé <em>{{ movieForTwig.title }}</em> le {{ review.watchedAt|date('m/d/Y')}}:  <br> 
+                                        {{ review.content}} <br> #}
+                                        {# <div> 
+                                        {% for reaction in review.reactions %} 
+                                            <span class="badge bg-info text-dark">{{ reaction }}</span> 
+                                        {% endfor %} 
+                                        </div> #}
+                                {% else %}
+                                    <div class="card" style="width: 18rem;">
+                                        <div class="card-body">
+                                        <p><span class="ps-1">Cette ville n'a pas encore de commentaires<p></span>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
 </div>    
 
 {% endblock %}

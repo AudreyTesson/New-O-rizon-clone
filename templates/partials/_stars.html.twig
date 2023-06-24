@@ -1,0 +1,12 @@
+<div class="d-flex" style="color: orange;">
+    {% for i in 0..4 %}
+        {% if ratingStars >= i + 1 %}
+            <i class="bi bi-star-fill"></i>
+        {% elseif ratingStars >= i + 0.5 %}
+            <i class="bi bi-star-half"></i>
+        {% else %}
+            <i class="bi bi-star"></i>
+        {% endif %}
+    {% endfor %}
+    <span class="ps-1">{{ ratingStars }}</span>
+</div>

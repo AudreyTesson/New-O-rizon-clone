@@ -6,6 +6,7 @@ use App\Data\FilterData;
 use App\Form\Front\FilterDataType;
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
+use App\Repository\ReviewRepository;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -58,7 +59,8 @@ class CityController extends AbstractController
     public function show(
         $id, 
         CityRepository $cityRepository, 
-        ImageRepository $imageRepository
+        ImageRepository $imageRepository,
+        ReviewRepository $reviewRepository
         ): Response
     {
         $city = $cityRepository->find($id);
@@ -69,10 +71,17 @@ class CityController extends AbstractController
 
         $cities = $imageRepository->findByDistinctCityImage();
 
+        $allReviews = $reviewRepository->findBy(
+            [
+                "city" => $city
+            ]
+        );
+
         return $this->render('front/cities/show.html.twig', [
             'cityId' => $id,
             'city' => $city,
-            'cities' => $cities
+            'cities' => $cities,
+            "allReviewFromBDD" => $allReviews
         ]);
     }
 }
