@@ -75,7 +75,6 @@ class CityController extends AbstractController
             'cities' => $cities,
         ]);
     }
-    
 }
 
 
