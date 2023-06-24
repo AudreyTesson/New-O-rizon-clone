@@ -101,7 +101,9 @@ class UserController extends AbstractController
             
             $this->addFlash(
                 'success',
-                "Votre compte a bien été supprimé, revenez quand vous voulez."
+                "Votre compte a bien été supprimé. 
+                Toutes vos données personnelles ont été supprimées de notre base de données.
+                Revenez quand vous voulez."
             );
 
             return $this->redirectToRoute('default', [], Response::HTTP_SEE_OTHER);
