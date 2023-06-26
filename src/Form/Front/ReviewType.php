@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Front;
 
 use App\Entity\City;
 use App\Entity\Review;
@@ -39,13 +39,6 @@ class ReviewType extends AbstractType
                 ],
                 "multiple" => false,
                 "expanded" => true,
-            ])
-            ->add('city', EntityType::class, [
-                "multiple" => false,
-                "expanded" => false,
-                "class" => City::class,
-                'choice_label' => 'name',
-
             ])
         ;
     }

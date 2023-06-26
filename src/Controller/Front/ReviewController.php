@@ -3,9 +3,10 @@
 namespace App\Controller\Front;
 
 use App\Entity\Review;
-use App\Form\ReviewType;
+use App\Form\Front\ReviewType;
 use App\Repository\CityRepository;
 use App\Repository\ReviewRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReviewController extends AbstractController
 {
     /**
-     * @Route("/front/reviews/{id}/review/add", name="app_front_review_add", requirements={"id": "\d+"})
+     * @Route("/reviews/{id}/review/add", name="app_front_review_add", requirements={"id": "\d+"})
      */
     public function index(
         $id,
@@ -26,28 +27,72 @@ class ReviewController extends AbstractController
     ): Response
     {
 
-        $city = $cityRepository->find($id);
+        // $city = $cityRepository->find($id);
         
-        if ($city === null){ throw $this->createNotFoundException("cette ville n'est pas encore ajoutée");}
+        // if ($city === null){ throw $this->createNotFoundException("cette ville n'est pas encore ajoutée");}
 
-        $newReview = new Review();
-        $form = $this->createForm(ReviewType::class, $newReview);
+        // $newReview = new Review();
+        // $form = $this->createForm(ReviewType::class, $newReview);
+
+        // $form->handleRequest($request);
+
+        // if ($form->isSubmitted() && $form->isValid())
+        // {
+        //     $newReview->setCity($city);
+
+        //     $newReview->setCreatedAt(new DateTime('now'));
+
+        //     $entityManagerInterface->persist($newReview);
+        //     $entityManagerInterface->flush();
+
+        //     return $this->redirectToRoute("cities_detail", ["id"=> $city->getId()]);
+        // }
+
+        // return $this->renderForm('front/review/index.html.twig', [
+        //     "city" => $city,
+        //     "formulaire" => $form
+        // ]);
+        $reviewForForm = new Review();
+        $city = $cityRepository->find($id);
+    
+        if ($city === null){ throw $this->createNotFoundException("Cette ville n'est pas encore enregistrée");}
+
+        $form = $this->createForm(
+            ReviewType::class,
+            $reviewForForm);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
-        {
-            $newReview->setCity($city);
+        {         
+            $reviewForForm->setCity($city);
 
-            $entityManagerInterface->persist($newReview);
+            $entityManagerInterface->persist($reviewForForm);
             $entityManagerInterface->flush();
 
-            return $this->redirectToRoute("cities_detail", ["id"=> $city->getId()]);
-        }
+            $reviewByCity = $reviewRepository->findBy([
+                "city" => $city], ["createdAt" => "DESC"]);
+            $rating = [];
+            foreach ($reviewByCity as $review) {
+                $rating[] = $review->getRating();
+            }
+            $sum = array_sum($rating);
+            $count = count($rating);
+            if ($count !== 0) {
+                $average = round($sum/$count, 1);
+            } else {
+                $average = 0;
+            }
+            $city->setRating($average);
+            $entityManagerInterface->flush();    
+
+            return $this->redirectToRoute("cities_detail", [
+                "id" => $city->getId()]);
+        }    
 
         return $this->renderForm('front/review/index.html.twig', [
-            "cityFromBDD" => $city,
-            "formulaire" => $form
+            'formulaire' => $form,
+            'city' => $city
         ]);
     }
 }

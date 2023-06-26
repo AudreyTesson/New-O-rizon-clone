@@ -28,7 +28,8 @@ class CityController extends AbstractController
     {
         $cities = $cityRepository->findCountryAndImageByCity();
 
-        // sidebar filter form
+        
+
         $criteria = new FilterData();
         $formFilter = $this->createForm(FilterDataType::class, $criteria);
         $formFilter->handleRequest($request);
@@ -38,7 +39,11 @@ class CityController extends AbstractController
             $citiesFilter = $cityRepository->findByFilter($criteria);
             $citiesFilter = $paginatorInterface->paginate($citiesFilter, $request->query->getInt('page', 1),6);
 
-            return $this->render('front/cities/list.html.twig', ["citiesFilter" => $citiesFilter, "cities" => $cities, 'formFilter' => $formFilter->createView(),]);
+            return $this->render('front/cities/list.html.twig', [
+                "citiesFilter" => $citiesFilter, 
+                "cities" => $cities, 
+                "formFilter" => $formFilter->createView(),
+            ]);
         }
 
         $cities = $paginatorInterface->paginate($cities, $request->query->getInt('page', 1),6);
@@ -79,7 +84,7 @@ class CityController extends AbstractController
             'cityId' => $id,
             'city' => $city,
             'cities' => $cities,
-            "allReviewFromBDD" => $allReviews
+            "allReviewFromBDD" => $allReviews,
         ]);
     }
 }

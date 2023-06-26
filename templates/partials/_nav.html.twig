@@ -8,14 +8,21 @@
 
             {% if isBackOffice %}
 
-                {# <a class="hidden md:block flex self-center ml-auto md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-3"  href="{{ path('app_back_default') }}"></i>Back</a> #}
-                {# <a class="nav-link" href="{{ path('app_back_city_index') }}"></i>Cities</a> #}
-                <a class="hidden md:block flex self-center ml-auto md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-3"  href="{{ path('app_back_review_index') }}"></i>Reviews</a>
-                <a class="hidden md:block flex self-center ml-auto md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-3" href="{{ path('app_back_user_index') }}"></i>Users</a>
+                <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="
+                {# {{ path('app_back_default') }} #}
+                "></i>Back</a>
+                <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="
+                {# {{ path('app_back_city_index') }} #}
+                "></i>Villes</a>
+                <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="
+                {# {{ path('app_back_image_index') }} #}
+                "></i>Images</a>
+                <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="{{ path('app_back_review_index') }}"></i>Commentaires</a>
+                <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="{{ path('app_back_user_index') }}"></i>Utilisateurs</a>
 
             {% else %}
 
-                <a href="{{ path('cities_list') }}" class="hidden md:block flex self-center ml-auto md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-3">Liste des villes
+                <a href="{{ path('cities_list') }}" class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto">Liste des villes
                 </a>
 
             {% endif %}

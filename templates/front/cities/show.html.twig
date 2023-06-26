@@ -12,14 +12,16 @@
                 {{ city.country.name}}</h2>
             {% include "/partials/_favorites.html.twig" %}
         </span>
+
         {# stars rating #}
         <div class="flex justify-center"> 
             <div class="flex flex-nowrap items-center justify-center w-48 h-8 backdrop-brightness-75 drop-shadow-lg">
-                <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                <i class="fa-regular fa-star-half-stroke drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                <i class="fa-regular fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
+
+            <div>
+                {% set ratingStars = city.rating|round(0, 'floor') %}
+                {% include 'partials/_stars.html.twig' with { ratingStars: ratingStars } %}
+            </div>
+
             </div>
         </div>
     </div>
@@ -286,49 +288,45 @@
 
     {% include 'partials/_slide_buttons.html.twig' %}
 
+    <div class="d-flex mb-4">
+        <a href="{{ path('app_front_review_add', {'id':city.id})}}" class="btn btn-primary">Ajouter un commentaire</a>
+    </div>
 
+    <div class="col-12 p-4 d-flex flex-column position-static bg-light">
+        <dl class="row">
+        
+            {% for review in allReviewFromBDD %}
 
-{# ! TESTS for reviews + stars #}
-
-    {# {% include 'partials/_stars.html.twig' with {'ratingStars': city.rating} %} #}
-
-
-                            <div class="d-flex mb-4">
-                            <a href="{{ path('app_back_review_new', {'id':city.id})}}" class="btn btn-primary">Ajouter un commentaire</a>
+                <div class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <div class="flex items-center mb-4 space-x-4">
+                        <div class="space-y-1 font-medium dark:text-white">
+                            <p>{{ review.username }}</p>
+                            <span class="mb-5 text-sm text-gray-500 dark:text-gray-400"><p>Commenté le {{ review.createdAt|date('d-m-Y') }}</p>
                         </div>
-                        
-                        <div class="col-12 p-4 d-flex flex-column position-static bg-light">
-                            <dl class="row">
-                                {# allReviewFromBDD #}
-                                {% for review in allReviewFromBDD %}
+                    </div>
 
-                                <dt class="col-sm-12">Critiques de {{ review.username }}</dt>
-                                {% include '/partials/_stars.html.twig' with {'ratingStars': review.rating} %}
-                        
-                                        <em><p class="card-text">{{ review.content}}</p>
-                                        {# <p class="card-subtitle mb-2 text-muted">Vu le {{ review.watchedAt|date('d-m-Y') }}<p></em> #}
+                    <div class="flex items-center mb-1">
 
-                                    </div>
-                                    </div>
+                        {% include '/partials/_stars.html.twig' with {'ratingStars': review.rating} %}
 
+                    </div>
 
-                                <dd class="col-sm-12">
-                                
-                                        {# {{ review.username }} a regardé <em>{{ movieForTwig.title }}</em> le {{ review.watchedAt|date('m/d/Y')}}:  <br> 
-                                        {{ review.content}} <br> #}
-                                        {# <div> 
-                                        {% for reaction in review.reactions %} 
-                                            <span class="badge bg-info text-dark">{{ reaction }}</span> 
-                                        {% endfor %} 
-                                        </div> #}
-                                {% else %}
-                                    <div class="card" style="width: 18rem;">
-                                        <div class="card-body">
-                                        <p><span class="ps-1">Cette ville n'a pas encore de commentaires<p></span>
-                                        </div>
-                                    </div>
-                                {% endfor %}
+                    <p class="mb-2 text-gray-500 dark:text-gray-400">{{ review.content}}</p>
 
-</div>    
+                </article>
+
+                {% else %}
+
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                        <p><span class="ps-1">Cette ville n'a pas encore de commentaires<p></span>
+                        </div>
+                    </div>
+
+            {% endfor %}
+
+        </dl>
+
+    </div>    
 
 {% endblock %}
