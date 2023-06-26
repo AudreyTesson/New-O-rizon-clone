@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Review{% endblock %}
+{% block title %}Nouveau commentaire{% endblock %}
 
 {% block body %}
-    <h1>Create new Review</h1>
+
+    <h1 class="text-3xl text-center my-8 font-bold text-cyan-900">Créer un nouveau commentaire</h1>
 
     {{ include('back/review/_form.html.twig') }}
 
-    <a href="{{ path('app_back_review_index') }}">back to list</a>
 {% endblock %}

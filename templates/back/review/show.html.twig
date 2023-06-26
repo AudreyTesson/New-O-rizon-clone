@@ -1,38 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Review{% endblock %}
+{% block title %}Commentaire{% endblock %}
 
 {% block body %}
-    <h1>Review</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ review.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ review.city.name }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ review.username }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ review.content }}</td>
-            </tr>
-            <tr>
-                <th>Rating</th>
-                <td>{{ review.rating }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <h1 class="text-3xl text-center my-8 font-bold text-cyan-900">Commentaire</h1>
 
-    <a href="{{ path('app_back_review_index') }}">back to list</a>
+    <div class="flex flex-col items-center">
+        <table class="table mx-auto">
+            <tbody>
+                <tr class="border-2 divide-x text-center">
+                    <th>Id</th>
+                    <td>{{ review.id }}</td>
+                </tr>
+                <tr class="border-2 divide-x text-center">
+                    <th>Nom de la ville</th>
+                    <td>{{ review.city.name }}</td>
+                </tr>
+                <tr class="border-2 divide-x text-center">
+                    <th>Pseudo</th>
+                    <td>{{ review.username }}</td>
+                </tr>
+                <tr class="border-2 divide-x text-center">
+                    <th>Contenu</th>
+                    <td>{{ review.content }}</td>
+                </tr>
+                <tr class="border-2 divide-x text-center">
+                    <th>Note</th>
+                    <td>{{ review.rating }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_back_review_edit', {'id': review.id}) }}">edit</a>
+        <div class="flex flex-col items-center mt-4">
+            <a href="{{ path('app_back_review_index') }}">
+                <button type="button" class="my-2 focus:outline-none text-white bg-purple-900 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 w-40">Retour à la liste</button>
+            </a>
 
-    {{ include('back/review/_delete_form.html.twig') }}
+            <a href="{{ path('app_back_review_edit', {'id': review.id}) }}">
+                <button type="button" class="my-2 focus:outline-none text-white bg-orange-700 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-700 w-40">Modifier</button>
+            </a>
+        </div>
+
+        {{ include('back/review/_delete_form.html.twig') }}
+    </div>
+
 {% endblock %}

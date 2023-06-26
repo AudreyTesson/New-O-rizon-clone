@@ -79,10 +79,7 @@ class CityController extends AbstractController
             'cityId' => $id,
             'city' => $city,
             'cities' => $cities,
-<<<<<<< HEAD
             "allReviewFromBDD" => $allReviews
-=======
->>>>>>> dev
         ]);
     }
 }

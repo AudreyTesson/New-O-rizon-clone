@@ -27,6 +27,7 @@ class ReviewController extends AbstractController
     {
 
         $city = $cityRepository->find($id);
+        
         if ($city === null){ throw $this->createNotFoundException("cette ville n'est pas encore ajoutée");}
 
         $newReview = new Review();

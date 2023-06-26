@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Index des utilisateurs{% endblock %}
 
 {% block body %}
 
@@ -11,12 +11,12 @@
             <tr class="border-2 divide-x text-center">
                 <th>Id</th>
                 <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Username</th>
-                <th>actions</th>
+                <th>Rôles</th>
+                <th>Mot de passe</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Pseudo</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -31,25 +31,23 @@
                 <td>{{ user.username }}</td>
                 <td>
                     <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">
-                        <button type="button" class="my-2 w-full flex justify-center focus:outline-none text-white bg-sky-700 hover:bg-sky-600 focus:ring-4 focus:ring-sky-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-sky-400 dark:hover:bg-sky-500 dark:focus:ring-sky-700">Show</button>
+                        <button type="button" class="my-2 w-full flex justify-center focus:outline-none text-white bg-sky-700 hover:bg-sky-600 focus:ring-4 focus:ring-sky-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-sky-400 dark:hover:bg-sky-500 dark:focus:ring-sky-700">Détails</button>
                     </a>
                     <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">
-                        <button type="button" class="my-2 w-full flex justify-center focus:outline-none text-white bg-rose-700 hover:bg-rose-600 focus:ring-4 focus:ring-rose-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-rose-400 dark:hover:bg-rose-500 dark:focus:ring-rose-700">Edit</button>
+                        <button type="button" class="my-2 w-full flex justify-center focus:outline-none text-white bg-rose-700 hover:bg-rose-600 focus:ring-4 focus:ring-rose-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-rose-400 dark:hover:bg-rose-500 dark:focus:ring-rose-700">Modifier</button>
                     </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Pas d'enregistrements trouvés</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-</div>
-
 <a href="{{ path('app_back_user_new') }}">
-    <button type="button" class="my-2 mx-auto flex justify-center focus:outline-none text-white bg-emerald-700 hover:bg-emerald-600 focus:ring-4 focus:ring-emerald-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-emerald-400 dark:hover:bg-emerald-500 dark:focus:ring-emerald-700">Create new</button>
+    <button type="button" class="my-2 mx-auto flex justify-center focus:outline-none text-white bg-emerald-700 hover:bg-emerald-600 focus:ring-4 focus:ring-emerald-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-emerald-400 dark:hover:bg-emerald-500 dark:focus:ring-emerald-700">Créer</button>
 </a>
 
 {% endblock %}
