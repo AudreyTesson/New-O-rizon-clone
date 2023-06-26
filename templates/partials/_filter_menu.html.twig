@@ -278,10 +278,20 @@
 
                 <div class="flex flex-wrap md:flex-nowrap gap-3 justify-center pb-2 text-gray-500 border border-b-0 border-gray-200 bg-gray-100 rounded-b-xl sticky bottom-2 pt-3">
 
+                {% set isFiltered = app.request.requestUri | urlContains('filter_data') %}
+                {% if isFiltered %}
+                
+                    <div class="w-fit ">
+                        <button id="reset_btn" type="submit" value="Submit" class="w-full hover:bg-sky-600 hover:text-white focus:ring focus:ring-offset-2 focus:ring-gray-800 text-base leading-4 font-medium py-4 px-10 text-cyan-900 bg-white border-2">Effacer</button>
+                    </div> 
+
+                {% else %}
+                    
                     <div class="w-fit ">
                         <button type="reset" value="Reset" class="w-full hover:bg-sky-600 hover:text-white focus:ring focus:ring-offset-2 focus:ring-gray-800 text-base leading-4 font-medium py-4 px-10 text-cyan-900 bg-white border-2">Effacer</button>
                     </div> 
 
+                {% endif %}
 
                     <div class="w-fit">
                         <button type ="submit" value="Submit" class="w-full hover:bg-sky-600 focus:ring focus:ring-offset-2 focus:ring-gray-800 text-base leading-4 font-medium py-4 px-10 text-white bg-cyan-900">Valider</button>

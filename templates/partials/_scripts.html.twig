@@ -2,11 +2,16 @@
         <script src="{{ asset('js/scroll.js') }}"></script>
         <script src="{{ asset('js/modal.js') }}"></script>
         <script src="{{ asset('js/sort.js') }}"></script>
+
+        {% set route = app.request.attributes.get("_route") %}
+        {% if route == "cities_detail" %}
         <script src="{{ asset('js/moreCriteria.js') }}"></script>
+        {% endif %}
 
         {% set isFilterData = app.request.requestUri starts with "/?filter_data" %}
         {% if isFilterData %}
             <script src="{{ asset('js/sidebar_filter_data.js')}}"></script>
+            <script src="{{ asset('js/reset_filter.js') }}"></script>
         {% elseif route == 'default' %}
             <script src="{{ asset('js/sidebar_filter_homepage.js')}}"></script>
         {% elseif route == 'cities_list' %}
@@ -37,5 +42,8 @@
         {# MAP with Leaflet #}
         <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
         <script src ="{{ asset('js/map.js') }}"></script>
+
+
+
 
 

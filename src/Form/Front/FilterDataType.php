@@ -202,6 +202,7 @@ class FilterDataType extends AbstractType
         $resolver->setDefaults([
             'data_class' => FilterData::class,
             'method' => 'GET',
+            'attr' => ['id' => 'filter_data']
         ]);
     }
 }
