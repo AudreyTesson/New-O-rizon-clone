@@ -3,7 +3,7 @@
 {% block title %}New O'rizon Page de ville{% endblock %}
 
 {% block body %}
-<div class="w-full grid gap-5 md:gap-0">
+<div class="w-full grid gap-0">
     <div class="relative w-full h-96" style="background-image:url('{{ asset('images/city2.jpg') }}')">
         <span class="text-xl text-white font-bold w-auto flex flex-col justify-center items-center backdrop-brightness-75">
             <h2 class="text-2xl mt-4 font-bold w-fit">
@@ -13,13 +13,13 @@
             {% include "/partials/_favorites.html.twig" %}
         </span>
         {# stars rating #}
-        <div class="flex justify-center"> 
-            <div class="flex flex-nowrap items-center justify-center w-48 h-8 backdrop-brightness-75 drop-shadow-lg">
-                <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                <i class="fa-regular fa-star-half-stroke drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                <i class="fa-regular fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
+        <div class="absolute left-2 md:left-0 top-1"> 
+            <div class="flex flex-nowrap items-center justify-center w-18 md:w-48 h-8 drop-shadow-lg">
+                <i class="fa-solid fa-star drop-shadow-lg fa-md" style="color: #e4a11b;;"></i>
+                <i class="fa-solid fa-star drop-shadow-lg fa-md" style="color: #e4a11b;;"></i>
+                <i class="fa-solid fa-star drop-shadow-lg fa-md" style="color: #e4a11b;;"></i>
+                <i class="fa-regular fa-star-half-stroke fa-md drop-shadow-lg" style="color: #e4a11b;;"></i>
+                <i class="fa-regular fa-star drop-shadow-lg fa-md" style="color: #e4a11b;;"></i>
             </div>
         </div>
     </div>
@@ -123,7 +123,8 @@
                     </div>
                 </div>
         
-                <div class="flex items-center w-1/2 py-3 space-x-4">
+                {# small device : revealed with button criteria below #}
+                <div class="criteria-expanded hidden md:flex items-center w-1/2 py-3 space-x-4">
                     <div>
                         <i class="fa-solid fa-house fa-xl" style="color: #000000;"></i>
                     </div>
@@ -137,7 +138,8 @@
                     </div>
                 </div>
     
-                <div class="flex items-center w-1/2 py-3 space-x-4">        
+                {# small device : revealed with button criteria below #}
+                <div class="criteria-expanded hidden md:flex items-center w-1/2 py-3 space-x-4">        
                     <div class="flex items-center space-x-4">
                         <div>
                             <i class="fa-regular fa-clock fa-xl" style="color: #000000;"></i>
@@ -152,8 +154,9 @@
                         </div>
                     </div>
                 </div>
-        
-                <div class="flex items-center w-1/2 py-3 space-x-4">
+
+                {# small device : revealed with button criteria below #}
+                <div class="criteria-expanded hidden md:flex items-center w-1/2 py-3 space-x-4">
                     <div>
                         <i class="fa-solid fa-language fa-xl" style="color: #000000;"></i>
                     </div>
@@ -166,8 +169,9 @@
                         </p>
                     </div>
                 </div>
-            
-                <div class="flex items-center w-1/2 py-3 space-x-4">        
+
+                {# small device : revealed with button criteria below #}
+                <div class="criteria-expanded hidden md:flex items-center w-1/2 py-3 space-x-4">        
                     <div class="flex items-center space-x-4">
                         <div>
                             <i class="fa-solid fa-passport fa-xl" style="color: #000000;"></i>
@@ -182,8 +186,9 @@
                         </div>
                     </div>
                 </div>
-        
-                <div class="flex items-center w-1/2 py-3 space-x-4">
+
+                {# small device : revealed with button criteria below #}
+                <div class="criteria-expanded hidden md:flex items-center w-1/2 py-3 space-x-4">
                     <div>
                         <i class="fa-solid fa-person-military-pointing fa-xl" style="color: #000000;"></i>
                     </div>
@@ -196,8 +201,9 @@
                         </p>
                     </div>
                 </div>
-            
-                <div class="flex items-center w-1/2 py-3 space-x-4">        
+
+                {# small device : revealed with button criteria below #}
+                <div class="criteria-expanded hidden md:flex items-center w-1/2 py-3 space-x-4">        
                     <div class="flex items-center space-x-4">
                         <div>
                             <i class="fa-brands fa-bitcoin fa-xl" style="color: #000000;"></i>
@@ -212,6 +218,7 @@
                         </div>
                     </div>
                 </div>
+
                 {# revealed with button criteria below #}
                 <div class="criteria-expanded hidden flex items-center w-1/2 py-3 space-x-4">        
                     <div class="flex items-center space-x-4">
@@ -228,6 +235,7 @@
                         </div>
                     </div>
                 </div>
+
                 {# revealed with button criteria below #}
                 <div class="criteria-expanded hidden flex items-center w-1/2 py-3 space-x-4">        
                     <div class="flex items-center space-x-4">
@@ -283,8 +291,11 @@
         </div>
 
     </div>
+    
+</div>  
 
+<div class="relative">
     {% include 'partials/_slide_buttons.html.twig' %}
-</div>    
+</div>
 
 {% endblock %}

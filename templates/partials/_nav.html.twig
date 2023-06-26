@@ -8,13 +8,11 @@
 
             {% if isBackOffice %}
 
-                {# <a class="nav-link" href="{{ path('app_back_default') }}"></i>Back</a> #}
-                {# <a class="nav-link" href="{{ path('app_back_city_index') }}"></i>Cities</a> #}
-                <a class="hidden md:block flex self-center ml-auto md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-3" href="{{ path('app_back_user_index') }}"></i>Users</a>
+                <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="{{ path('app_back_user_index') }}">Users</a>
 
             {% else %}
 
-                <a href="{{ path('cities_list') }}" class="hidden md:block flex self-center ml-auto md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-3">Liste des villes
+                <a href="{{ path('cities_list') }}" class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto">Liste des villes
                 </a>
 
             {% endif %}
@@ -56,11 +54,9 @@
                             <ul class="py-1" aria-labelledby="dropdownLargeButton">
                             {% if is_granted("IS_AUTHENTICATED_FULLY") %} 
                             {% set user = app.user %}
-                            {# ! add path() user profile #}
                                 <li>
                                     <a href="{{ path('user_show', {'id': user.id}) }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">{{ user.firstname }} {{ user.lastname }}</a>
                                 </li>
-                            {# ! add path() user favorites list  #}
                                 <li class="hidden lg:block">
                                     <a href="{{ path('favorites') }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">Mes favoris</a>
                                 </li>
