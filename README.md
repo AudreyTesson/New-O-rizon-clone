@@ -2,7 +2,7 @@
 
 ## Installation
 
-## Symfony
+### Symfony
 `symfony new my_project_directory --version=5.4 --webapp`
 #### Webpack encore pour Symfony UX
 `composer require symfony/webpack-encore-bundle`
@@ -36,22 +36,22 @@
 #### le maker
 `composer require --dev symfony/maker-bundle`
 
-## Faker/Fixtures
-### création des fixtures
+### Faker/Fixtures
+#### création des fixtures
 `composer require orm-fixtures --dev`
-### faker général
+#### faker général
 `composer require fakerphp/faker`
-### faker image
+#### faker image
 `composer require --dev bluemmb/faker-picsum-photos-provider ^2.0`
 
-## installation de tous les composants pour Doctrine
-### une question à laquelle on répond 'x'
+### installation de tous les composants pour Doctrine
+#### une question à laquelle on répond 'x'
 `composer require symfony/orm-pack`
 
-## Apache pack (réécriture d'URL et htaccess)
+### Apache pack (réécriture d'URL et htaccess)
 `composer require symfony/apache-pack`
 
-## Tailwind CSS
+### Tailwind CSS
 [voir doc](https://www.google.com/url?q=https://www.yourigalescot.com/fr/blog/comment-integrer-tailwindcss-v3-a-un-projet-symfony-avec-webpack-encore&sa=D&source=docs&ust=1687283012661452&usg=AOvVaw39DxgFlU7WZJJStYheuH3S)
 
 `yarn add --dev tailwindcss postcss autoprefixer`
@@ -77,13 +77,59 @@
 #### Animated
 `yarn add -D tailwindcss-animated` [voir doc](https://www.tailwindcss-animated.com/)
 
-## Slider ranger control
+### Slider ranger control
 `yarn add nouislider` [voir doc](https://refreshless.com/nouislider/)
 
-## Pagination
+### Pagination
 `composer require knplabs/knp-paginator-bundle` [voir doc](https://github.com/KnpLabs/KnpPaginatorBundle)
 
-## Mise à jour du composer.json avec les dépendances composer Back (symfony, doctrine …)
+### Mise à jour du composer.json avec les dépendances composer Back (symfony, doctrine …)
 `composer install`
-## Mise à jour du package.json avec les dépendances yarn Front (tailwind, SASS,)
+### Mise à jour du package.json avec les dépendances yarn Front (tailwind, SASS,)
 `yarn install`
+
+# Deploy
+
+## connexion Server Cloud
+
+`ssh student@xxxxxxx-server.eddi.cloud`
+
+## clone projet
+
+cd /var/www/html =>
+git clone git@github.com:O-clock-Radium/projet-great-place-to-webdev.git
+
+## composer
+
+cd /var/www/html//projet-great-place-to-webdev =>
+`composer install`
+
+## paramétrage projet
+
+`nano .env.local`
+=> ajouter connexion à la BDD (voir fichier .env.local sur projet en local)
+
+## création BDD
+
+`bin/console doctrine:database:create`
+`bin/console doctrine:migrations:migrate`
+`bin/console doctrine:fixtures:load`
+
+## configuration prod
+
+`nano .env`
+=> APP_ENV=prod
+
+## installation yarn/mise à jour node
+
+`curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -`
+`echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list`
+`sudo apt-get update`
+`sudo apt-get install yarn -y`
+`sudo npm install -g n`
+`sudo n 16.10.0`
+`yarn install`
+
+## lancement yarn
+
+`yarn build`
