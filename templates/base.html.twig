@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +28,10 @@
     </head>
     <body>
 
-        {% include "partials/_nav.html.twig" %}
+        {% set isBackOffice = (app.request.attributes.get("_route") starts with "app_back_")%}
+        {% include 'partials/_nav.html.twig' with {'isBackOffice': isBackOffice}  %}
+
+        {# {% include "partials/_nav.html.twig" %} #}
 
         {% include "partials/_flash.html.twig" %}
 
@@ -36,7 +40,7 @@
         {# Back to top button #}
         {% set route = app.request.get('_route') %}
         {% if route == 'cities_list' or route == 'cities_detail' or route == 'sort_asc' or route == 'sort_desc' %}
-        <button id="to-top-button" onclick="goToTop()" title="Go To Top" class="hidden md:hidden fixed z-90 bottom-8 right-8 border-0 w-10 h-10 drop-shadow-md bg-cyan-900 text-white text-4xl font-bold">&uarr;</button>
+        <button id="to-top-button" onclick="goToTop()" title="Go To Top" class="hidden md:hidden fixed z-90 bottom-8 right-5 border-0 w-10 h-10 drop-shadow-md bg-cyan-900 text-white text-4xl font-bold">&uarr;</button>
         {% endif %}
         
         {% include "partials/_footer.html.twig" %}

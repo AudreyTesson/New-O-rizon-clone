@@ -1,4 +1,3 @@
-<script>
 // Creating map options
     var mapOptions = {
     center: [17.385044, 78.486671],
@@ -13,5 +12,3 @@
 
 // Adding layer to the map
     map.addLayer(layer);
-
-</script>

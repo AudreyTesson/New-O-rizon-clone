@@ -2,6 +2,7 @@
         <script src="{{ asset('js/scroll.js') }}"></script>
         <script src="{{ asset('js/modal.js') }}"></script>
         <script src="{{ asset('js/sort.js') }}"></script>
+        <script src="{{ asset('js/moreCriteria.js') }}"></script>
 
         {% set isFilterData = app.request.requestUri starts with "/?filter_data" %}
         {% if isFilterData %}
@@ -16,6 +17,8 @@
             <script src="{{ asset('js/sidebar_filter_asc.js')}}"></script>
         {% elseif route == "sort_desc" %}
             <script src="{{ asset('js/sidebar_filter_desc.js')}}"></script>  
+        {% elseif route == "app_front_city_search" %}
+            <script src="{{ asset('js/sidebar_filter_search.js')}}"></script> 
         {% endif %}
 
         <script
@@ -24,6 +27,7 @@
         </script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+
         {#! icons scripts #}
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -33,3 +37,5 @@
         {# MAP with Leaflet #}
         <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
         <script src ="{{ asset('js/map.js') }}"></script>
+
+
