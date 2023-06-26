@@ -18,15 +18,15 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstname', TextType::class, ['label' => 'Prénom'])
-            ->add('lastname', TextType::class, ['label' => 'Nom'])
-            ->add('username', TextType::class, ['label' => 'Pseudonyme'])
+            ->add('firstname', TextType::class, ['label' => 'Prénom', "attr" => ["autocomplete" => "given-name"]])
+            ->add('lastname', TextType::class, ['label' => 'Nom', "attr" => ["autocomplete" => "family-name"]])
+            ->add('username', TextType::class, ['label' => 'Pseudonyme', "attr" => ["autocomplete" => "nickname"]])
             ->add('email', EmailType::class, [
-                "attr" => ["placeholder" => "user@newOrizon.com"]
+                "attr" => ["placeholder" => "user@newOrizon.com", "autocomplete" => "current-email"]
             ])
             ->add('password', RepeatedType::class,[
                 'type' => PasswordType::class, 
-                'options' => ['attr' => ['class' => 'password-field']],
+                'options' => ['attr' => ['class' => 'password-field', "attr" => ["autocomplete" => "off"]]],
                 'first_options' => [ 
                     "label" => "Mot de passe",
                     'attr' => ['class' => 'mt-0 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-gray-50'],
