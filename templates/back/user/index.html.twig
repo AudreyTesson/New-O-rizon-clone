@@ -30,7 +30,7 @@
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.username }}</td>
                 <td>
-                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">
+                    <a href="{{ path('app_back_user_show', {'id': user.id})  }}">
                         <button type="button" class="my-2 w-full flex justify-center focus:outline-none text-white bg-sky-700 hover:bg-sky-600 focus:ring-4 focus:ring-sky-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-sky-400 dark:hover:bg-sky-500 dark:focus:ring-sky-700">Détails</button>
                     </a>
                     <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">
