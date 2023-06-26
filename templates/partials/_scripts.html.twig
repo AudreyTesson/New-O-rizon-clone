@@ -1,10 +1,14 @@
         <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
-        <script src="{{ asset('js/scroll.js') }}"></script>
         <script src="{{ asset('js/modal.js') }}"></script>
+
 
         {% set route = app.request.attributes.get('_route') %}
         {% if route == "cities_list" or route == "sort_asc" or route == "sort_desc" or route == "cities_country" or app.request.requestUri starts with "/?filter_data" %}
             <script src="{{ asset('js/sort.js') }}"></script>
+        {% endif %}
+
+        {% if route == 'cities_list' or route == 'cities_detail' or route == 'sort_asc' or route == 'sort_desc' or route == 'cities_country' %}
+            <script src="{{ asset('js/scroll.js') }}"></script>
         {% endif %}
 
         {% if route == "cities_detail" %}
