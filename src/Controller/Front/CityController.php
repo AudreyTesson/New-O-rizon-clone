@@ -48,8 +48,6 @@ class CityController extends AbstractController
         ]);
     }
 
-
-
     /**
      * City Page
      * 

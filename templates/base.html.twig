@@ -26,14 +26,14 @@
         {% endblock %}
     </head>
     <body>
-            {% include "partials/_nav.html.twig" %}
 
-            {% include "partials/_flash.html.twig" %}
-    <main>
-            {% block body %}{% endblock %}
-    </main>        
-            {% include "partials/_footer.html.twig" %}
-    
+        {% set isBackOffice = (app.request.attributes.get("_route") starts with "app_back_")%}
+        {% include 'partials/_nav.html.twig' with {'isBackOffice': isBackOffice}  %}
+
+        {% include "partials/_flash.html.twig" %}
+
+        {% block body %}{% endblock %}
+
         {# Back to top button #}
         {% set route = app.request.get('_route') %}
         {% if route == 'cities_list' or route == 'cities_detail' or route == 'sort_asc' or route == 'sort_desc' or route == 'cities_country' %}

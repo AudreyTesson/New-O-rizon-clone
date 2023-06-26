@@ -6,9 +6,17 @@
                 <span class="self-center text-2xl md:text-5xl font-semibold whitespace-nowrap text-white ml-3">New O'Rizon</span>
             </a>
 
-            <a href="{{ path('cities_list') }}" class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto">Liste des villes
-            </a>
-            
+            {% if isBackOffice %}
+
+                <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="{{ path('app_back_user_index') }}">Users</a>
+
+            {% else %}
+
+                <a href="{{ path('cities_list') }}" class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto">Liste des villes
+                </a>
+
+            {% endif %}
+
             <button data-collapse-toggle="mobile-menu" type="button" class="md:hidden ml-3 text-gray-400 hover:text-gray-900 focus:outline-none rounded-lg inline-flex items-center justify-center" aria-controls="mobile-menu-2" aria-expanded="false">
                 <span class="sr-only">Ouverture menu principal</span>
                 <svg class="w-10 h-10" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -16,6 +24,7 @@
                     </path>
                 </svg>
             </button>
+
             <div class="hidden md:block w-full md:w-auto" id="mobile-menu">
                 <ul class="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
                     <li>
@@ -45,11 +54,9 @@
                             <ul class="py-1" aria-labelledby="dropdownLargeButton">
                             {% if is_granted("IS_AUTHENTICATED_FULLY") %} 
                             {% set user = app.user %}
-                            {# ! add path() user perfil #}
                                 <li>
-                                    <a href="#" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">{{ user.firstname }} {{ user.lastname }}</a>
+                                    <a href="{{ path('user_show', {'id': user.id}) }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">{{ user.firstname }} {{ user.lastname }}</a>
                                 </li>
-                            {# ! add path() user favorites list  #}
                                 <li class="hidden lg:block">
                                     <a href="{{ path('favorites') }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">Mes favoris</a>
                                 </li>
