@@ -32,7 +32,11 @@
 
         {% include "partials/_flash.html.twig" %}
 
-        {% block body %}{% endblock %}
+    <main>
+            {% block body %}{% endblock %}
+    </main>        
+            
+        {% include "partials/_footer.html.twig" %}
 
         {# Back to top button #}
         {% set route = app.request.get('_route') %}

@@ -3,6 +3,7 @@ AmCharts.makeChart("map",{
         "pathToImages": "http://www.amcharts.com/lib/3/images/",
         "addClassNames": true,
         "fontSize": 15,
+        "fontFamily": 'Atkinson Hyperlegible',
         "color": "#FFFFFF",
         "projection": "miller",
         "backgroundAlpha": 1,

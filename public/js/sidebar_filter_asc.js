@@ -24,6 +24,8 @@ const sidebar_filter_asc = {
     */
     handleSidebarOpen: function() {
         sidebar_filter_asc.sidebarMenu.classList.remove('hidden'); 
+        const main = document.querySelector('main');
+        main.classList.add("blur-sm");
     },
 
     /**
@@ -31,6 +33,8 @@ const sidebar_filter_asc = {
      */
     handleSidebarClose: function() {
         sidebar_filter_asc.sidebarMenu.classList.add('hidden');
+        const main = document.querySelector('main');
+        main.classList.remove("blur-sm");
     }
 
 }

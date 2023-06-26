@@ -27,6 +27,12 @@ const sidebar_filter_homepage = {
     */
     handleSidebarOpen: function() {
         sidebar_filter_homepage.sidebarMenu.classList.remove('hidden'); 
+        const home_mobile = document.getElementById('home_map_mobile');
+        const home_desktop = document.getElementById('home_map_desktop');
+        if (home_mobile) {
+            home_mobile.classList.add("blur-sm");
+        }
+        home_desktop.classList.add("blur-sm");
     },
 
     /**
@@ -34,6 +40,12 @@ const sidebar_filter_homepage = {
      */
     handleSidebarClose: function() {
         sidebar_filter_homepage.sidebarMenu.classList.add('hidden');
+        const home_mobile = document.getElementById('home_map_mobile');
+        const home_desktop = document.getElementById('home_map_desktop');
+        if (home_mobile) {
+            home_mobile.classList.remove("blur-sm");
+        }
+        home_desktop.classList.remove("blur-sm");
     }
 
 }
