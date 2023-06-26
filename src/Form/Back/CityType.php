@@ -39,8 +39,7 @@ class CityType extends AbstractType
                 "multiple" => false,
                 "expanded" => false,
                 "class" => Country::class,
-                "choice_label" => "name",
-                'mapped' => false
+                "choice_label" => "name",           
             ])
             ->add('area', NumberType::class, [
                 "label" => "Superficie de la ville en m²",
@@ -48,16 +47,6 @@ class CityType extends AbstractType
                 "attr" => [
                     "placeholder" => "Superficie en m²"
                 ]
-            ])
-            ->add('createdAt', DateType::class,[
-                "label" => "Date d'ajout",
-                "widget" => "single_text",
-                "input" => "datetime"
-            ])
-            ->add('updateAt', DateType::class,[
-                "label" => "Date de modification",
-                "widget" => "single_text",
-                "input" => "datetime"
             ])
             ->add('electricity', ChoiceType::class,[
                 "label" => "Qualité du réseau électrique",
@@ -87,22 +76,22 @@ class CityType extends AbstractType
                 ]
             ])
             ->add('temperatureAverage', NumberType::class, [
-                "label" => "Température moyenne(°C)",
-                "scale" => 2,
+                "label" => "Température moyenne en °C",
+                "scale" => 1,
                 "attr" => [
-                    "placeholder" => "Température moyenne (°C)",
+                    "placeholder" => "Température moyenne en °C",
                     'min' => -50,  
                     'max' => 50,   
                 ]
             ])
             ->add('cost', IntegerType::class, [
-                "label" => "Coût de la vie(€)",                 
+                "label" => "Coût de la vie en €",                 
                 "attr" => [
                 "placeholder" => "Coût de la vie en €"
                 ]
             ])
             ->add('language', LanguageType::class, [
-                "label" => "langue",
+                "label" => "Langue",
                 "multiple" => false,
                 "expanded" => false,
             ])
@@ -137,11 +126,13 @@ class CityType extends AbstractType
                 "expanded" => true,
                 "multiple" => false, 
                 ])
-            ->add('images', EntityType::class, [
-                "class" => Image::class,
-                "choice_label" => "url",
-                'mapped' => false
-            ])
+            // ->add('images', EntityType::class, [
+            //     "class" => Image::class,
+            //     "choice_label" => "url",
+            //     "multiple" => false,
+            //     "expanded" => true,
+                // "mapped" => true,
+            // ])
         ;
     }
 
@@ -149,6 +140,7 @@ class CityType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => City::class,
+            "attr" => ["novalidate" => 'novalidate']
         ]);
     }
 }

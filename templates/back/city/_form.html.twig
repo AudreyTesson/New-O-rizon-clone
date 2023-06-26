@@ -1,4 +1,6 @@
+<div class="w-full flex justify-center ">
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+    <button class="flex w-full justify-center rounded-md bg-cyan-900 px-3 py-1.5 text-base font-medium leading-6 text-white shadow-sm hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600 mt-6">{{ button_label|default('Sauvegarder') }}</button>
 {{ form_end(form) }}
+</div>

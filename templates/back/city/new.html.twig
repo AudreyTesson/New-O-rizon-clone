@@ -3,9 +3,13 @@
 {% block title %}New City{% endblock %}
 
 {% block body %}
-    <h1>Créer une nouvelle ville</h1>
+    <h1 class="text-3xl text-center my-8 font-bold text-cyan-900">Créer une nouvelle ville</h1>
 
     {{ include('back/city/_form.html.twig') }}
 
-    <a href="{{ path('app_back_city_index') }}">Retour à la liste des villes</a>
+    <a href="{{ path('app_back_city_index') }}">
+    <button type="button" class="w-full flex justify-center mt-4">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Back-to-the-future-logo.svg" class="w-1/12 " alt="Image" />
+</button>
+Retour à la liste des villes</a>
 {% endblock %}

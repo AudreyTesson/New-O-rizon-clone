@@ -3,17 +3,17 @@
 {% block title %}City index{% endblock %}
 
 {% block body %}
-    <h1>Liste des villes</h1>
+    <h1 class="text-3xl text-center my-8 font-bold text-cyan-900">Liste des villes</h1>
 
-    <table class="table">
+    <table class="table mx-2">
         <thead>
-            <tr>
+            <tr class="border-2 divide-x text-center">
                 <th>Id</th>
                 <th>Nom de la ville</th>
                 <th>Pays</th>
                 <th>Superficie en m²</th>
                 <th>Date d'ajout</th>
-                <th>Date de modification/th>
+                <th>Date de modification</th>
                 <th>Qualité du réseau électrique</th>
                 <th>Qualité du réseau Internet</th>
                 <th>Taux d'ensoleillement</th>
@@ -24,33 +24,34 @@
                 <th>Niveau de logement</th>
                 <th>Fuseau horaire</th>
                 <th>Environment</th>
-                {# <th>Image</th> #}
+                <th>Image</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for city in cities %}
-            <tr>
-                <td>{{ city.id }}</td>
-                <td>{{ city.name }}</td>
-                <td>{{ city.country.name }}</td>
-                <td>{{ city.area }}</td>
-                <td>{{ city.createdAt ? city.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ city.updateAt ? city.updateAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ city.electricity }}</td>
-                <td>{{ city.internet }}</td>
-                <td>{{ city.sunshineRate }}</td>
-                <td>{{ city.temperatureAverage }}</td>
-                <td>{{ city.cost }}</td>
-                <td>{{ city.language }}</td>
-                <td>{{ city.demography }}</td>
-                <td>{{ city.housing }}</td>
-                <td>{{ city.timezone }}</td>
-                <td>{{ city.environment }}</td>
-                {# <td>{{ city.imageUrl}}</td> #}
+            <tr class="border-2 divide-x text-center">
+                <td>{{ city.cityId }}</td>
+                <td>{{ city.cityName }}</td>
+                <td>{{ city.countryName }}</td>
+                <td>{{ city.cityArea }}</td>
+                <td>{{ city.cityCreatedAt ? city.cityCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ city.cityUpdatedAt ? city.cityUpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ city.cityElectricity }}</td>
+                <td>{{ city.cityInternet }}</td>
+                <td>{{ city.citySunshineRate }}</td>
+                <td>{{ city.cityTemperatureAverage }}</td>
+                <td>{{ city.cityCost }}</td>
+                <td>{{ city.cityLanguage }}</td>
+                <td>{{ city.cityDemography }}</td>
+                <td>{{ city.cityHousing }}</td>
+                <td>{{ city.cityTimezone }}</td>
+                <td>{{ city.cityEnvironment }}</td>
+                <td class ="align-middle text-start text-break max-w-2xs img-thumbnail"><img src="{{city.imageUrl}}"</img></td>
                 <td>
-                    <a href="{{ path('app_back_city_show', {'id': city.id}) }}">show</a>
-                    <a href="{{ path('app_back_city_edit', {'id': city.id}) }}">edit</a>
+                    <a href="{{ path('app_back_city_show', {'id': city.cityId}) }}">Détails</a><br>
+                    <a href="{{ path('app_back_city_edit', {'id': city.cityId}) }}">Modifier</a>
+                    <a href="{{ path('app_back_city_delete', {'id': city.cityId}) }}">Supprimer</a>
                 </td>
             </tr>
         {% else %}
@@ -61,5 +62,11 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_city_new') }}">Create new</a>
+    <a href="{{ path('app_back_city_new') }}">Ajouter une nouvelle ville</a>
+
+    <div class="navigation d-flex justify-content-center">
+        {{ knp_pagination_render(cities) }}
+    </div>
+
 {% endblock %}
+
