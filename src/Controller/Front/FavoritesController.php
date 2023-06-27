@@ -29,11 +29,6 @@ class FavoritesController extends AbstractController
         $user = $this->getUser();
 
         $favoritesList = $user->getCity();
-        // dump($favoritesList);
-
-        // $images = $cityRepository->sortCitiesByName();
-
-        // $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
 
         return $this->render('front/favorites/index.html.twig', [
             // "images" => $images,

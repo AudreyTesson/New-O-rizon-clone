@@ -24,6 +24,14 @@
                     {% include "/partials/_favorites.html.twig" %}
                 </span>
 
+                {# stars rating #}
+                <div class="absolute inset-x-0 bottom-4 flex justify-center drop-shadow-lg">
+                {% set ratingStars = city.rating|round %}
+                {% include 'partials/_stars.html.twig' with { ratingStars: ratingStars } %}
+                </div>
+            </div>
+        </a>
+
 {% elseif isCitiesList %}
 
     <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -40,6 +48,14 @@
                         {{ city.countryName}}</h2>
                     {% include "/partials/_favorites.html.twig" %}
                 </span>
+
+                {# stars rating #}
+                <div class="absolute inset-x-0 bottom-4 flex justify-center drop-shadow-lg">
+                {% set ratingStars = city.cityRating|round %}
+                {% include 'partials/_stars.html.twig' with { ratingStars: ratingStars } %}
+                </div>
+            </div>
+        </a>
 
 {% elseif isCitiesSearch %}
 
@@ -58,6 +74,14 @@
                     {% include "/partials/_favorites.html.twig" %}
                 </span>
 
+                {# stars rating #}
+                <div class="absolute inset-x-0 bottom-4 flex justify-center drop-shadow-lg">
+                {% set ratingStars = city.cityRating|round %}
+                {% include 'partials/_stars.html.twig' with { ratingStars: ratingStars } %}
+                </div>
+            </div>
+        </a>
+
 {% elseif isCitiesListPaginate %}
 
     <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -74,6 +98,14 @@
                         {{ city.countryName}}</h2>
                     {% include "/partials/_favorites.html.twig" %}
                 </span>
+
+                {# stars rating #}
+                <div class="absolute inset-x-0 bottom-4 flex justify-center drop-shadow-lg">
+                {% set ratingStars = city.cityRating|round %}
+                {% include 'partials/_stars.html.twig' with { ratingStars: ratingStars } %}
+                </div>
+            </div>
+        </a>
 
 {% elseif isSortedASC %}
 
@@ -92,6 +124,14 @@
                     {% include "/partials/_favorites.html.twig" %}
                 </span>
 
+                {# stars rating #}
+                <div class="absolute inset-x-0 bottom-4 flex justify-center drop-shadow-lg">
+                {% set ratingStars = city.cityRating|round %}
+                {% include 'partials/_stars.html.twig' with { ratingStars: ratingStars } %}
+                </div>
+            </div>
+        </a>
+
 {% elseif isSortedDESC %}
 
     <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -108,6 +148,14 @@
                         {{ city.countryName}}</h2>
                     {% include "/partials/_favorites.html.twig" %}
                 </span>
+
+                {# stars rating #}
+                <div class="absolute inset-x-0 bottom-4 flex justify-center drop-shadow-lg">
+                {% set ratingStars = city.cityRating|round %}
+                {% include 'partials/_stars.html.twig' with { ratingStars: ratingStars } %}
+                </div>
+            </div>
+        </a>
 
 {# citiesFilter #}
 {% elseif isCitiesFiltered %}
@@ -127,17 +175,15 @@
                         {{ city.country.name}}</h2>
                     {% include "/partials/_favorites.html.twig" %}
                 </span>
-          
-{% endif %}
+
                 {# stars rating #}
                 <div class="absolute inset-x-0 bottom-4 flex justify-center drop-shadow-lg">
-                    <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                    <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                    <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                    <i class="fa-regular fa-star-half-stroke drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                    <i class="fa-regular fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
+                {% set ratingStars = city.rating|round %}
+                {% include 'partials/_stars.html.twig' with { ratingStars: ratingStars } %}
                 </div>
             </div>
         </a>
+
+{% endif %}
 
     </div>
