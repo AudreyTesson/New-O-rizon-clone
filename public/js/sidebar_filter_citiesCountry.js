@@ -32,7 +32,6 @@ const sidebar_filter_citiesCountry = {
     handleSidebarClose: function() {
         sidebar_filter_citiesCountry.sidebarMenu.classList.add('hidden');
     }
-
 }
 
 document.addEventListener("DOMContentLoaded", sidebar_filter_citiesCountry.init);

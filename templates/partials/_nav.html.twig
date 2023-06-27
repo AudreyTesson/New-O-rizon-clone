@@ -10,18 +10,18 @@
 
                 <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="
                 {{ path('app_back_default') }}
-                "></i>Back</a>
+                ">Back</a>
                 <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="
                 {{ path('app_back_city_index') }}
-                "></i>Villes</a>
+                ">Villes</a>
                 <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="
                 {{ path('app_back_country_index') }}
-                "></i>Pays</a>
+                ">Pays</a>
                 <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="
                 {{ path('app_back_image_index') }}
-                "></i>Images</a>
-                <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="{{ path('app_back_review_index') }}"></i>Commentaires</a>
-                <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="{{ path('app_back_user_index') }}"></i>Utilisateurs</a>
+                ">Images</a>
+                <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="{{ path('app_back_review_index') }}">Commentaires</a>
+                <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="{{ path('app_back_user_index') }}">Utilisateurs</a>
 
             {% else %}
 
@@ -53,37 +53,37 @@
                         <a href="{{ path('legal_notices') }}" class="text-white hover:border-4 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-white md:p-0 md:hidden">Mentions Légales</a>
                     </li>
                     <li>
-                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 flex items-center justify-between w-full md:w-auto">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 448 512" fill="white">
-                                
-                                <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
-                            </svg>
-                        </button>
-                        <!-- Dropdown menu -->
-                        <div id="dropdownNavbar" class="hidden bg-white text-base z-10 list-none divide-y divide-gray-700 rounded shadow my-4 w-44 border-gray-700">
-                            <ul class="py-1" aria-labelledby="dropdownLargeButton">
-                            {% if is_granted("IS_AUTHENTICATED_FULLY") %} 
-                            {% set user = app.user %}
-                                <li>
-                                    <a href="{{ path('user_show', {'id': user.id}) }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">{{ user.firstname }} {{ user.lastname }}</a>
-                                </li>
-                                <li class="hidden md:block">
-                                    <a href="{{ path('favorites') }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">Mes favoris</a>
-                                </li>
-                                {% if is_granted("ROLE_ADMIN") %}
-                                <li>
-                                    <a class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2" href="{{ path('app_back_default')}} ">Back-Office</a>
-                                </li>
-                                {% endif %} 
-                            </ul>
-                            <div class="py-1">
-                                <a href="{{ path('app_logout') }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">Déconnexion</a>
-                            </div>
-                            {% else %}
+                    <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 flex items-center justify-between w-full md:w-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 448 512" fill="white">
+                            
+                            <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                        </svg>
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div id="dropdownNavbar" class="hidden bg-white text-base z-10 list-none divide-y divide-gray-700 rounded shadow my-4 w-44 border-gray-700">
+                        <ul class="py-1" aria-labelledby="dropdownLargeButton">
+                        {% if is_granted("IS_AUTHENTICATED_FULLY") %} 
+                        {% set user = app.user %}
+                            <li>
+                                <a href="{{ path('user_show', {'id': user.id}) }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">{{ user.firstname }} {{ user.lastname }}</a>
+                            </li>
+                            <li class="hidden md:block">
+                                <a href="{{ path('favorites') }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">Mes favoris</a>
+                            </li>
+                            {% if is_granted("ROLE_ADMIN") %}
+                            <li>
+                                <a class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2" href="{{ path('app_back_default')}} ">Back-Office</a>
+                            </li>
+                            {% endif %} 
+                        </ul>
+                        <div class="py-1">
+                            <a href="{{ path('app_logout') }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">Déconnexion</a>
+                        </div>
+                        {% else %}
                             <div class="p-1">
                                 <a href="{{ path('app_login') }}" class="text-md hover:bg-gray-100 text-gray-700 block px-2 py-2">Inscription/Connexion</a>
                             </div>
-                            {% endif %}   
+                        {% endif %}   
                         </div>
                     </li>
                 </ul>

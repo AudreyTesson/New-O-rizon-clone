@@ -54,8 +54,6 @@ class CountryType extends AbstractType
                 "multiple" => false,
                 "expanded" => false,
             ])
-            // ->add('updatedAt')
-            // ->add('image')
         ;
     }
 

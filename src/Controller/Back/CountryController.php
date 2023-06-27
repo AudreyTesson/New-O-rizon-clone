@@ -63,7 +63,7 @@ class CountryController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_back_country_show", methods={"GET"})
+     * @Route("/{id}", name="app_back_country_show", methods={"GET"}, requirements={"id":"\d+"})
      */
     public function show(Country $country): Response
     {
@@ -73,7 +73,7 @@ class CountryController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_back_country_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="app_back_country_edit", methods={"GET", "POST"}, requirements={"id":"\d+"})
      */
     public function edit(Request $request, Country $country, CountryRepository $countryRepository): Response
     {
@@ -94,7 +94,7 @@ class CountryController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_back_country_delete", methods={"POST"})
+     * @Route("/{id}", name="app_back_country_delete", methods={"POST"}, requirements={"id":"\d+"})
      */
     public function delete(Request $request, Country $country, CountryRepository $countryRepository): Response
     {

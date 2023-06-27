@@ -29,8 +29,7 @@ const moreCriteria = {
             });
             moreCriteria.criteriaBtn.textContent = "Plus de critères";
         }
-    },
-        
+    },      
 }
 
 document.addEventListener('DOMContentLoaded', moreCriteria.init);

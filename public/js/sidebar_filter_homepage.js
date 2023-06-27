@@ -47,7 +47,6 @@ const sidebar_filter_homepage = {
         }
         home_desktop.classList.remove("blur-sm");
     }
-
 }
 
 document.addEventListener("DOMContentLoaded", sidebar_filter_homepage.init);

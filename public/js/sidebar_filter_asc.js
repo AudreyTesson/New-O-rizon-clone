@@ -32,7 +32,6 @@ const sidebar_filter_asc = {
     handleSidebarClose: function() {
         sidebar_filter_asc.sidebarMenu.classList.add('hidden');
     }
-
 }
 
 document.addEventListener("DOMContentLoaded", sidebar_filter_asc.init);

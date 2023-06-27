@@ -192,10 +192,7 @@ const reset_filter = {
         if(environment3.hasAttribute("checked")) {
             environment3.removeAttribute("checked");
         }
-
    }
-
-   
 }
 
 document.addEventListener('DOMContentLoaded', reset_filter.init)

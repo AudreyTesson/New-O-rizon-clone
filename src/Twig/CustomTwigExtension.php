@@ -16,7 +16,6 @@ class CustomTwigExtension extends AbstractExtension
 
     public function urlContains($haystack, $needle)
     {
-        // Check if the needle is present in the haystack URL
         return strpos($haystack, $needle) !== false;
     }
 }
