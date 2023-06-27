@@ -20,12 +20,16 @@ class LoginController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('sign-in');
-        // }
-
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
+    
+        if ($error) {
+            $this->addFlash(
+                'danger',
+                'Attention ! L\'email ou le mot de passe sont erronés.'
+            );
+        }   
+        
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
         

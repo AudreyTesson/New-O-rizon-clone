@@ -50,7 +50,7 @@ class ImageRepository extends ServiceEntityRepository
 
               $query = $entityManager->createQuery("
                     SELECT image.url AS imageUrl, image.id AS imageId, city.name AS cityName, city.id AS cityId, country.name AS countryName, country.id AS countryId
-                    FROM App\Entity\image image
+                    FROM App\Entity\Image image
                     JOIN image.country country
                     JOIN image.city city
                     GROUP BY city.id
