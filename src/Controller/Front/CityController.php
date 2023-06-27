@@ -6,6 +6,7 @@ use App\Data\FilterData;
 use App\Form\Front\FilterDataType;
 use App\Repository\CityRepository;
 use App\Repository\ImageRepository;
+use App\Repository\ReviewRepository;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,7 +28,8 @@ class CityController extends AbstractController
     {
         $cities = $cityRepository->findCountryAndImageByCity();
 
-        // sidebar filter form
+        
+
         $criteria = new FilterData();
         $formFilter = $this->createForm(FilterDataType::class, $criteria);
         $formFilter->handleRequest($request);
@@ -37,7 +39,11 @@ class CityController extends AbstractController
             $citiesFilter = $cityRepository->findByFilter($criteria);
             $citiesFilter = $paginatorInterface->paginate($citiesFilter, $request->query->getInt('page', 1),6);
 
-            return $this->render('front/cities/list.html.twig', ["citiesFilter" => $citiesFilter, "cities" => $cities, 'formFilter' => $formFilter->createView(),]);
+            return $this->render('front/cities/list.html.twig', [
+                "citiesFilter" => $citiesFilter, 
+                "cities" => $cities, 
+                "formFilter" => $formFilter->createView(),
+            ]);
         }
 
         $cities = $paginatorInterface->paginate($cities, $request->query->getInt('page', 1),6);
@@ -48,8 +54,6 @@ class CityController extends AbstractController
         ]);
     }
 
-
-
     /**
      * City Page
      * 
@@ -58,7 +62,8 @@ class CityController extends AbstractController
     public function show(
         $id, 
         CityRepository $cityRepository, 
-        ImageRepository $imageRepository
+        ImageRepository $imageRepository,
+        ReviewRepository $reviewRepository
         ): Response
     {
         $city = $cityRepository->find($id);
@@ -67,12 +72,21 @@ class CityController extends AbstractController
             throw new Exception("Nous n'avons pas encore de données sur cette ville", 404);
         }
 
-        $images = $imageRepository->findByDistinctCityImage();
+        $cities = $imageRepository->findByDistinctCityImage();
+
+        $allReviews = $reviewRepository->findBy(
+            [
+                "city" => $city
+            ]
+        );
 
         return $this->render('front/cities/show.html.twig', [
             'cityId' => $id,
             'city' => $city,
-            'images' => $images
+            'cities' => $cities,
+            "allReviewFromBDD" => $allReviews,
         ]);
     }
 }
+
+

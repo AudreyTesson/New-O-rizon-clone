@@ -32,6 +32,7 @@ class CountryController extends AbstractController
     {
         $countryId = $countryRepository->find($id);
         $citiesCountry = $cityRepository->findByCountry($countryId);
+        dump($citiesCountry);
         $cities = $cityRepository->findCountryAndImageByCity();
 
         if ($citiesCountry === null) {

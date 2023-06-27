@@ -45,17 +45,20 @@
             </a>
 
         </div>
-
+    {% else %}
+        <div class="my-16">
+        <p class="text-base italic">Vous n'avez pas encore de favoris</p>
+        </div>
     {% endfor %}
 
     </div>
+    <div class="ml-8">
 
+        <a href="{{ path('favorites_clear') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-sm inline-block" onclick="return confirm('Vider votre liste de favoris ?');">Vider la liste</a>
+
+    </div>
 </div>
 
-<div class="col">
 
-    <a href="{{ path('favorites_clear') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-sm inline-block" onclick="return confirm('Vider votre liste de favoris ?');">Vider la liste</a>
-
-</div>
 
 {% endblock %}

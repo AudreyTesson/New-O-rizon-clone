@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}New O'rizon{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# font family #}
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=atkinson-hyperlegible:400,400i,700,700i" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
         {# Map leaflet style #}
-        <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-        
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-
-        <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
+        <link rel="stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+        {# favicon #}
+        {# <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon"/> #}
+        <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon" />
         
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -35,11 +35,10 @@
 
         {# Back to top button #}
         {% set route = app.request.get('_route') %}
-        {% if route == 'cities_list' or route == 'cities_detail' or route == 'sort_asc' or route == 'sort_desc' %}
-        <button id="to-top-button" onclick="goToTop()" title="Go To Top" class="hidden md:hidden fixed z-90 bottom-8 right-8 border-0 w-10 h-10 drop-shadow-md bg-cyan-900 text-white text-4xl font-bold">&uarr;</button>
+        {% if route == 'cities_list' or route == 'cities_detail' or route == 'sort_asc' or route == 'sort_desc' or route == 'cities_country' %}
+        <button id="to-top-button" onclick="goToTop()" title="Go To Top" class="hidden md:hidden fixed z-40 bottom-8 right-5 border-0 w-10 h-10 drop-shadow-md bg-cyan-900 text-white text-4xl font-bold">&uarr;</button>
         {% endif %}
         
-        {% include "partials/_footer.html.twig" %}
 
         {% include "partials/_scripts.html.twig" %}
 

@@ -35,6 +35,8 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/login$, roles: PUBLIC_ACCESS }
+        # - { path: (?!/(login|register|reset-password)), roles: ROLE_USER}
+        - { path: ^/back, roles: ROLE_ADMIN }
 
     role_hierarchy: 
         # ROLE_ADMIN included ROLE_MANAGER

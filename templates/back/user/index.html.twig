@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+<<<<<<< HEAD
 {% block title %}User index{% endblock %}
 
 {% block body %}
@@ -16,11 +17,34 @@
                 <th>Lastname</th>
                 <th>Username</th>
                 <th>actions</th>
+=======
+{% block title %}Index des utilisateurs{% endblock %}
+
+{% block body %}
+
+<h1 class="text-3xl text-center my-8 font-bold text-cyan-900">Liste des utilisateurs</h1>
+
+    <table class="table mx-auto">
+        <thead>
+            <tr class="border-2 divide-x text-center">
+                <th>Id</th>
+                <th>Email</th>
+                <th>Rôles</th>
+                <th>Mot de passe</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Pseudo</th>
+                <th>Actions</th>
+>>>>>>> dev
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
+<<<<<<< HEAD
             <tr>
+=======
+            <tr class="border-2 divide-x text-center">
+>>>>>>> dev
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
@@ -29,17 +53,37 @@
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.username }}</td>
                 <td>
+<<<<<<< HEAD
                     <a href="{{ path('app_back_user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">edit</a>
+=======
+                    <a href="{{ path('app_back_user_show', {'id': user.id})  }}">
+                        <button type="button" class="my-2 w-full flex justify-center focus:outline-none text-white bg-sky-700 hover:bg-sky-600 focus:ring-4 focus:ring-sky-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-sky-400 dark:hover:bg-sky-500 dark:focus:ring-sky-700">Détails</button>
+                    </a>
+                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">
+                        <button type="button" class="my-2 w-full flex justify-center focus:outline-none text-white bg-rose-700 hover:bg-rose-600 focus:ring-4 focus:ring-rose-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-rose-400 dark:hover:bg-rose-500 dark:focus:ring-rose-700">Modifier</button>
+                    </a>
+>>>>>>> dev
                 </td>
             </tr>
         {% else %}
             <tr>
+<<<<<<< HEAD
                 <td colspan="8">no records found</td>
+=======
+                <td colspan="8">Pas d'enregistrements trouvés</td>
+>>>>>>> dev
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+<<<<<<< HEAD
     <a href="{{ path('app_back_user_new') }}">Create new</a>
+=======
+<a href="{{ path('app_back_user_new') }}">
+    <button type="button" class="my-2 mx-auto flex justify-center focus:outline-none text-white bg-emerald-700 hover:bg-emerald-600 focus:ring-4 focus:ring-emerald-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-emerald-400 dark:hover:bg-emerald-500 dark:focus:ring-emerald-700">Créer</button>
+</a>
+
+>>>>>>> dev
 {% endblock %}
