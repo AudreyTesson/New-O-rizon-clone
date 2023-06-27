@@ -1,78 +1,101 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}City{% endblock %}
+{% block title %}Détails de la ville{% endblock %}
 
 {% block body %}
-    <h1>Ville</h1>
+<div class="w-screen flex flex-col justify-center items-center">
+    <h1 class="text-3xl text-center my-8 font-bold text-cyan-900 w-full">Détails de la ville</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ city.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom de la ville</th>
-                <td>{{ city.name }}</td>
-            </tr>
-            <tr>
-                <th>Superficie en m²</th>
-                <td>{{ city.area }}</td>
-            </tr>
-            <tr>
-                <th>Date d'ajout</th>
-                <td>{{ city.createdAt ? city.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date de modification</th>
-                <td>{{ city.updatedAt ? city.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Qualité du réseau électrique</th>
-                <td>{{ city.electricity }}</td>
-            </tr>
-            <tr>
-                <th>Qualité du réseau Internet</th>
-                <td>{{ city.internet }}</td>
-            </tr>
-            <tr>
-                <th>SunshineRate</th>
-                <td>{{ city.sunshineRate }}</td>
-            </tr>
-            <tr>
-                <th>TemperatureAverage</th>
-                <td>{{ city.temperatureAverage }}</td>
-            </tr>
-            <tr>
-                <th>Cost</th>
-                <td>{{ city.cost }}</td>
-            </tr>
-            <tr>
-                <th>Language</th>
-                <td>{{ city.language }}</td>
-            </tr>
-            <tr>
-                <th>Demography</th>
-                <td>{{ city.demography }}</td>
-            </tr>
-            <tr>
-                <th>Housing</th>
-                <td>{{ city.housing }}</td>
-            </tr>
-            <tr>
-                <th>Timezone</th>
-                <td>{{ city.timezone }}</td>
-            </tr>
-            <tr>
-                <th>Environment</th>
-                <td>{{ city.environment }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div>
+        <table class="table">
+            <tbody class="border-2 divide-x divide-y text-center">
+                <tr>
+                    <th>Id</th>
+                    <td>{{ city.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom de la ville</th>
+                    <td>{{ city.name }}</td>
+                </tr>
+                <tr>
+                    <th>Pays</th>
+                    <td>{{ city.country.name }}</td>
+                </tr>
+                <tr>
+                    <th>Superficie en m²</th>
+                    <td>{{ city.area }}</td>
+                </tr>
+                <tr>
+                    <th>Date d'ajout</th>
+                    <td>{{ city.createdAt ? city.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Date de modification</th>
+                    <td>{{ city.updatedAt ? city.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Qualité du réseau électrique</th>
+                    <td>{{ city.electricity }}</td>
+                </tr>
+                <tr>
+                    <th>Qualité du réseau Internet</th>
+                    <td>{{ city.internet }}</td>
+                </tr>
+                <tr>
+                    <th>SunshineRate</th>
+                    <td>{{ city.sunshineRate }}</td>
+                </tr>
+                <tr>
+                    <th>TemperatureAverage</th>
+                    <td>{{ city.temperatureAverage }}</td>
+                </tr>
+                <tr>
+                    <th>Cost</th>
+                    <td>{{ city.cost }}</td>
+                </tr>
+                <tr>
+                    <th>Language</th>
+                    <td>{{ city.language }}</td>
+                </tr>
+                <tr>
+                    <th>Demography</th>
+                    <td>{{ city.demography }}</td>
+                </tr>
+                <tr>
+                    <th>Housing</th>
+                    <td>{{ city.housing }}</td>
+                </tr>
+                <tr>
+                    <th>Timezone</th>
+                    <td>{{ city.timezone }}</td>
+                </tr>
+                <tr>
+                    <th>Environment</th>
+                    <td>{{ city.environment }}</td>
+                </tr>
+                {# <tr>
+                    <th>Photo</th>
+                    <td>{{ city.image.url }}</td>
+                </tr> #}
+                {# <tr>
+                    <th>Photo</th>
+                    <td class ="align-middle text-start text-break max-w-2xs img-thumbnail"><img src="{{city.city.imageUrl}}"</img></td>
+                </tr> #}
+            </tbody>
+        </table>
+    
 
-    <a href="{{ path('app_back_city_index') }}">Retour à la liste</a>
+        <a href="{{ path('app_back_city_index') }}">
+            <button type="button" class="my-2 flex w-full justify-center focus:outline-none text-white bg-purple-900 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900
+            ">Retour à la liste</button>
+        </a>
 
-    <a href="{{ path('app_back_city_edit', {'id': city.id}) }}">Modifier</a>
+        <a href="{{ path('app_back_city_edit', {'id': city.id}) }}">
+            <button type="button" class="my-2 w-full flex justify-center focus:outline-none text-white bg-orange-700 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-700">Modifier</button>
+        </a>
 
-    {{ include('back/city/_delete_form.html.twig') }}
+        {{ include('back/city/_delete_form.html.twig') }}
+
+    </div>
+</div>
 {% endblock %}

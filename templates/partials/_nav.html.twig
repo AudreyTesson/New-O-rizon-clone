@@ -52,9 +52,11 @@
                                 <li class="hidden lg:block">
                                     <a href="{{ path('favorites') }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">Mes favoris</a>
                                 </li>
+                                {% if is_granted("ROLE_ADMIN") %}
                                 <li>
-                                    <a class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2" href="{{ path('app_back_default')}} ">Backoffice</a>
+                                    <a class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2" href="{{ path('app_back_default')}} ">Back-Office</a>
                                 </li>
+                                {% endif %} 
                             </ul>
                             <div class="py-1">
                                 <a href="{{ path('app_logout') }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">Déconnexion</a>

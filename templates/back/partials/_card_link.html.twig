@@ -1,7 +1,7 @@
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">{{ entity|capitalize }}</h5>
-    <a href="{{ path('app_back_' ~ entity ~ '_new')}}" class="card-link btn btn-success">Créer</a>
-    <a href="{{ path('app_back_' ~ entity ~ '_index')}}" class="card-link btn btn-primary">Liste</a>
+<div class="flex flex-wrap justify-center my-8 text-center">  
+  <div class="bg-white rounded-lg shadow-lg p-4 w-72 ">
+    <h5 class="text-xl font-bold mb-4">{{ entity|capitalize}}</h5>
+    <a href="{{ path('app_back_' ~ entity ~ '_new')}}" class="block px-4 py-2 text-white bg-green-500 rounded-lg text-center hover:bg-green-600">Créer</a>
+    <a href="{{ path('app_back_' ~ entity ~ '_index')}}" class="block mt-2 px-4 py-2 text-white bg-blue-500 rounded-lg text-center hover:bg-blue-600">Liste</a>
   </div>
 </div>

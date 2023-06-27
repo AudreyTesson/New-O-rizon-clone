@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification de l'image{% endblock %}
+
+{% block body %}
+        <h1 class="text-3xl text-center my-8 font-bold text-cyan-900">Modification de l'image</h1>
+
+    {{ include('back/image/_form.html.twig', {'button_label': 'Update'}) }}
+
+    {{ include('back/image/_delete_form.html.twig', {'button_label': 'Supprimer'}) }}
+{% endblock %}
