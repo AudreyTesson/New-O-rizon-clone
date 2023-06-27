@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des images{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl text-center my-8 font-bold text-cyan-900">Liste des images</h1>
+
+    <table class="table w-full">
+        <thead>
+            <tr class="border-2 divide-x text-center">
+                <th>Id</th>
+                <th>Photo</th>
+                <th>Url</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for image in images %}
+            <tr class="border-2 divide-x text-center">
+                <td>{{ image.id }}</td>
+                <td class ="align-middle text-start text-break w-screen max-w-xl img-thumbnail"><img src="{{image.url}}"</img></td>
+                <td>{{ image.url }}</td>
+                <td>
+                    <a href="{{ path('app_back_image_show', {'id': image.id}) }}">
+                        <button type="button" class="my-2 w-full flex justify-center focus:outline-none text-white bg-sky-700 hover:bg-sky-600 focus:ring-4 focus:ring-sky-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-sky-400 dark:hover:bg-sky-500 dark:focus:ring-sky-700">Détails</button>
+                    </a>
+                    <a href="{{ path('app_back_image_edit', {'id': image.id}) }}">
+                        <button type="button" class="my-2 w-full flex justify-center focus:outline-none text-white bg-orange-700 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-700">Modifier</button>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Pas d'enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_image_new') }}">
+        <button type="button" class="my-2 mx-auto flex justify-center focus:outline-none text-white bg-emerald-700 hover:bg-emerald-600 focus:ring-4 focus:ring-emerald-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-emerald-400 dark:hover:bg-emerald-500 dark:focus:ring-emerald-700">Créer</button>
+    </a>
+
+    <div class="navigation d-flex justify-content-center text-center">
+        {{ knp_pagination_render(images) }}
+    </div>
+
+{% endblock %}

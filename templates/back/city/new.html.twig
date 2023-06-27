@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle ville{% endblock %}
+
+{% block body %}
+  <h1 class="text-3xl text-center my-8 font-bold text-cyan-900">Créer une nouvelle ville</h1>
+
+  {{ include('back/city/_form.html.twig') }}
+{% endblock %}

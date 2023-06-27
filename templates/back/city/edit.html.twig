@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification de la ville{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl text-center my-8 font-bold text-cyan-900">Modification de la ville</h1>
+
+    {{ include('back/city/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+{% endblock %}
