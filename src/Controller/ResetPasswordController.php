@@ -23,6 +23,7 @@ use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Event\AuthenticationEvent;
 
 /**
@@ -85,20 +86,28 @@ class ResetPasswordController extends AbstractController
     /**
      * Validates and process the reset URL that the user clicked in their email.
      *
-     * @Route("/reset", name="app_reset_password")
+     * @Route("/reset/{token}", name="app_reset_password")
      */
-    public function reset(Request $request, TokenGeneratorInterface $tokenGeneratorInterface, UserPasswordHasherInterface $userPasswordHasher, TranslatorInterface $translator, string $token = null): Response
+    public function reset(Request $request,  
+    UserPasswordHasherInterface $userPasswordHasher, 
+    TranslatorInterface $translator,
+    string $token = null 
+    ): Response
     {
         if ($token) {
             // We store the token in session and remove it from the URL, to avoid the URL being
             // loaded in a browser and potentially leaking the token to 3rd party JavaScript.
             $this->storeTokenInSession($token);
-
+        
             return $this->redirectToRoute('app_reset_password');
         }
 
         $token = $this->getTokenFromSession();
-        if (null === $token) {
+        dump($token);
+
+
+        if (null === $token)
+         {
             throw $this->createNotFoundException('No reset password token found in the URL or in the session.');
         }
 
