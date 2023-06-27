@@ -54,34 +54,6 @@ class CityRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByCountry1($id)
-    {
-        $entityManager = $this->getEntityManager();
-
-        $dql = "
-        SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, co.name AS countryName, co.id AS countryId
-        FROM App\Entity\City c
-        JOIN App\Entity\Image i WITH i.city = c
-        JOIN App\Entity\Country co WITH c.country = co
-        WHERE (
-            SELECT COUNT(img.id) 
-            FROM App\Entity\Image img 
-            WHERE img.city = c.id 
-            AND img.id <= i.id)
-            = 1
-        AND 
-            WHERE countryId = $id
-        GROUP BY co.id
-        ";
-
-        $query = $entityManager->createQuery($dql);
-        $sortedCities = $query->getResult();
-
-        $sortedCities = $query->getResult();
-
-        return $sortedCities;
-    }
-
     public function findCountryAndImageByCity($order = null)
     {
         $entityManager = $this->getEntityManager();
@@ -141,29 +113,24 @@ class CityRepository extends ServiceEntityRepository
         $entityManager = $this->getEntityManager();
         $queryBuilder = $entityManager->createQueryBuilder();
 
-        $subQueryBuilder = $entityManager->createQueryBuilder();
-        $subQueryBuilder->select('MIN(img.id)')
-            ->from('App\Entity\Image', 'img')
-            ->where('img.city = c.id');
-
-        $queryBuilder->select('c', 'co', 'i')
+        $queryBuilder->select('c.id AS cityId, c.name AS cityName, co.id AS countryId, co.name AS countryName, i.id AS imageId, i.url AS imageUrl')
             ->from(City::class, 'c')
+            ->where($queryBuilder->expr()->like('c.name', ':name'))
             ->innerJoin('c.country', 'co')
             ->innerJoin('c.images', 'i')
-            ->andWhere($queryBuilder->expr()->in(
-                'i.id',
-                $subQueryBuilder->getDQL()
+            ->andWhere($queryBuilder->expr()->eq(
+                '(SELECT COUNT(img.id) 
+                    FROM App\Entity\Image img 
+                    WHERE img.city = c.id 
+                    AND img.id <= i.id)',
+                1
             ))
-            ->andWhere($queryBuilder->expr()->like('c.name', ':name'))
-            ->setParameter('name', "$search%")
-            ->orderBy('c.name', 'ASC');
+            ->orderBy('c.name', 'ASC')
+            ->setParameter('name', "$search%");
             
 
         return $queryBuilder->getQuery()->getResult();
-    }*/
-
-    
-
+    }
 
     /**
      * Retrieve data from database with criteria passed in filter form

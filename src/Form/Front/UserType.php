@@ -20,11 +20,11 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstname', TextType::class, ['label' => 'Prénom'])
-            ->add('lastname', TextType::class, ['label' => 'Nom'])
-            ->add('username', TextType::class, ['label' => 'Pseudonyme'])
+            ->add('firstname', TextType::class, ['label' => 'Prénom', "attr" => ["autocomplete" => "given-name"]])
+            ->add('lastname', TextType::class, ['label' => 'Nom', "attr" => ["autocomplete" => "family-name"]])
+            ->add('username', TextType::class, ['label' => 'Pseudonyme', "attr" => ["autocomplete" => "nickname"]])
             ->add('email', EmailType::class, [
-                "attr" => ["placeholder" => "user@newOrizon.com"]
+                "attr" => ["placeholder" => "user@newOrizon.com", "autocomplete" => "current-email"]
             ])
 
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {

@@ -64,11 +64,9 @@
                             <ul class="py-1" aria-labelledby="dropdownLargeButton">
                             {% if is_granted("IS_AUTHENTICATED_FULLY") %} 
                             {% set user = app.user %}
-                            {# ! add path() user profile #}
                                 <li>
                                     <a href="{{ path('user_show', {'id': user.id}) }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">{{ user.firstname }} {{ user.lastname }}</a>
                                 </li>
-                            {# ! add path() user favorites list  #}
                                 <li class="hidden lg:block">
                                     <a href="{{ path('favorites') }}" class="text-md hover:bg-gray-100 text-gray-700 block px-4 py-2">Mes favoris</a>
                                 </li>
