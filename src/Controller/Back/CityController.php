@@ -26,7 +26,7 @@ class CityController extends AbstractController
      */
     public function index(CityRepository $cityRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
-        $cities = $cityRepository->findCitiesList();
+        $cities = $cityRepository->findCountryAndImageByCity();
         $cities = $paginatorInterface->paginate($cities, 
         $request->query->getInt('page', 1),6);
 

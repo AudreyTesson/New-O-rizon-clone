@@ -1,13 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Country{% endblock %}
+{% block title %}Modifier le pays{% endblock %}
 
 {% block body %}
-    <h1>Edit Country</h1>
+    <h1 class="text-3xl text-center my-8 font-bold text-cyan-900">Modifier le pays</h1>
 
-    {{ include('back/country/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_back_country_index') }}">back to list</a>
-
-    {{ include('back/country/_delete_form.html.twig') }}
+    {{ include('back/country/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 {% endblock %}

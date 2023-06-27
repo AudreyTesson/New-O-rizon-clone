@@ -4,11 +4,14 @@
 
 {% block body %}
         
-            {% if is_granted('ROLE_ADMIN') %}
-                {% include 'back/partials/_card_link.html.twig' with { 'entity' : 'city' } %}
-                {% include 'back/partials/_card_link.html.twig' with { 'entity' : 'country' } %}
-                {% include 'back/partials/_card_link.html.twig' with { 'entity' : 'image' } %}
-                {# {% include 'back/partials/_card_link.html.twig' with { 'entity' : 'user' } %} #}
-            {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="grid grid-cols-3">
+        {% include 'back/partials/_card_link.html.twig' with { 'entity' : 'city' } %}
+        {% include 'back/partials/_card_link.html.twig' with { 'entity' : 'country' } %}
+        {% include 'back/partials/_card_link.html.twig' with { 'entity' : 'image' } %}
+        {% include 'back/partials/_card_link.html.twig' with { 'entity' : 'user' } %}
+        {% include 'back/partials/_card_link.html.twig' with { 'entity' : 'review' } %}
+    </div>
+    {% endif %}
 
 {% endblock %}

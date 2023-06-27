@@ -126,13 +126,6 @@ class CityType extends AbstractType
                 "expanded" => true,
                 "multiple" => false, 
                 ])
-            // ->add('images', EntityType::class, [
-            //     "class" => Image::class,
-            //     "choice_label" => "url",
-            //     "multiple" => false,
-            //     "expanded" => true,
-                // "mapped" => true,
-            // ])
         ;
     }
 

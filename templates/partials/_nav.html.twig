@@ -9,13 +9,16 @@
             {% if isBackOffice %}
 
                 <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="
-                {# {{ path('app_back_default') }} #}
+                {{ path('app_back_default') }}
                 "></i>Back</a>
                 <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="
-                {# {{ path('app_back_city_index') }} #}
+                {{ path('app_back_city_index') }}
                 "></i>Villes</a>
                 <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="
-                {# {{ path('app_back_image_index') }} #}
+                {{ path('app_back_country_index') }}
+                "></i>Pays</a>
+                <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="
+                {{ path('app_back_image_index') }}
                 "></i>Images</a>
                 <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="{{ path('app_back_review_index') }}"></i>Commentaires</a>
                 <a class="hidden md:block self-center md:text-sm lg:text-xl font-semibold whitespace-nowrap text-white ml-auto" href="{{ path('app_back_user_index') }}"></i>Utilisateurs</a>

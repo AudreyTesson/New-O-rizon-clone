@@ -1,46 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Country{% endblock %}
+{% block title %}Pays{% endblock %}
 
 {% block body %}
-    <h1>Country</h1>
+    <h1 class="text-3xl text-center my-8 font-bold text-cyan-900">Pays</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ country.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ country.name }}</td>
-            </tr>
-            <tr>
-                <th>Visa</th>
-                <td>{{ country.visa }}</td>
-            </tr>
-            <tr>
-                <th>VisaIsRequired</th>
-                <td>{{ country.visaIsRequired ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Currency</th>
-                <td>{{ country.currency }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ country.createdAt ? country.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ country.updatedAt ? country.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="flex flex-col items-center">
+        <table class="table mx-auto">
+            <tbody class="border-2 divide-x divide-y text-center">
+                <tr>
+                    <th>Id</th>
+                    <td>{{ country.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ country.name }}</td>
+                </tr>
+                <tr>
+                    <th>Visa</th>
+                    <td>{{ country.visa }}</td>
+                </tr>
+                <tr>
+                    <th>Visa requis</th>
+                    <td>{{ country.visaIsRequired ? 'Yes' : 'No' }}</td>
+                </tr>
+                <tr>
+                    <th>Devise</th>
+                    <td>{{ country.currency }}</td>
+                </tr>
+                <tr>
+                    <th>Date d'ajout</th>
+                    <td>{{ country.createdAt ? country.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Date de modification</th>
+                    <td>{{ country.updatedAt ? country.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                {% for city in country.cities %}
+                <tr>
+                    <th>Ville</th>
+                    <td>{{ country.id  }}</td>
+                </tr>
+                    
+                {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_back_country_index') }}">back to list</a>
+        <div class="flex flex-col items-center mt-4">
 
-    <a href="{{ path('app_back_country_edit', {'id': country.id}) }}">edit</a>
+            <a href="{{ path('app_back_country_edit', {'id': country.id}) }}        ">
+                <button type="button" class="my-2 focus:outline-none text-white bg-orange-700 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-orange-400 dark:hover:bg-orange-500 dark:focus:ring-orange-700">Modifier</button>
+            </a>
 
-    {{ include('back/country/_delete_form.html.twig') }}
+            {{ include('back/country/_delete_form.html.twig') }}
+
+            <a href="{{ path('app_back_country_index') }}">
+                <button type="button" class="my-2 focus:outline-none text-white bg-purple-900 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Retour à la liste</button>
+            </a>
+        </div>
+
+    </div>
+
 {% endblock %}
