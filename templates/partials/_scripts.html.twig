@@ -3,7 +3,7 @@
 
 
         {% set route = app.request.attributes.get('_route') %}
-        {% if route == "cities_list" or route == "sort_asc" or route == "sort_desc" or route == "cities_country" or app.request.requestUri starts with "/?filter_data" %}
+        {% if route == "cities_list" or route == "sort_asc" or route == "sort_desc" or route == "cities_country" or route == "app_front_city_search" or app.request.requestUri | urlContains ("filter_data") %}
             <script src="{{ asset('js/sort.js') }}"></script>
         {% endif %}
 
@@ -18,7 +18,7 @@
             <script src ="{{ asset('js/map.js') }}"></script>
         {% endif %}
 
-        {% set isFilterData = app.request.requestUri starts with "/?filter_data" %}
+        {% set isFilterData = app.request.requestUri | urlContains ("filter_data") %}
         {% if isFilterData %}
             <script src="{{ asset('js/sidebar_filter_data.js')}}"></script>
             <script src="{{ asset('js/reset_filter.js') }}"></script>
