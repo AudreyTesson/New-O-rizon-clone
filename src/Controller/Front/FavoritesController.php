@@ -3,8 +3,6 @@
 namespace App\Controller\Front;
 
 use App\Repository\CityRepository;
-use App\Repository\ImageRepository;
-use App\Service\FavoritesService;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
@@ -23,19 +21,15 @@ class FavoritesController extends AbstractController
     /**
      * @Route("/favorites", name="favorites")
      */
-    public function favorites(PaginatorInterface $paginatorInterface, ImageRepository $imageRepository, Request $request): Response
+    public function favorites(PaginatorInterface $paginatorInterface, CityRepository $cityRepository, Request $request): Response
     {
         /** @var \App\Entity\User */
         $user = $this->getUser();
 
         $favoritesList = $user->getCity();
 
-        $images = $imageRepository->findByDistinctCityImage();
-
-        $images = $paginatorInterface->paginate($images, $request->query->getInt('page', 1),6);
-
         return $this->render('front/favorites/index.html.twig', [
-            "images" => $images,
+            // "images" => $images,
             "city" => $favoritesList
         ]);
     }

@@ -36,7 +36,6 @@ class SortController extends AbstractController
             return $this->render('front/cities/list.html.twig', ["citiesFilter" => $citiesFilter, 'sortOption' => $order, "cities" => $cities, 'formFilter' => $formFilter->createView(),]);
         }
 
-
         $cities = $paginatorInterface->paginate($cities, $request->query->getInt('page', 1),9);
 
         return $this->render('front/cities/list.html.twig', [

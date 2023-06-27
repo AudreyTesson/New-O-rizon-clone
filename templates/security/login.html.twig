@@ -5,7 +5,7 @@
 
     <div class="container mx-auto">
 
-        <div class="flex flex-col justify-center items-center px-6 py-12 lg:px-8">
+        <div class="flex flex-col justify-center items-center px-6 pb-12 lg:px-8">
 
             <div class="w-full bg-[url('https://c.pxhere.com/photos/a3/18/airport_gate_flight_suvarnabhumi_airport_thailand_terminal-495141.jpg!d')] bg-cover bg-center">
                 <div class="w-auto h-48 flex justify-center items-center backdrop-brightness-50">
@@ -20,33 +20,33 @@
                 <form class="space-y-6" action="#" method="POST">
                 
 
-                <!--<h5 class="text-xl font-medium text-gray-900 dark:text-white">New Orizon</h5>-->
-                <div>
-                    <label for="email" class="block mb-2 text-base font-medium text-black dark:text-white">Votre Email</label>
+                    <!--<h5 class="text-xl font-medium text-gray-900 dark:text-white">New Orizon</h5>-->
+                    <div>
+                            <label for="email" class="block mb-2 text-base font-medium text-black dark:text-white">Votre Email</label>
+                        
+                        {#  autocomplete="current-email" qui reprend les infos contenu dans le navigateur de l'utilisateur #}
+                        <input type="email" name="email" id="email" autocomplete="current-email"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="nom@newOrizon.com" required>
+                    </div>
                     
-                    {#  autocomplete="current-email" qui reprend les infos contenu dans le navigateur de l'utilisateur #}
-                    <input type="email" name="email" id="email" autocomplete="current-email"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="nom@newOrizon.com" required>
-                </div>
-                <div>
-                    <label for="password" class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Votre mot de passe</label>
-                    <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
-                {# <input type="hidden" name="_target_path" value="/account"> #}
-                </div>
-                <div class="flex items-start">
-                {# TODO redirection vers une page de confirmation de l'email et réinitialisation du mot de passe }
-                {#  <a href="#" class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500">Mot de passe perdu?</a> #}
-                </div>
-                <button type="submit" class="w-full text-white bg-cyan-600 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Se connecter</button>
-                <div class="text-base font-medium text-gray-500 dark:text-gray-300">
-                
-                    {# TODO redirection à prévoir sur la page d'accueil 'home' #}
-                    Pas encore inscrit? <a href="{{ path('sign-in') }}" class="text-blue-700 hover:underline dark:text-blue-500">Créez votre compte</a>
-                </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Votre mot de passe</label>
+                        <input type="password" name="password" id="password" placeholder="••••••••" autocomplete="off" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                    {# <input type="hidden" name="_target_path" value="/account"> #}
+                    </div>
+                    
+                    <div class="flex items-start">
+                    {# TODO redirection vers une page de confirmation de l'email et réinitialisation du mot de passe }
+                    {#  <a href="#" class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500">Mot de passe perdu?</a> #}
+                    </div>
+                    <button type="submit" class="w-full text-white bg-cyan-900 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Se connecter</button>
+                    <div class="text-base font-medium text-gray-500 dark:text-gray-300">
+                        Pas encore inscrit? <a href="{{ path('sign-in') }}" class="text-blue-700 hover:underline dark:text-blue-500">Créez votre compte</a>
+                    </div>
 
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-            </form>
+                </form>
                 
                 </div>
             </div>

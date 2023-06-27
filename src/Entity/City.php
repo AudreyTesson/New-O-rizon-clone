@@ -6,6 +6,7 @@ use App\Repository\CityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CityRepository::class)
@@ -21,6 +22,8 @@ class City
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotBlank
      */
     private $name;
 
@@ -31,13 +34,15 @@ class City
 
     /**
      * @ORM\Column(type="datetime")
+     * 
+     * @Assert\NotBlank
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updateAt;
+    private $updatedAt;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -81,6 +86,8 @@ class City
 
     /**
      * @ORM\Column(type="integer")
+     * 
+     * @Assert\NotBlank
      */
     private $timezone;
 
@@ -106,10 +113,22 @@ class City
      */
     private $images;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Review::class, mappedBy="city")
+     */
+    private $reviews;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $rating;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->createdAt = new \DateTime;
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -153,14 +172,14 @@ class City
         return $this;
     }
 
-    public function getUpdateAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updateAt;
+        return $this->updatedAt;
     }
 
-    public function setUpdateAt(?\DateTimeInterface $updateAt): self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
-        $this->updateAt = $updateAt;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
@@ -353,5 +372,47 @@ class City
 
         return $this;
     }
- 
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setCity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getCity() === $this) {
+                $review->setCity(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getRating(): ?int
+    {
+        return $this->rating;
+    }
+
+    public function setRating(?int $rating): self
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
 }
