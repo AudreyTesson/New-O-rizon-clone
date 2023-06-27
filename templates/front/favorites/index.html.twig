@@ -28,27 +28,26 @@
                         <h2 class="p-2 text-2xl font-bold w-fit">
                             {{ cityFav.country.name}}</h2>
 
-
                         {% include "/partials/_favorites.html.twig" with {'city': cityFav} %}
 
                     </span>
 
                     <div class="absolute inset-x-0 bottom-4 flex justify-center drop-shadow-lg">
-                        <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;"></i>
-                        <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;"></i>
-                        <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;"></i>
-                        <i class="fa-regular fa-star-half-stroke drop-shadow-lg fa-lg" style="color: #e4a11b;"></i>
-                        <i class="fa-regular fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;"></i>
+                    {% set ratingStars = cityFav.rating|round %}
+                    {% include 'partials/_stars.html.twig' with { ratingStars: ratingStars } %}
                     </div>
 
                 </div>
             </a>
 
         </div>
+
     {% else %}
+
         <div class="my-16">
         <p class="text-base italic">Vous n'avez pas encore de favoris</p>
         </div>
+        
     {% endfor %}
 
     </div>

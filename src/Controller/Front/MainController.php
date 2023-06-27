@@ -2,17 +2,15 @@
 
 namespace App\Controller\Front;
 
-use App\Entity\City;
 use App\Data\FilterData;
 use App\Form\Front\FilterDataType;
 use App\Repository\CityRepository;
-use App\Repository\ImageRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
+
 
 
 class MainController extends AbstractController
@@ -66,7 +64,8 @@ class MainController extends AbstractController
         $search = $request->query->get('search', '');
 
         $cities = $cityRepository->findByCityName($search);
-        if ($cities === null) {
+        
+        if ($cities === []) {
             throw $this->createNotFoundException("Cette ville n'est pas répertoriée/n'existe pas");
         }
 
