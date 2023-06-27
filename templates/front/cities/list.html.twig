@@ -4,7 +4,13 @@
 
 {% block body %}
 
-{% include 'partials/_sort.html.twig' %}
+{% set route = app.request.attributes.get("_route") %}
+{% set isAsc = app.request.requestUri ends with ('/cities/asc') %}
+{% set isDesc = app.request.requestUri ends with ('/cities/desc') %}
+{% if route == "cities_list" or isAsc or isDesc %}
+    {% include 'partials/_sort.html.twig' %}
+{% endif %}
+
 {% include 'partials/_filter_button.html.twig'%}
 
 {% set isSorted = (app.request.attributes.get("_route") ends with "sort_asc")%}
