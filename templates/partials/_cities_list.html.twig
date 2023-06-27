@@ -127,15 +127,12 @@
                         {{ city.country.name}}</h2>
                     {% include "/partials/_favorites.html.twig" %}
                 </span>
-          
+
 {% endif %}
                 {# stars rating #}
                 <div class="absolute inset-x-0 bottom-4 flex justify-center drop-shadow-lg">
-                    <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                    <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                    <i class="fa-solid fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                    <i class="fa-regular fa-star-half-stroke drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
-                    <i class="fa-regular fa-star drop-shadow-lg fa-lg" style="color: #e4a11b;;"></i>
+                {% set ratingStars = city.cityRating|round %}
+                {% include 'partials/_stars.html.twig' with { ratingStars: ratingStars } %}
                 </div>
             </div>
         </a>
