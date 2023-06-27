@@ -70,12 +70,9 @@ class MainController extends AbstractController
         } else {
             $this->redirectToroute('cities_list');
         }
-         dump($search);
-        dump($cities);
+
         $cities = $paginator->paginate($cities, $request->query->getInt('page', 1),6);
         
-       
-
         // sidebar filter form
         $criteria = new FilterData();
         $formFilter = $this->createForm(FilterDataType::class, $criteria);
