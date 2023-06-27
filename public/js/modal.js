@@ -17,8 +17,7 @@ const modal = {
         modalSuccessElements.forEach((modalSuccess) => {
             modalSuccess.classList.add("hidden");
         })
-    },
-        
+    },      
 }
 
 document.addEventListener('DOMContentLoaded', modal.init);

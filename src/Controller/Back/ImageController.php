@@ -61,7 +61,7 @@ class ImageController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_back_image_show", methods={"GET"})
+     * @Route("/{id}", name="app_back_image_show", methods={"GET"}, requirements={"id":"\d+"})
      */
     public function show(Image $image): Response
     {
@@ -71,7 +71,7 @@ class ImageController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_back_image_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="app_back_image_edit", methods={"GET", "POST"}, requirements={"id":"\d+"})
      */
     public function edit(Request $request, Image $image, ImageRepository $imageRepository): Response
     {
@@ -91,7 +91,7 @@ class ImageController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_back_image_delete", methods={"POST"})
+     * @Route("/{id}", name="app_back_image_delete", methods={"POST"}, requirements={"id":"\d+"})
      */
     public function delete(Request $request, Image $image, ImageRepository $imageRepository): Response
     {

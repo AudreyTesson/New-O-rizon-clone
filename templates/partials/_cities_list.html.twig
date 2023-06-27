@@ -12,7 +12,6 @@
 
         <a href="{{ path('cities_detail', {'id': city.id}) }}">
             <div class="w-full h-96 relative overflow-hidden">
-                {# ! retrieve 1 image by country by city with dql request  #}
                 <div class="w-full h-full absolute transition-transform duration-300 hover:scale-105"
                 style="background-image:url('{{ city.country.image.url }}')">
                 </div>

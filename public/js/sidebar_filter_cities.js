@@ -32,7 +32,6 @@ const sidebar_filter_cities = {
     handleSidebarClose: function() {
         sidebar_filter_cities.sidebarMenu.classList.add('hidden');
     }
-
 }
 
 document.addEventListener("DOMContentLoaded", sidebar_filter_cities.init);
