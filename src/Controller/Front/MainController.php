@@ -133,5 +133,20 @@ class MainController extends AbstractController
         ]);
     }
 
+    /**
+     * Legal Notices page
+     * 
+     * @Route("/legal-notices", name="legal_notices", methods={"GET"})
+     * 
+     * @return Reponse
+     */
+
+    public function legalNotices()
+    {
+        return $this->render('front/footer/legal_notices.html.twig', [
+            
+        ]);
+    }
+
 }
 
