@@ -3,8 +3,6 @@
 namespace App\Controller\Front;
 
 use App\Repository\CityRepository;
-use App\Repository\ImageRepository;
-use App\Service\FavoritesService;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;

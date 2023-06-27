@@ -4,7 +4,13 @@
 
 {% block body %}
 
-{% include 'partials/_sort.html.twig' %}
+{% set route = app.request.attributes.get("_route") %}
+{% set isAsc = app.request.requestUri ends with ('/cities/asc') %}
+{% set isDesc = app.request.requestUri ends with ('/cities/desc') %}
+{% if route == "cities_list" or isAsc or isDesc %}
+    {% include 'partials/_sort.html.twig' %}
+{% endif %}
+
 {% include 'partials/_filter_button.html.twig'%}
 
 {% set isSorted = (app.request.attributes.get("_route") ends with "sort_asc")%}
@@ -12,8 +18,8 @@
 {% set isCitiesList = (app.request.attributes.get("_route") ends with "cities_list") %}
 
     {% if citiesCountry is defined %}
-        <div class="grid w-screen justify-center">
-            <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
+        <div class="grid w-full justify-center">
+            <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-auto md:mx-4 p-4 gap-x-2 gap-y-4">
                 
                 {% for city in citiesCountry %}
 
@@ -44,8 +50,8 @@
         </div>
 
     {% elseif citiesFilter is defined %}
-        <div class="grid w-screen justify-center">
-            <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
+        <div class="grid w-full justify-center">
+            <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-auto md:mx-4 p-4 gap-x-2 gap-y-4">
             
                 {% for city in citiesFilter %}
 
@@ -85,8 +91,8 @@
 
     {% else %}
             
-        <div class="grid w-screen justify-center">
-            <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
+        <div class="grid w-full justify-center">
+            <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-auto md:mx-4 p-4 gap-x-2 gap-y-4">
             
                 {% for city in cities %}
 

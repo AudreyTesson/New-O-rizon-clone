@@ -26,32 +26,6 @@ class ReviewController extends AbstractController
         ReviewRepository $reviewRepository
     ): Response
     {
-
-        // $city = $cityRepository->find($id);
-        
-        // if ($city === null){ throw $this->createNotFoundException("cette ville n'est pas encore ajoutée");}
-
-        // $newReview = new Review();
-        // $form = $this->createForm(ReviewType::class, $newReview);
-
-        // $form->handleRequest($request);
-
-        // if ($form->isSubmitted() && $form->isValid())
-        // {
-        //     $newReview->setCity($city);
-
-        //     $newReview->setCreatedAt(new DateTime('now'));
-
-        //     $entityManagerInterface->persist($newReview);
-        //     $entityManagerInterface->flush();
-
-        //     return $this->redirectToRoute("cities_detail", ["id"=> $city->getId()]);
-        // }
-
-        // return $this->renderForm('front/review/index.html.twig', [
-        //     "city" => $city,
-        //     "formulaire" => $form
-        // ]);
         $reviewForForm = new Review();
         $city = $cityRepository->find($id);
     

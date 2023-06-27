@@ -1,10 +1,11 @@
 const modal = {
 
-    init: function(){
-        const close = document.querySelector(".close_modal");
-        if (close) {
-        // event listener on close modal button
-        close.addEventListener('click', modal.closeModal);
+    init: function() {
+        const closeElements = document.querySelectorAll(".close_modal");
+        if (closeElements) {
+            closeElements.forEach((close) => {
+                close.addEventListener('click', modal.closeModal);
+            });
         }
     },
 
@@ -12,8 +13,10 @@ const modal = {
      * Method to close the modal on click event
      */
     closeModal: function(){
-        const modalSuccess = document.querySelector(".modal");
-        modalSuccess.classList.add("hidden");
+        const modalSuccessElements = document.querySelectorAll(".modal");
+        modalSuccessElements.forEach((modalSuccess) => {
+            modalSuccess.classList.add("hidden");
+        })
     },
         
 }

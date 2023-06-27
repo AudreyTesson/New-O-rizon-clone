@@ -28,8 +28,6 @@ class CityController extends AbstractController
     {
         $cities = $cityRepository->findCountryAndImageByCity();
 
-        
-
         $criteria = new FilterData();
         $formFilter = $this->createForm(FilterDataType::class, $criteria);
         $formFilter->handleRequest($request);

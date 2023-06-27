@@ -31,12 +31,16 @@
 
         {% include "partials/_flash.html.twig" %}
 
-        {% block body %}{% endblock %}
+    <main>
+            {% block body %}{% endblock %}
+    </main>        
+            
+        {% include "partials/_footer.html.twig" %}
 
         {# Back to top button #}
         {% set route = app.request.get('_route') %}
         {% if route == 'cities_list' or route == 'cities_detail' or route == 'sort_asc' or route == 'sort_desc' or route == 'cities_country' %}
-        <button id="to-top-button" onclick="goToTop()" title="Go To Top" class="hidden md:hidden fixed z-40 bottom-8 right-5 border-0 w-10 h-10 drop-shadow-md bg-cyan-900 text-white text-4xl font-bold">&uarr;</button>
+        <button id="to-top-button" title="Go To Top" class="hidden md:hidden fixed z-40 bottom-8 right-5 border-0 w-10 h-10 drop-shadow-md bg-cyan-900 text-white text-4xl font-bold">&uarr;</button>
         {% endif %}
         
 

@@ -5,10 +5,12 @@ namespace App\DataFixtures;
 use App\Entity\City;
 use App\Entity\Country;
 use App\Entity\Image;
+use App\Entity\Review;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Bluemmb\Faker\PicsumPhotosProvider;
+use DateTime;
 use Faker\Factory;
 use Faker\Provider\fr_FR\Address;
 
@@ -65,7 +67,8 @@ class AppFixtures extends Fixture
                     ->setTemperatureAverage($faker->numberBetween(-50, 50))
                     ->setSunshineRate($randomLevel)
                     ->setCreatedAt($faker->dateTime())
-                    ->setCountry($randomCountry);
+                    ->setCountry($randomCountry)
+                    ->setRating($faker->numberBetween(1,5));
 
             $manager->persist($city);
             $cities[] = $city;
@@ -99,29 +102,55 @@ class AppFixtures extends Fixture
         }
 
         // Create 2 users 
-            // Create admin
-            $admin = new User();
+        // Create admin
+        $admin = new User();
 
-            $admin  ->setEmail('admin@admin.com')
-                    ->setPassword('$2y$13$x.pNoMbX5ikG8Vga/M/XueIl1WcQQmIeIwpasn5NL0/TrM8jURoPC')
-                    ->setFirstname($faker->firstName())
-                    ->setLastname($faker->lastName())
-                    ->setUsername($faker->userName())
-                    ->setRoles(['ROLE_ADMIN']);
+        $admin  ->setEmail('admin@admin.com')
+                ->setPassword('$2y$13$x.pNoMbX5ikG8Vga/M/XueIl1WcQQmIeIwpasn5NL0/TrM8jURoPC')
+                ->setFirstname($faker->firstName())
+                ->setLastname($faker->lastName())
+                ->setUsername($faker->userName())
+                ->setRoles(['ROLE_ADMIN']);
 
-            $manager->persist($admin);
+        $manager->persist($admin);
 
-            // Create user
-            $user = new User();
+        // Create user
+        $user = new User();
 
-            $user   ->setEmail('user@user.com')
-                    ->setPassword('$2y$13$vdXTZhmBoGkfamUa5gC7iOCQ1lTDgyPbI6B1bXjL2C7QVzfGrwADu')
-                    ->setFirstname($faker->firstName())
-                    ->setLastname($faker->lastName())
-                    ->setUsername($faker->userName())
-                    ->setRoles(['ROLE_USER']);
+        $user   ->setEmail('user@user.com')
+                ->setPassword('$2y$13$vdXTZhmBoGkfamUa5gC7iOCQ1lTDgyPbI6B1bXjL2C7QVzfGrwADu')
+                ->setFirstname($faker->firstName())
+                ->setLastname($faker->lastName())
+                ->setUsername($faker->userName())
+                ->setRoles(['ROLE_USER']);
 
-            $manager->persist($user);
+        $manager->persist($user);
+
+        // create Reviews
+        $rating = [];
+        foreach ($cities as $city) {
+            $randomNbReview = mt_rand(0, 5);
+            
+            for ($i=0; $i < $randomNbReview; $i++) {
+                /** @var Review $newReview */
+                $newReview = new Review();
+                $newReview->setUsername($faker->userName());
+                $newReview->setContent($faker->realText(30, 1));
+                $newReview->setRating($faker->numberBetween(1,5));
+
+                $newReview->setCreatedAt(new DateTime($faker->date()));
+
+                $rating[] = $newReview->getRating();
+                $sum = array_sum($rating);
+                $count = count($rating);
+                $average = round($sum/$count, 1);
+                $city->setRating($average);
+                $newReview->setCity($city);
+
+                $manager->persist($newReview);
+
+            }
+        }
 
         $manager->flush();
     }

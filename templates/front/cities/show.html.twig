@@ -14,8 +14,8 @@
         </span>
 
         {# stars rating #}
-        <div class="flex justify-center"> 
-            <div class="flex flex-nowrap items-center justify-center w-48 h-8 backdrop-brightness-75 drop-shadow-lg">
+        <div class="absolute left-2 md:left-0 top-2"> 
+            <div class="flex flex-nowrap items-center justify-center w-18 md:w-48 h-8 drop-shadow-lg">
 
             <div>
                 {% set ratingStars = city.rating|round(0, 'floor') %}

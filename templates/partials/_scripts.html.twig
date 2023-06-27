@@ -1,10 +1,14 @@
         <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
-        <script src="{{ asset('js/scroll.js') }}"></script>
         <script src="{{ asset('js/modal.js') }}"></script>
 
+
         {% set route = app.request.attributes.get('_route') %}
-        {% if route == "cities_list" or route == "sort_asc" or route == "sort_desc" or route == "cities_country" or app.request.requestUri starts with "/?filter_data" %}
+        {% if route == "cities_list" or route == "sort_asc" or route == "sort_desc" or route == "cities_country" or route == "app_front_city_search" or app.request.requestUri | urlContains ("filter_data") %}
             <script src="{{ asset('js/sort.js') }}"></script>
+        {% endif %}
+
+        {% if route == 'cities_list' or route == 'cities_detail' or route == 'sort_asc' or route == 'sort_desc' or route == 'cities_country' %}
+            <script src="{{ asset('js/scroll.js') }}"></script>
         {% endif %}
 
         {% if route == "cities_detail" %}
@@ -14,7 +18,7 @@
             <script src ="{{ asset('js/map.js') }}"></script>
         {% endif %}
 
-        {% set isFilterData = app.request.requestUri starts with "/?filter_data" %}
+        {% set isFilterData = app.request.requestUri | urlContains ("filter_data") %}
         {% if isFilterData %}
             <script src="{{ asset('js/sidebar_filter_data.js')}}"></script>
             <script src="{{ asset('js/reset_filter.js') }}"></script>

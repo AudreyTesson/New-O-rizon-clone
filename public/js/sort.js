@@ -1,19 +1,27 @@
-const menuButton = document.getElementById('menu-button');
-const dropdownMenu = document.getElementById('dropdownMenu');
-const closeIcon = document.getElementById('close-button');
+const sort = {
 
-menuButton.addEventListener('click', () => {
-    dropdownMenu.classList.toggle('hidden');
-});
+    menuButton: document.getElementById('menu-button'),
+    dropdownMenu:  document.getElementById('dropdownMenu'),
+    closeIcon: document.getElementById('close-button'),
 
-document.addEventListener('click', (event) => {
-    const targetElement = event.target;
-    if (!targetElement.closest('.relative')) {
-        dropdownMenu.classList.add('hidden');
-    }
-});
+    init: function() {
+        sort.menuButton.addEventListener('click', () => {
+            sort.dropdownMenu.classList.toggle('hidden');
+        });
 
-closeIcon.addEventListener('click', (event) => {
-    event.stopPropagation();
-    dropdownMenu.classList.add('hidden');
-});
+        document.addEventListener('click', (event) => {
+            const targetElement = event.target;
+            if (!targetElement.closest('.relative')) {
+                sort.dropdownMenu.classList.add('hidden');
+            }
+        });
+
+        sort.closeIcon.addEventListener('click', (event) => {
+            event.stopPropagation();
+            sort.dropdownMenu.classList.add('hidden');
+        });
+    },
+
+}
+
+document.addEventListener('DOMContentLoaded', sort.init)
