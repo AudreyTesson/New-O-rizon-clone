@@ -59,7 +59,7 @@ class CityRepository extends ServiceEntityRepository
         $entityManager = $this->getEntityManager();
 
         $dql = "
-        SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, c.rating AS cityRating, co.name AS countryName, co.id AS countryId
+        SELECT c.id AS cityId, i.id AS imageId, i.url AS imageUrl, c.name AS cityName, c.rating AS cityRating, c.area AS cityArea, c.createdAt AS cityCreatedAt, c.updatedAt AS cityUpdatedAt, c.electricity AS cityElectricity, c.internet AS cityInternet, c.sunshineRate AS citySunshineRate, c.temperatureAverage AS cityTemperatureAverage, c.cost AS cityCost, c.language AS cityLanguage, c.demography AS cityDemography, c.housing AS cityHousing, c.timezone AS cityTimezone, c.environment AS cityEnvironment, co.name AS countryName, co.id AS countryId
         FROM App\Entity\City c
         JOIN App\Entity\Image i WITH i.city = c
         JOIN App\Entity\Country co WITH c.country = co
@@ -104,30 +104,6 @@ class CityRepository extends ServiceEntityRepository
             ))
             ->orderBy('c.name', 'ASC')
             ->setParameter('name', "$search%");
-
-        return $queryBuilder->getQuery()->getResult();
-    }
-
-   /* public function findByCityName($search)
-    {
-        $entityManager = $this->getEntityManager();
-        $queryBuilder = $entityManager->createQueryBuilder();
-
-        $queryBuilder->select('c.id AS cityId, c.name AS cityName, co.id AS countryId, co.name AS countryName, i.id AS imageId, i.url AS imageUrl')
-            ->from(City::class, 'c')
-            ->where($queryBuilder->expr()->like('c.name', ':name'))
-            ->innerJoin('c.country', 'co')
-            ->innerJoin('c.images', 'i')
-            ->andWhere($queryBuilder->expr()->eq(
-                '(SELECT COUNT(img.id) 
-                    FROM App\Entity\Image img 
-                    WHERE img.city = c.id 
-                    AND img.id <= i.id)',
-                1
-            ))
-            ->orderBy('c.name', 'ASC')
-            ->setParameter('name', "$search%");
-            
 
         return $queryBuilder->getQuery()->getResult();
     }

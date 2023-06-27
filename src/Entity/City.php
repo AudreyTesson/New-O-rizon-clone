@@ -6,6 +6,7 @@ use App\Repository\CityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CityRepository::class)
@@ -21,6 +22,8 @@ class City
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotBlank
      */
     private $name;
 
@@ -31,13 +34,15 @@ class City
 
     /**
      * @ORM\Column(type="datetime")
+     * 
+     * @Assert\NotBlank
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updateAt;
+    private $updatedAt;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -81,6 +86,8 @@ class City
 
     /**
      * @ORM\Column(type="integer")
+     * 
+     * @Assert\NotBlank
      */
     private $timezone;
 
@@ -120,6 +127,7 @@ class City
     {
         $this->users = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->createdAt = new \DateTime;
         $this->reviews = new ArrayCollection();
     }
 
@@ -164,14 +172,14 @@ class City
         return $this;
     }
 
-    public function getUpdateAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updateAt;
+        return $this->updatedAt;
     }
 
-    public function setUpdateAt(?\DateTimeInterface $updateAt): self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
-        $this->updateAt = $updateAt;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

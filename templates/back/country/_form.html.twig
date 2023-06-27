@@ -1,5 +1,5 @@
-{% set isNew = (app.request.attributes.get("_route") ends with "user_new")%}
-{% set isDelete = (app.request.attributes.get("_route") ends with "user_delete")%}
+{% set isNew = (app.request.attributes.get("_route") ends with "country_new")%}
+{% set isDelete = (app.request.attributes.get("_route") ends with "country_delete")%}
 
 <div class="w-full flex justify-center">
 
@@ -9,23 +9,15 @@
 
         {% if isDelete %}
 
-            {{ include('back/user/_delete_form.html.twig') }}
+            {{ include('back/country/_delete_form.html.twig') }}
 
         {% endif %}
 
         <button class="flex w-full justify-center rounded-md bg-cyan-900 px-3 py-1.5 text-base font-medium leading-6 text-white shadow-sm hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600 mt-6">{{ button_label|default('Sauvegarder') }}</button>
 
-        <a href="{{ path('app_back_user_index') }}">
+        <a href="{{ path('app_back_country_index') }}">
             <button type="button" class="my-2 flex w-full justify-center focus:outline-none text-white bg-purple-900 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 text-base font-medium leading-6 rounded-lg px-3 py-1.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Retour à la liste</button>
         </a>
-        
-        {# {% if not isNew %}
-
-            {{ include('back/user/_delete_form.html.twig') }}
-
-        {% endif %} #}
-
-
         
     {{ form_end(form) }}
 

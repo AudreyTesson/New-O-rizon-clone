@@ -26,7 +26,6 @@
         {% endblock %}
     </head>
     <body>
-
         {% set isBackOffice = (app.request.attributes.get("_route") starts with "app_back_")%}
         {% include 'partials/_nav.html.twig' with {'isBackOffice': isBackOffice}  %}
 
