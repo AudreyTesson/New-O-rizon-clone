@@ -21,7 +21,6 @@ const sort = {
             sort.dropdownMenu.classList.add('hidden');
         });
     },
-
 }
 
 document.addEventListener('DOMContentLoaded', sort.init)

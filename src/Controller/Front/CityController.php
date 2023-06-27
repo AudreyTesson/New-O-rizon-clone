@@ -5,7 +5,6 @@ namespace App\Controller\Front;
 use App\Data\FilterData;
 use App\Form\Front\FilterDataType;
 use App\Repository\CityRepository;
-use App\Repository\ImageRepository;
 use App\Repository\ReviewRepository;
 use Exception;
 use Knp\Component\Pager\PaginatorInterface;
@@ -60,7 +59,6 @@ class CityController extends AbstractController
     public function show(
         $id, 
         CityRepository $cityRepository, 
-        ImageRepository $imageRepository,
         ReviewRepository $reviewRepository
         ): Response
     {
@@ -69,8 +67,6 @@ class CityController extends AbstractController
         if ($city === null) {
             throw new Exception("Nous n'avons pas encore de données sur cette ville", 404);
         }
-
-        $cities = $imageRepository->findByDistinctCityImage();
 
         $allReviews = $reviewRepository->findBy(
             [
@@ -81,7 +77,6 @@ class CityController extends AbstractController
         return $this->render('front/cities/show.html.twig', [
             'cityId' => $id,
             'city' => $city,
-            'cities' => $cities,
             "allReviewFromBDD" => $allReviews,
         ]);
     }

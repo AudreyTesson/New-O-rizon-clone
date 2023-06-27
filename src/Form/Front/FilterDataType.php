@@ -18,24 +18,24 @@ class FilterDataType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $visas = [
-            'Visa touriste' => 'excepturi',
-            'Visa nomade' => 'maxime',
-            'Virtual Working Program'=> 'fuga',
-            'Spécial Tourist Visa' => 'qui',
-            'Welcome Stamp' => 'repellendus',
-            'Residencia Temporal Empleados Especializados por cuenta propia' => 'repudiandae',
-            'Work From Bermuda' => 'veniam',
-            'Long-term visa for remote workers and family' => 'voluptatum',
-            'e-Visa' => 'sint',
-            'Antigua Nomad Digital Residence' => 'quas',
-            'Global Citizen Concierge' => 'quos',
-            'visa Premium' => 'maxime',
+            'Visa touriste' => 'voluptatem',
+            'Visa nomade' => 'temporibus',
+            'Virtual Working Program'=> 'suscipit',
+            'Spécial Tourist Visa' => 'sed',
+            'Welcome Stamp' => 'saepe',
+            'Residencia Temporal Empleados Especializados por cuenta propia' => 'rerum',
+            'Work From Bermuda' => 'quod',
+            'Long-term visa for remote workers and family' => 'qui',
+            'e-Visa' => 'necessitatibus',
+            'Antigua Nomad Digital Residence' => 'maxime',
+            'Global Citizen Concierge' => 'ipsum',
+            'visa Premium' => 'doloremque',
         ];
 
         $environment = [
-            'mer' => 'dolorem',
-            'montagne' => 'consequuntur',
-            'ville' => 'deserunt',
+            'mer' => 'corrupti',
+            'montagne' => 'consequatur',
+            'ville' => 'dolorem',
             'campagne' => 'accusantium',
         ];
 

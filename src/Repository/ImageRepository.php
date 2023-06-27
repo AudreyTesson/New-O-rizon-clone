@@ -40,27 +40,4 @@ class ImageRepository extends ServiceEntityRepository
         }
     }
 
-    /**
-     * Display 1 image per city for 30 cities, in the carousel for mobile version => retrieve only city name
-     *
-     */
-    public function findByDistinctCityImage()
-        {
-              $entityManager = $this->getEntityManager();
-
-              $query = $entityManager->createQuery("
-                    SELECT image.url AS imageUrl, image.id AS imageId, city.name AS cityName, city.id AS cityId, country.name AS countryName, country.id AS countryId
-                    FROM App\Entity\Image image
-                    JOIN image.country country
-                    JOIN image.city city
-                    GROUP BY city.id
-                  ");
-
-              $query  ->setMaxResults(30);
-
-              $result = $query->getResult();
-
-              return $result;
-        }
-
 }

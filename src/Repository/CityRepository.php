@@ -84,7 +84,6 @@ class CityRepository extends ServiceEntityRepository
         return $sortedCities;
     }
 
-
     public function findByCityName($search)
     {
         $entityManager = $this->getEntityManager();
@@ -211,14 +210,12 @@ class CityRepository extends ServiceEntityRepository
                     ->setParameter('visaType', $filterData->visaType);
             }
             // language
-            // TODO : expected various option in v2 = ->where('city.language IN (:language)')
             if (!empty($filterData->language)) {
                 $query = $query
                     ->andWhere('city.language = :language')
                     ->setParameter('language', $filterData->language);  
             }
             // environment
-            // TODO : expected various option in v2 = ->where('city.environment IN (:environment)')
             if (!empty($filterData->environment)) {
                 $query = $query
                     ->andWhere('city.environment = :environment')

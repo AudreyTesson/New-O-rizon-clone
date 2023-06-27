@@ -18,17 +18,17 @@
 {% set isCitiesList = (app.request.attributes.get("_route") ends with "cities_list") %}
 
     {% if citiesCountry is defined %}
-        <div class="grid w-full justify-center">
-            <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-auto md:mx-4 p-4 gap-x-2 gap-y-4">
+        <div class="flex w-full justify-center">
+            <div class="w-screen md:grid md:grid-cols-3 md:justify-center md:items-center my-4 mx-4 lg:mx-10 p-4 gap-x-2 gap-y-4">
                 
                 {% for city in citiesCountry %}
 
                     {% if isSorted %}
 
                         {% if sortOption == 'ASC' %}
-                            {# <h2 class="flex justify-center text-xl">Villes triées par ordre ascendant :</h2> #}
+                            
                         {% else %}
-                            {# <h2 class="flex justify-center text-xl">Villes triées par ordre descendant :</h2> #}
+                            
                         {% endif %}
 
                         {% include 'partials/_cities_list.html.twig' %}
@@ -45,22 +45,22 @@
 
         </div>
 
-        <div class="pagination flex justify-center">
+        <div class="pagination flex justify-center mb-5">
             {{ knp_pagination_render(citiesCountry) }}
         </div>
 
     {% elseif citiesFilter is defined %}
-        <div class="grid w-full justify-center">
-            <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-auto md:mx-4 p-4 gap-x-2 gap-y-4">
+        <div class="flex w-full justify-center">
+            <div class="w-screen md:grid md:grid-cols-3 md:justify-center md:items-center my-4 mx-4 lg:mx-10 p-4 gap-x-2 gap-y-4">
             
                 {% for city in citiesFilter %}
 
                     {% if isSorted %}
 
                         {% if sortOption == 'ASC' %}
-                            {# <h2 class="flex justify-center text-xl">Villes triées par ordre ascendant :</h2> #}
+                            
                         {% else %}
-                            {# <h2 class="flex justify-center text-xl">Villes triées par ordre descendant :</h2> #}
+                            
                         {% endif %}
 
                         {% include 'partials/_cities_list.html.twig' %}
@@ -85,14 +85,14 @@
 
         </div>
 
-        <div class="pagination flex justify-center">
+        <div class="pagination flex justify-center mb-5">
             {{ knp_pagination_render(citiesFilter) }}
         </div>
 
     {% else %}
             
-        <div class="grid w-full justify-center">
-            <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-auto md:mx-4 p-4 gap-x-2 gap-y-4">
+        <div class="flex w-full justify-center">
+            <div class="w-screen md:grid md:grid-cols-3 md:justify-center md:items-center my-4 mx-4 lg:mx-10 p-4 gap-x-2 gap-y-4">
             
                 {% for city in cities %}
 
@@ -115,9 +115,11 @@
                 {% endfor %}
  
             </div>
-            <div class="z-50 pagination flex justify-center">
-            {{ knp_pagination_render(cities) }}
-            </div>
+
+        </div>
+
+        <div class="z-50 pagination flex justify-center mb-5">
+        {{ knp_pagination_render(cities) }}
         </div>
 
         

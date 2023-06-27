@@ -4,8 +4,9 @@
 
 {% block body %}
 
-<div class="grid w-screen justify-center">
-    <div class = "container w-screen md:grid md:grid-row grid-cols-3 md:justify-center md:items-center my-4 mx-4 p-4 gap-x-2 gap-y-4">
+<div class="flex w-full justify-center">
+    <div class="w-screen md:grid md:grid-cols-3 md:justify-center md:items-center my-4 mx-4 lg:mx-10 p-4 gap-x-2 gap-y-4">
+
 
     {% for cityFav in city %}
 
@@ -51,11 +52,10 @@
     {% endfor %}
 
     </div>
-    <div class="ml-8">
+</div>
 
-        <a href="{{ path('favorites_clear') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-sm inline-block" onclick="return confirm('Vider votre liste de favoris ?');">Vider la liste</a>
-
-    </div>
+<div class="ml-8 md:ml-18 lg:ml-24 mb-5">
+    <a href="{{ path('favorites_clear') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-sm inline-block" onclick="return confirm('Vider votre liste de favoris ?');">Vider la liste</a>
 </div>
 
 

@@ -44,11 +44,11 @@
 
         <div class="relative overflow-hidden md:mx-3 rounded-lg h-56 md:h-64 lg:80 2xl:h-96">
 
-            {% for city in cities %}
+            {% for images in city.images %}
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        
+                
                     <img
-                        src="{{ city.imageUrl }}"
+                        src="{{ images.url }}"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="Photo d'une ville au hasard"/>
                 

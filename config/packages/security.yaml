@@ -39,10 +39,8 @@ security:
         - { path: ^/back, roles: ROLE_ADMIN }
 
     role_hierarchy: 
-        # ROLE_ADMIN included ROLE_MANAGER
-        ROLE_ADMIN: ROLE MANAGER
-        # ROLE_MANAGER included ROLE_USER
-        ROLE_MANAGER: [ROLE_USER, ROLE_CLIENT]
+        # ROLE_ADMIN included ROLE_USER
+        ROLE_ADMIN: ROLE_USER
 
 when@test:
     security:
